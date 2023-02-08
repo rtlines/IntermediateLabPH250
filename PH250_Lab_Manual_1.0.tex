@@ -1,0 +1,83 @@
+\documentclass{book}
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{units}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{pythonhighlight}
+%\usepackage{authblk}
+
+\graphicspath {{Figures/}}
+
+\input{arduinoLanguage.tex} % provies color formating for the Arduino Language. It loads and uses the \usepackage{listings}  
+
+
+%\newenvironment{python}{\begin{lstlisting}[language=Python]}{\end{lstlisting}}
+
+
+\begin{document}
+
+\frontmatter
+\title{{\Huge PH 250}\\
+{\Huge {\Large Intermediate Physics Laboratory for Physics and Physical
+Science Teaching Majors} }}
+\author{R Todd Lines\\ David Oliphant}
+
+\date{\today}
+\maketitle
+\tableofcontents
+
+%\chapter*{Preface}
+\input{Chapters/Preface.tex}
+
+
+%\chapter{Introduction}
+\input{Chapters/Introduction.tex}
+
+\mainmatter
+
+\part{Computer Interfacing}
+
+	%\chapter{Introduction to the Arduino and Computer Control}
+		\input{Chapters/Intro_Arduino_ComputerControl}
+	
+	%\chapter{Introduction to Electrical Measuring Devices (Not Step-by-step)}
+		\input{Chapters/Intro_El_Measurment.tex}
+	
+	%\chapter{First DAQ Measurements: Voltage}
+		\input{Chapters/DAQ_Measuremnt_V.tex}
+	
+	%\chapter{Getting data to the Computer}
+		\input{Chapters/Data_to_Computer.tex}
+	
+	%\chapter{Validation of Ohm's Law}
+		\input{Chapters/Validation_OhmsLaw.tex}
+
+\part{Testing Models}
+
+	%\chapter{Resistors and Capacitors}
+		\input{Chapters/Resistors_Capacitors.tex}
+	
+	%\chapter{Semiconductors and Transduction}
+		%\include{Chapters/Semiconductors_Transduction.tex}
+	
+	%\chapter{DataLogging}
+		\input{Chapters/DataLogging.tex}
+		
+	%\chapter{Inductance and Series RLC Circuits Part 1}
+		\input{Chapters/RLC_Circuits_P1.tex}
+	
+	%\chapter{Inductance and Series RLC circuits Part 2}
+		\input{Chapters/RLC_Circuits_P2.tex}
+
+
+\part{Student Designed Experiments}
+
+	%\chapter{Student Designed Experiments\label{Student Designed Experiments}}
+		\input{Chapters/Student_Designed_Experiments.tex}
+			
+			
+\end{document}
