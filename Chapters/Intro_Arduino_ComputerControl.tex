@@ -18,10 +18,7 @@ manufacturer's pay less, so we pay less. It is low cost, but not low
 quality. They named their DAQ \textquotedblleft Arduino.\textquotedblright\ 
 
 The Arduino is fragile, like all DAQ's. We will need to be careful with our
-Arduino's. They will be destroyed by putting too large a voltage (something
-we will discuss as we go) or electrical current (also something you will
-study in PH220) into the input pins. They also can be destroyed by being
-dropped or squashed, so some caution is warranted.
+Arduino's. They will be destroyed by putting too large a voltage or electrical current (things you will study in PH220 if you haven't already) into the input pins. They also can be destroyed by being dropped or squashed, so some caution is warranted.
 
 Let's start our study of computer control by controlling something simple
 with our Arduino DAQ. Earlier we though about turning an apparatus on or
@@ -41,11 +38,7 @@ what we will build for our light blinking experience:
 	\includegraphics[width=3.4504in,height=1.4955in]{PH4CAU01}
 \end{figure}
 
-You are probably familiar with
-words like \textquotedblleft voltage\textquotedblright\ and
-\textquotedblleft current\textquotedblright\ even though you have not yet
-studied these in PH220. You have been plugging in things for many years now.
-And so you know that \textquotedblleft voltage\textquotedblright\ has
+You are probably familiar with words like ``voltage'' and ``current'' even if  you have not yet studied these in PH220. You have been plugging in things for many years now. And so you know that ``voltage'' has
 something to do with electrical energy. That is enough for now. Our voltage
 source is just a source of energy to make our circuits work.
 
@@ -315,7 +308,8 @@ C\textquotedblright\ language, you will recognize some of these changes.
 \subsection{Arduino LED light blink sketch (program)}
 
 We are ready to write code to blink our LED\ light. Here is an example code.
-We write this code right in the Arduino development environment main window. You can download it directly \href{https://dtoliphant.github.io/PH250Manual/Code/IntroBlink.ino}{here}
+We write this code right in the Arduino development environment main window. You can download it directly %\href{https://dtoliphant.github.io/PH250Manual/Code/IntroBlink.ino}{here}
+\href{https://github.com/rtlines/IntermediateLabPH250/blob/main/Code/IntroBlink.ino}{here}
 \lstinputlisting[language=Arduino]{Code/IntroBlink.ino}
 
 
@@ -573,75 +567,8 @@ see if you can figure out what the code should be.
 
 This example is a much more complex version of a mathematical based computer
 control.
+
 \lstinputlisting[language=Arduino]{Code/IntroFibonacci.ino}
-% \begin{lstlisting}[language=Arduino]
-%/////////////////////////////////////////////////////////
-%// code to blink two LED's using a mathematical expression
-%// to determine when they should light. Note that the
-%// Arduino code is closer to C++ than python.
-%/////////////////////////////////////////////////////////
-%int ledPin1=13;
-%int ledPin2=12;
-%int i=0; //loop counter
-% 
-%/////////////////////////////////////////////////////////
-%int fib_count=0; // number of blinks based on Fibonacci
-%int i_max=10; // maximum Fibonacci number before 
-% // starting over
-% 
-%/////////////////////////////////////////////////////////
-%void setup() {
-% // put your setup code here, to run once:
-% pinMode(ledPin1, OUTPUT);
-% pinMode(ledPin2, OUTPUT);
-% } 
-% 
-%int fib(int x) {
-% // calculates the Fibonacci sequence using recursion
-% if (x==0) 
-%    return 0;
-% if (x==1)
-%   return 1;
-%   return fib(x-1) + fib(x-2);
-% } 
-% 
-%/////////////////////////////////////////////////////////
-%void loop() {
-% // put your main code here, to run repeatedly:
-% // blink the LED's with the number of blinks being 
-% // the Fibonacci sequence.
-% fib_count=fib(i);
-% if (i % 2 == 0 ) {
-%   // turn off one light
-%   digitalWrite(ledPin2,LOW);
-%   // now blink the second light fib_count times 
-%   for (int n=0; n<fib_count; n++) { 
-%      digitalWrite(ledPin1,HIGH);
-%      delay(100);
-%      digitalWrite(ledPin1,LOW);
-%      delay(100);
-%   }
-% }
-% else {
-%   // turn off the other light
-%   digitalWrite(ledPin1,LOW);
-%   // now blink the first light fib_count times
-%   for (int n=0; n<fib_count ; n++) { 
-%      digitalWrite(ledPin2,HIGH);
-%      delay(100);
-%      digitalWrite(ledPin2,LOW);
-%      delay(100);
-%   }
-% }
-% // increment i
-% i++;
-% // limit our blinks to the first i_max Fibonacci numbers
-% if (i>i_max) i=0;
-% }
-%}
-%/////////////////////////////////////////////////////////
-%/////////////////////////////////////////////////////////
-% \end{lstlisting}
 
 Again save your sketch. You should probably say in your lab notebook that
 you used the previous hardware setup. You really should describe in your lab
@@ -650,8 +577,5 @@ notebook how the mathematical algorithm works.
 For next week, you should read the lab before coming to class. So your
 assignment is to read Lab 2.
 
-%TCIMACRO{\TeXButton{\vspace*{\fill}}{\vspace*{\fill}}}%
-%BeginExpansion
-\vspace*{\fill}%
-%EndExpansion
+\vspace*{\fill}
 \pagebreak

@@ -30,37 +30,37 @@ int fib(int x) {
  
 /////////////////////////////////////////////////////////
 void loop() {
-   // put your main code here, to run repeatedly:
-   // blink the LED's with the number of blinks being 
-   // the Fibonacci sequence.
-   fib_count=fib(i);
-   if (i % 2 == 0 ) {
-      // turn off one light
-      digitalWrite(ledPin2,LOW);
-      // now blink the second light fib_count times 
-      for (int n=0; n<fib_count; n++) { 
-         digitalWrite(ledPin1,HIGH);
-         delay(100);
-         digitalWrite(ledPin1,LOW);
-         delay(100);
-         }
-      }
-   else {
-      // turn off the other light
+ // put your main code here, to run repeatedly:
+ // blink the LED's with the number of blinks being 
+ // the Fibonacci sequence.
+ fib_count=fib(i);
+ if (i % 2 == 0 ) {
+   // turn off one light
+   digitalWrite(ledPin2,LOW);
+   // now blink the second light fib_count times 
+   for (int n=0; n<fib_count; n++) { 
+      digitalWrite(ledPin1,HIGH);
+      delay(100);
       digitalWrite(ledPin1,LOW);
-      // now blink the first light fib_count times
-      for (int n=0; n<fib_count ; n++) { 
-         digitalWrite(ledPin2,HIGH);
-         delay(100);
-         digitalWrite(ledPin2,LOW);
-         delay(100);
-         }
-      }
-   // increment i
-   i++;
-   // limit our blinks to the first i_max Fibonacci numbers
-   if (i>i_max) i=0;
+      delay(100);
    }
-
+ }
+ else {
+   // turn off the other light
+   digitalWrite(ledPin1,LOW);
+   // now blink the first light fib_count times
+   for (int n=0; n<fib_count ; n++) { 
+      digitalWrite(ledPin2,HIGH);
+      delay(100);
+      digitalWrite(ledPin2,LOW);
+      delay(100);
+   }
+ }
+ // increment i
+ i++;
+ // limit our blinks to the first i_max Fibonacci numbers
+ if (i>i_max) i=0;
+ }
+}
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////

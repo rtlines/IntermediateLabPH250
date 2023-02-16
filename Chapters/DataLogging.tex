@@ -9,10 +9,12 @@ Today we all need to be able to have our Arduino collect data and save it with n
 \section{Arduino Shields}
 	Arduino shields are a simple way to add specific functionality to your Arduino. There are many different shields with many different features. Some shields have additional integrated circuit (IC) chips on them that can add additional computational power.  Others are extremely simple and are designed so you can have a more solid electrical connections with your experiment.  Here is an example of a simple prototyping shield.
 	\begin{figure}[h!] 
+		\centering
 		\caption{Top of a prototyping shield}
 		\includegraphics[width=3.614in,height=2.3981in]{20200309_133406}
 	\end{figure}
 	\begin{figure}[h!] 
+		\centering
 		\caption{Bottom of a prototyping shield}
 		\includegraphics[width=3.614in,height=2.3981in]{20200309_133450}
 	\end{figure}
@@ -21,15 +23,16 @@ Today we all need to be able to have our Arduino collect data and save it with n
 	
 	Many shields are compatible with other shields such that they can be stacked onto each other. This will depend on what pins each shield is using and on the physical placement of both the bottom and top pins.
 	
-	Because shields are designed for a specific functionality the manufactures will often provide example code that utilizes those features. This code can then be modified and/or combined with other code to get your Arduino to do what ever you want. While working with shields be aware of the pins that the shield is using. So you don't interferer with its operation use other pins for your experiments.
+	Because shields are designed for a specific functionality the manufactures will often provide example code that utilizes those features. This code can then be modified and/or combined with other code to get your Arduino to do what ever you want. While working with shields be aware of the pins that the shield is using. So you don't interfere with its operation use other pins for your experiments.
 
 \section{Data Logger Shield}
 	Data logging is one of the most important parts of any experiment. Data for many experiments often depend on time. The data logger shield allows us to not only save the data to an SD card but we can also save the time along with it. This is because it has a built in real time clock(RTC). 
 	
-	Take a close look at the figure \ref{Data_Logger}. You will notice that the SD card slot (right next to the words "Data logger Shield") is close to an IC. That IC (a black rectangle) controls the SD card. 
+	Take a close look at the figure \ref{Data_Logger}. You will notice that the SD card slot (right next to the words ``Data logger Shield'') is close to an IC. That IC (a black rectangle) controls the SD card. 
 	
 	There is also a battery holder. It has a battery in it, but the image also shows a piece of blue paper covering both sides of the battery. This is for shipping so that the battery isn't drained while not in use. The battery is needed for the real time clock. So that it keeps time even if there is no other power to the board. The electronics for the RTC are right next to the battery. Note the smaller IC and the silver cylinder. The cylinder holds a small quartz crystal tunning fork that keeps oscillating. These oscillations are counted by the IC and are used to keep time. 
 	\begin{figure}[h!] 
+		\centering
 		\caption{Top of Data Logger Shield}
 		\label{Data_Logger}
 		\includegraphics[width=3.614in,height=2.3981in]{20200310_110036}
@@ -51,7 +54,7 @@ Today we all need to be able to have our Arduino collect data and save it with n
     \begin{lstlisting}[language=Arduino]
     rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0));
     \end{lstlisting}
-    . But change the numbers to match the current date and time. Then upload the code again. This will set the clock. This only needs to be done once, as the battery will keep time from then on. So put the comment back slashes back in and upload the code again.
+    But change the numbers to match the current date and time. Then upload the code again. This will set the clock. This only needs to be done once, as the battery will keep time from then on. So put the comment back slashes back in and upload the code again.
 
 
 \href{https://dtoliphant.github.io/PH250Manual/Code/DataLog.ino}{Download here}
