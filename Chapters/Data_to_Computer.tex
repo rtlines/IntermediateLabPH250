@@ -21,47 +21,48 @@ for analysis on our computer. If you already have Python, that is fine, you
 could skip ahead. If you don't, the next steps show how to get Python on
 your computer and how to get the Python serial library so you have the
 commands to read the serial port. Our physics department uses two different
-distributions of Python. Canopy, and Anaconda. Canopy is a little bit more
-\textquotedblleft civilized\textquotedblright\ with more dialogue boxes and
-little command line work. Anaconda is a little bit more \textquotedblleft
-linux-like\textquotedblright\ with more command line work. But both work
-fine. Instructions for getting both are in the sections below.
+distributions of Python. Canopy, and Anaconda. But both work fine. But if you don't have a distribution, I encourage you to try the Anaconda version. Instructions for downloading and installing are given next. 
 
 \subsection{Getting Anaconda Python}
 
 The Anaconda distribution of Python is designed for scientific work (so it
 has most of the science libraries of functions already installed) It can be
 found at https://www.continuum.io/downloads. There is an install link for
-Windows, Mac, and Linux. Choose the one for your operating system\footnote{%
+Windows, Mac, and Linux. Choose the one for your operating system\footnote{
 If you have a Linux computer, it is likely that you will want to actually
 see if Anaconda is in your distribution's repository. If you are not a Linux
-user, you have no idea what that means and can ignore it.}.
+user and you have no idea what that means you can ignore it.}.
 
-When you click on a link, it is likely a dialog box will come up telling you
-that you are downloading something. In windows it looks like this 
+When you click on the green download button it will download an executable file. Meanwhile the website tries to get you to subscribe, and offers you the opportunity to code with Anaconda in the cloud. I encourage you to ignore these opportunities and to just use the executable file to install python. In windows it looks like this 
+
 \begin{figure}[h!]
-\includegraphics[width=4.5939in,height=2.0721in]{PH4CAU23}
+	\centering
+	\includegraphics[width=4.0in,height=1.9in]{PH4CAU23}
 \end{figure}
 
 Choose \textquotedblleft Save File\textquotedblright\ and when the file is
 downloaded open it to start the installation. You should see something like
 this: 
+
 \begin{figure}[h!]
-\includegraphics[width=4.1502in,height=3.2361in]{PH4CAU24}
+	\centering
+	\includegraphics[width=3.1502in,height=2.2361in]{PH4CAU24}
 \end{figure}
 
 Choose \textquotedblleft Next\textquotedblright\ and follow the installation
 instructions. If all goes well, you should have a new set of apps. Here is
 what mine looked like on my Windows 10 computer. 
+
 \begin{figure}[h!]
-\includegraphics[width=4.8369in,height=%
-3.2448in]{PH4CAU25}
+	\centering
+	\includegraphics[width=3.8369in,height=2.2448in]{PH4CAU25}
 \end{figure}
 
-The list of the apps has an app called Spyder. Let's launch it to see what
-it does.
+The list of the apps has an app called Spyder. Let's launch it to see what it does.
+
 \begin{figure}[h!]
-\includegraphics[width=5.655in,height=2.4898in]{PH4CAU26}
+	\centering
+	\includegraphics[width=5.655in,height=2.4898in]{PH4CAU26}
 \end{figure}
 
 What we get is something like the Arduino program that we have been using to
@@ -95,18 +96,22 @@ installed in Anaconda. If you are using Windows, you might find it in your
 app list like this.
 
 \begin{figure}[h!]
-\includegraphics[width=3.5293in,height=2.8928in]{PH4CAU27}
+	\centering
+	\includegraphics[width=3.5293in,height=2.8928in]{PH4CAU27}
 \end{figure}
 
 Once you launch the Anaconda prompt it just looks like a big black box. 
-\begin{figure}[h!]
-\includegraphics[width=5.2831in,height=3.0796in]{PH4CAU28}
-\end{figure}We can type commands in that box
-that will modify the Anaconda Python programs that we installed. In our case
-we want to type in the command \texttt{conda install pyserial}.
 
 \begin{figure}[h!]
-\includegraphics[width=5.1664in,height=3.0156in]{PH4CAU29}
+	\centering
+	\includegraphics[width=2.2831in,height=1.5796in]{PH4CAU28}
+\end{figure}
+
+We can type commands in that box that will modify the Anaconda Python programs that we installed. In our case we want to type in the command \texttt{conda install pyserial}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=4.2851in,height=2.501in]{PH4CAU29}
 \end{figure}
 
 Notice that the Anaconda prompt app responds to our command. What it
@@ -115,16 +120,22 @@ a network connection to install new libraries, so if you get an error, you
 may just not be connected to a network.
 
 \begin{figure}[h!]
-\includegraphics[width=4.2851in,height=2.501in]{PH4CAU2A}
-\end{figure}If you already have PySerial
+	\centering
+	\includegraphics[width=4.2851in,height=2.501in]{PH4CAU2A}
+\end{figure}
+
+If you already have PySerial
 installed, you will be told so, or asked if you wish to update it if an
 update is available. If you don't have PySerial, it will ask you if you want
 to install it. Answer \textquotedblleft yes\textquotedblright\ and PySerial
 will be installed. If any error messages are generated, ask for help from
 your instructor. Hopefully you will see a happy end result like this 
+
 \begin{figure}[h!]
-\includegraphics[width=6.1445in,height=3.589in]{PH4CAU2B}
-\end{figure}%
+	\centering
+	\includegraphics[width=4.2851in,height=2.501in]{PH4CAU2B}
+\end{figure}
+
 and you will be all ready to start writing code to get data from the serial
 port.
 
@@ -580,10 +591,5 @@ be discouraged by the length.
 	\item Make sure your lab group members all have Python programs that run and
 	save data correctly. Help if they do not.
 	\end{enumerate}
-
-\item Together with your group, fill out a \textquotedblleft brainstorming
-sheet\textquotedblright\ in preparation for your design project later in the
-semester.
-
 
 \end{enumerate}
