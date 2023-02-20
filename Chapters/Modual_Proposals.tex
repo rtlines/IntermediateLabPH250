@@ -1,0 +1,218 @@
+\section{Proposals}
+
+It's time to start thinking of what experiment you and your group will design. For block classes we have to do this right at the start because it may take time to order in parts for your instrument that you will design. So even if it feels early, we need to think about this. 
+You are required to write a proposal for this experiment. This is a document that is intended to persuade someone (your professor,  funding agency, yourself, etc.) that you should be given the resources and support to perform the experiment. The proposal consists of the following parts:
+
+\begin{enumerate}
+	\item Statement of the experimental problem
+	
+	\item Procedures and anticipated difficulties
+	
+	\item Proposed analysis and expected results
+	
+	\item Preliminary List of equipment needed
+\end{enumerate}
+
+Since you be writing each of these sections, let's discuss what should be in them.
+
+\subsection{Statement of the experimental problem}
+
+This is a physics class, so our experiment should be a physics experiment. The job of an experimental physicist is to test physics theory. So your statement of the experimental problem should include what theory you are testing and a brief, high level, overview of what you plan to do to test this theory.
+
+\subsection{Procedures and anticipated difficulties}
+
+Hopefully, your reader will be so excited by the thought of you solving your experimental problem that he or she will want to know the details of what you plan to do. You should describe in some detail what you are planning. If there are hard parts of the procedure, tell how you plan to get through them.
+
+\subsection{Proposed analysis and expected results}
+
+You might think this is unfair, how are you supposed to know what analysis will be needed and what the results should be until you take the data? But really you both can, and should, make a good plan for your data analysis and figure out what your expected results should be. After all, you have a theory your are testing! You can encapsulate that theory into a predictive equation for your experiment. You can design your experimental apparatus, and put in the numbers from your experimental design. From this you can calculate what should be the outcome.
+
+If you don't do this, you don't know what equipment you will need or how sensitive that equipment needs to be. If you are trying to measure the size of your text book, an odometer that only measures in whole miles may not be the best choice of equipment. To know what you need, do the calculations in advance.
+
+You should also do the error analysis. You will want to predict the uncertainty. A measurement of your text book length that is good to $\pm 3\unit{m}$ is not very satisfying in most cases. Uncertainty in your result is governed by the uncertainty inherent in the measurements you will take. The uncertainty calculation tells you what sensitivity you will need in your measurement devices. Since you are choosing those measurement devices as part of your proposal, and you are choosing the inputs to your model equaiton (like the resistance and the capacitance in today's lab) you will know how much uncertatinty they have, so you can do the calculation in advance.
+
+You should do all of this symbolically if you can, numerically if you must, but almost never by hand (meaning not using your calculator) giving single value results. Some measurements will come back poorer than you anticipated, or some piece of equipment will be unavailable. You don't want to have to redo all your calculations from scratch each time this happens. For example, in the event of an equipment problem, your analysis tells you if another piece of equipment is sufficiently sensitive, or if you need to find an exact replacement. When I\ perform an analysis like this, try for a symbolic equation for uncertainty. I\ like to program these equations into Scientific
+Workplace, or Maple, or SAGE, or MathCAD, or whatever symbolic math processor I\ have. Alternatevly, you could code it into Python. Then, as actual measurements change, I\ instantly get new predictions. In the absence of a symbolic package, a spreadsheet program will do fine. A numerical program also is quick and easy to re-run with new numbers when no symbolic answer is found.
+
+\subsection{Preliminary List of equipment needed}
+
+Once you have done your analysis, you are ready to list the equipment you need and the sensitivity of the measurement equipment you need. Final approval of the project and the ultimate success of your experiment depend on the equipment you choose or are granted. You want to do a good job analyzing so you know what you need, and a good job describing the experiment so you are likely to have the equipment granted.
+
+\subsection{Designing the Experiment}
+
+Of course, as part of your proposal, you will have to design your experiment. In PH150 we learned that to design an experiment we needed the following steps. Some evidence of these steps should be found in your lab notebook:
+
+\begin{enumerate}
+	\item Identify the system to be examined. Identify the inputs and outputs.
+	Describe your system in your lab notebook.
+	
+	\item Identify the model to be tested. Express the model in terms of an
+	equation representing a prediction of the measurement you will make. Record
+	this in your lab notebook.
+	
+	\item Plan how you will know if you are successful in your experiment. Plan
+	graphs or other reporting devices. Record this in your lab notebook. This
+	usually requires you to calculate the predicted uncertainty and to evaluate
+	the relative size of the terms in the uncertainty equation (see below).
+	
+	\item Rectify your equation if needed. Record this in your lab notebook.
+	
+	\item Choose ranges of the variables. Record this in your lab notebook.
+	
+	\item Plan the experimental procedure. Record this in your lab notebook.
+	
+	\item Perform the experiment . Record this in your lab notebook (see next
+	section).
+\end{enumerate}
+
+\subsection{Using Uncertainty to refine experimental design.}
+
+Suppose you plan to test our model for resistance from your PH220 text book.
+The equation for resistance is 
+
+\begin{equation*}
+	R=\rho \frac{\ell }{A}
+\end{equation*}
+
+where $\rho $ is the resistivity, the material properties of the material that makes wire or resistor have friction. The length of the wire or resistor is $\ell $, and $A$ is the cross sectional area. We could find the uncertainty in $R$
+
+\begin{equation*}
+	\delta R=\sqrt{\left( \frac{\partial R}{\partial \rho }\delta \rho \right)
+		^{2}+\left( \frac{\partial R}{\partial \ell }\delta \ell \right) ^{2}+\left( 
+		\frac{\partial R}{\partial A}\delta A\right) ^{2}}
+\end{equation*}
+
+The first term in the square root is 
+
+\begin{equation*}
+	\left( \frac{\partial R}{\partial \rho }\delta \rho \right) ^{2}=\left( 
+	\frac{\ell }{A}\delta \rho \right) ^{2}
+\end{equation*}
+
+and the other two terms are 
+
+\begin{equation*}
+	\left( \frac{\partial R}{\partial \ell }\delta \ell \right) ^{2}=\left( 
+	\frac{\rho }{A}\delta \ell \right) ^{2}
+\end{equation*}
+
+\begin{equation*}
+	\left( \frac{\partial R}{\partial A}\delta A\right) ^{2}=\left( -\rho \frac{%
+		\ell }{A^{2}}\delta A\right) ^{2}
+\end{equation*}
+
+And suppose that our design is to have a copper wire with 
+
+\begin{eqnarray*}
+	\rho &=&1.68\pm 0.03\times 10^{-8}\unit{\Omega}\unit{m} \\
+	\ell &=&5.0\pm 0.1\unit{m} \\
+	A &=&5.0\times 10^{-10}\unit{m}^{2}\unit{m}^{2}
+\end{eqnarray*}
+
+This would give a resistance of 
+
+\begin{eqnarray*}
+	R_{new} &=&1.68\times 10^{-8}\unit{\Omega}\unit{m}\frac{5\unit{m}}{5.0\times 10^{-10}\unit{m}^{2}} \\
+	&=&168.0\unit{\Omega}
+\end{eqnarray*}
+
+We can calculate each of our terms from the $\delta R$ equation. 
+
+\begin{equation*}
+	\left( \frac{\ell }{A}\delta \rho \right) ^{2}=\left( \frac{5\unit{m}}{%
+		5.0\times 10^{-10}\unit{m}^{2}}\left( 0.03\times 10^{-8}\unit{\Omega	}\unit{m}\right) \right) ^{2}=9.0\unit{\Omega}^{2}
+\end{equation*}
+
+\begin{equation*}
+	\left( \frac{\rho }{A}\delta \ell \right) ^{2}=\left( \frac{1.68\times
+		10^{-8}\unit{\Omega}\unit{m}}{5.0\times 10^{-10}\unit{m}^{2}}\left( 0.1\unit{m}\right) \right) 	^{2}=11.\,\allowbreak 290\unit{\Omega}^{2}
+\end{equation*}
+
+\begin{equation*}
+	\left( -\rho \frac{\ell }{A^{2}}\delta A\right) ^{2}=\left( -\left(
+	1.68\times 10^{-8}\unit{\Omega}\unit{m}\right) \frac{\left( 5\unit{m}\right) }{\left( 5.0\times 10^{-10} \unit{m}^{2}\right) ^{2}}\left( 0.1\times 10^{-9}\unit{m}^{2}\right) \right)
+	^{2}=1129.\,\allowbreak 0\unit{\Omega}^{2}
+\end{equation*}
+
+The overall uncertainty then would be
+
+\begin{equation*}
+	\delta R=\sqrt{9.0\unit{\Omega}^{2}+11.\,\allowbreak 290\unit{\Omega}^{2}+1129.\,\allowbreak 0\unit{\Omega}^{2}}=33.\,\allowbreak 901\unit{\Omega}
+\end{equation*}
+
+So with this design we predict a fractional uncertainty of 
+
+\begin{equation*}
+	\frac{33.\,\allowbreak 901\unit{\Omega}}{168.0\unit{\Omega}}=0.201\,79
+\end{equation*}
+
+or a little over $20\%.$ This is not a great design. We would like a much
+lower uncertainty, something that gives a fractional uncertainty more like $%
+1\%.$ It is clear that the last term has the highest contribution to the
+uncertainty, so this is the term that needs fixing. One method of fixing the
+problem would be to increase $\delta A.$ We could try $1.0\pm 0.1\times
+10^{-9}\unit{m}^{2}.$ In order to have the same resistance we will also have
+to change the length of the wire from $10\unit{m}$ to $5\unit{m}$. 
+\begin{eqnarray*}
+	\rho &=&1.68\pm 0.03\times 10^{-8}\unit{\Omega}\unit{m} \\
+	\ell &=&10.0\pm 0.1\unit{m} \\
+	A &=&1.0\pm 0.1\times 10^{-9}\unit{m}^{2}
+\end{eqnarray*}
+
+Checking we see we do get the same resistance 
+
+\begin{eqnarray*}
+	R &=&1.68\times 10^{-8}\unit{\Omega	}\unit{m}\frac{10\unit{m}}{1.0\times 10^{-9}\unit{m}^{2}} \\
+	&=&168\unit{\Omega}
+\end{eqnarray*}
+
+But now for the last term we would get 
+
+\begin{equation*}
+	\left( -\rho \frac{\ell }{A^{2}}\delta A\right) ^{2}=\left( -\left(
+	1.68\times 10^{-8}\unit{\Omega}\unit{m}\right) \frac{\left( 10\unit{m}\right) }{\left( 1.0\times 10^{-9}\unit{m}^{2}\right) ^{2}}\left( 0.1\times 10^{-9}\unit{m}^{2}\right) \right)^{2}=282.\,\allowbreak 24\unit{\Omega}^{2}
+\end{equation*}
+
+which is better. But we have to check to make sure our design change didn't
+cause a large rise in the other two terms. 
+
+\begin{equation*}
+	\left( \frac{\ell }{A}\delta \rho \right) ^{2}=\left( \frac{10\unit{m}}{		1.0\times 10^{-9}\unit{m}^{2}}\left( 0.03\times 10^{-8}\unit{\Omega}\unit{m}\right) \right) ^{2}=9.0\unit{\Omega}^{2}
+\end{equation*}
+
+\begin{equation*}
+	\left( \frac{\rho }{A}\delta \ell \right) ^{2}=\left( \frac{1.68\times
+		10^{-8}\unit{\Omega}\unit{m}}{1.0\times 10^{-9}\unit{m}^{2}}\left( 0.1\unit{m}\right) \right)^{2}=2.8224\unit{\Omega}^{2}
+\end{equation*}
+
+The first term was hurt by our new design change, but not badly. So with the
+new design the overall uncertainty would be 
+\begin{equation*}
+	\delta R=\sqrt{9.0\unit{\Omega}^{2}+2.8224\unit{\Omega}^{2}+282.\,\allowbreak 24\unit{\Omega		}^{2}}=17.\,\allowbreak 148\unit{\Omega}
+\end{equation*}
+
+$\allowbreak $So with this new design we predict a fractional uncertainty of
+
+\begin{equation*}
+	\frac{17.\,\allowbreak 148\unit{\Omega}}{168.0\unit{\Omega	}}=0.102\,07
+\end{equation*}
+
+which is about $\allowbreak 10.\%.$ This is much better. From our uncertainty terms, we can see that to do better we need to improve both the $\delta A$ term and the $\delta \ell $ terms because they are now about the same size. The terms in our uncertainty calculation tell us how to modify our experimental design.
+
+There is a refinement we could make to our process. really there are no area measurement devices available, so what we would do is measure the diameter of the wire and calculate the area.
+
+\begin{equation*}
+	A=\frac{1}{4}\pi D^{2}
+\end{equation*}
+
+we could find $\delta A$ by using our propagation of uncertainty equation again, or we could modify our resistance equation so that it is in terms of what we actually measure.
+
+\begin{equation*}
+	R=\rho \frac{4\ell }{\pi D^{2}}
+\end{equation*}
+
+and calculate our uncertainty in terms of $\rho ,$ $\ell ,$ and $D.$ That is preferred and usually less work. The general rule is to express your model equation in terms of what you will actually measure before you calculate the uncertainty terms.
+
+The moral of this long story is that we must calculate the uncertainty \emph{as part of the design process}. It is probably best to use a symbolic math processor or at lease a spreadsheet so that as the design changes your uncertainty estimate will change too without having to manually recalculate it.
+
+
