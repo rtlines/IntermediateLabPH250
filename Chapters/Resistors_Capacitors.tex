@@ -178,171 +178,24 @@ previous code just a bit, so here is an updated version.
 
 
 
-The resulting data could be plotted in Excel. It might look something like
-this.\begin{figure}[h!]
-\includegraphics[width=2.9101in,height=1.7538in]{PH4CAX3B}
-\end{figure}I plotted this in Excel, and that
-is great. But Excel doesn't have the right function built into it for a
-curve fit. So we will use a new analysis program named LoggerPro. It is not
-hard to use, and you can copy your data from a file, or from Excel into
-LoggerPro easily. The next section shows how to make this work. If you are a
-fantastic Python programmer, you could use Python for this part. If you are
-a die-hard Excel user, we can show you how to use Excel and get the same
-result. But LoggerPro will make this very easy.
-
-\subsection{LoggerPro Curve Fitting.}
-
-Let's start by noting that you can download LoggerPro to your own computer
-if you would like. You should have received a notification about this on
-I-Learn. If you wish to install LoggerPro, follow the announcement
-instructions.
-
-Once you have LoggerPro on your computer or on one of our lab computers, we
-will use it for fitting a curve to our data just like we did last time in
-Excel. Suppose you have already imported your data in Excel. It might look
-like this:
+The resulting data could be plotted in python. It might look something like this.
 
 \begin{figure}[h!]
-\includegraphics[width=2.6498in,height=2.2399in]{PH4CAX3C}
-\end{figure}Now highlight a----- column (I
-highlighted the time column) and select copy to copy the data to the
-clipboard. Then open up LoggerPro. You will see a data area, a graph area,
-and the toolbar.\begin{figure}[h!]
-\includegraphics[width=5.0721in,height=2.0721in]{PH4CAX3D}
-\end{figure}We want to past the data into a
-column in LoggerPro. If you also selected the time data, paste it into the $%
-x $-column in Logger Pro. \begin{figure}[h!]
-\includegraphics[width=3.2197in,height=2.9187in]{PH4CAX3E}
+	\centering
+	\includegraphics[width=2.9101in,height=1.7538in]{RC_circuit_data}
 \end{figure}
 
-Do the same for the voltage data. Paste it into the $y$-column. Once you do
-this, the data will automatically be graphed. \begin{figure}[h!]
-\includegraphics[width=5.1802in,height=%
-2.7838in]{PH4CAX3F}
-\end{figure}We now want to fit a curve to
-this data. The curve fit function can be accessed from the tool bar. It
-looks like this: \begin{figure}[h!]
-\includegraphics[width=1.3604in,height=1.4607in]{PH4CAX3G}
-\end{figure}Click on the icon and a new
-dialog will appear. \begin{figure}[h!]
-\includegraphics[width=4.4936in,height=2.8677in]{PH4CAX3H}
-\end{figure}
+I plotted this in python. You might plot it in Excel or LoggerPro or many other plotting tools. Before we fit a line to data. But looking at the data, a linear fit doesn't seem appropriate
+for this data. So we need to go beyond what we have done so far. To do this we need a curve fit tool that can use whatever equation that might fit the data. Python can do this, and so can LoggerPro.  But Excel can't. We will have to be more picky about what tool to use to match our data. 
 
-It is tempting to try just any function to see if it fits. But the goal is
-not to have a great fit. The goal is to see if our data fit the equation
-from our capacitor model. 
-\begin{equation*}
-\Delta V_{C}\left( t\right) =\Delta V_{\max }\left( 1-e^{-\frac{t}{\tau }%
-}\right)
-\end{equation*}%
-so we need to find this particular function. This is why I didn't suggest
-using Excel. Excel does not have the equation we need in it's list.
 
-\begin{figure}[h!]
-\includegraphics[width=3.2759in,height=1.2298in]{PH4CAX3I}
-\end{figure}Of course we won't find a match
-with our exact notation. The one we want is given as 
-\begin{equation*}
-y=A\ast (1-\exp (-C\ast x))+B
-\end{equation*}%
-and now we have to match our variables with theirs. Let's compare the
-equations. 
-\begin{eqnarray*}
-y &=&A\ast (1-\exp (-C\ast x))+B \\
-\Delta V_{C}\left( t\right) &=&\Delta V_{\max }\left( 1-e^{-\frac{t}{\tau }%
-}\right) +0
-\end{eqnarray*}%
-We can see that 
-\begin{equation*}
-\begin{tabular}{ll}
-Ours & Theirs \\ 
-$\Delta V_{\max }$ & $A$ \\ 
-$0$ & $B$ \\ 
-$\tau $ & $\frac{1}{\mathtt{C}}$%
-\end{tabular}%
-\end{equation*}%
-We can see this \begin{figure}[h!]
-\includegraphics[width=4.561in,height=2.8842in]{PH4CAX3J}
-\end{figure}
-
-If the fit looks good, choose the \textquotedblleft OK\textquotedblright\
-button. You get the graph back with the curve fit and a new little box. 
-\begin{figure}[h!]
-\includegraphics[width=5.1214in,height=2.751in]{PH4CAX3K}
-\end{figure}The curve fit looks nice and that
-is comforting. For my data, it looks like our capacitor model might be
-correct, but we can't be sure until we add in error bars. Before we do that,
-let's look at the new little box. \begin{figure}[h!]
-\includegraphics[width=2.3151in,height=2.0557in]{PH4CAX3L}
-\end{figure}The box has our fit equation that
-we chose and it has values for the fit parameters and their uncertainties.
-We will need those later!
-
-Let's add on the error bars now. Right click on the graph if you have a PC
-or do the Mac equivalent if you have a Mac. A new dialog appears and in this
-case choose \textquotedblleft Graph Options.\textquotedblright\ \begin{figure}[h!]
-\includegraphics[width=2.6083in,height=2.7008in]{PH4CAX3M}
-\end{figure}%
-On the \textquotedblleft Graph Options\textquotedblright\ dialog make sure
-both $x$ and $y$-error bars are checked.
-
-\begin{figure}[h!]
-\includegraphics[width=4.3509in,height=3.7645in]{PH4CAX3N}
-\end{figure}Chose \textquotedblleft
-Done\textquotedblright\ and right click on the graph again. This time choose
-\textquotedblleft Column Options.\textquotedblright\ \begin{figure}[h!]
-\includegraphics[width=3.0104in,height=%
-3.1185in]{PH4CAX3O}
-\end{figure}and choose the $y$-data set.
-Another dialog appears with two tabs. Choose the \textquotedblleft
-Options\textquotedblright\ tab. \begin{figure}[h!]
-\includegraphics[width=4.3431in,height=3.1453in]{PH4CAX3P}
-\end{figure}
-
-You will see a place to choose how error bars are calculated. If you used
-the simple voltmeter sketch as your basis, you know the quantization error
-is about $4.9\unit{mV}.$ That will be true for every voltage measurement so
-we can input this as a constant value. If you used a voltage divider, you
-will have to use your calculated error value here. When you have your error
-value in place, choose \textquotedblleft Done.\textquotedblright\ \begin{figure}[h!]
-\includegraphics[width=5.0886in,height=2.7345in]{PH4CAX3Q}
-\end{figure}
-
-The voltage error was so small that it is hard to see the error bars! That
-is fine. What this tells us is that our fit line must go right through the
-center of each data point. But it does. So we are really doing fine. The
-data supports the model.
-
-But now let's go back to our little box of curve fit parameters. We
-identified 
-\begin{equation*}
-\tau =\frac{1}{\mathtt{C}}
-\end{equation*}%
-and for my data I have 
-\begin{equation*}
-\mathtt{C}=0.01681\pm 3.475\times 10^{-5}
-\end{equation*}%
-\newline
-We need units, and looking at the equation we know $\tau $ has units of
-seconds, so $\mathtt{C}$ must have units of inverse seconds.%
-\begin{equation*}
-\mathtt{C}=\left( 0.01681\pm 3.475\times 10^{-5}\right) \frac{1}{\unit{s}}
-\end{equation*}%
-so we can find a value for $\tau .$ For my data, I have 
-\begin{eqnarray*}
-\tau _{measured} &=&\frac{1}{0.01681\frac{1}{\unit{s}}} \\
-&=&59.\,\allowbreak 488\unit{s}
-\end{eqnarray*}
-
-Note that we will have to calculate the uncertainty in $\tau .$ I will leave
-that for an exercise. But I can compare this $\tau _{measured}$ to the $\tau
-=RC$ value I started with. If they are within each other's error range, this
-is a powerful confirmation of our capacitor model.
-
-%TCIMACRO{\TeXButton{\vspace*{\fill}}{\vspace*{\fill}}}%
-%BeginExpansion
-\vspace*{\fill}%
-%EndExpansion
+% include a module on curve fitting for non-linear functions. As of this writing 
+%   the choices are using LoggerPro
+%	\input{Chapters/Module_Curve_fitting_in_LoggerPro}
+%   or python
+\input{Chapters/Module_Curve_fitting_in_python}
+	
+\vspace*{\fill}
 \pagebreak
 
 \section{Lab Assignment}
@@ -351,73 +204,44 @@ We have two equations for charge as a function of time for a RC circuit.
 They are
 
 \begin{equation*}
-\Delta V_{C}\left( t\right) =\Delta V_{\max }\left( 1-e^{-\frac{t}{\tau }%
-}\right) \qquad \text{charging}
-\end{equation*}%
+	\Delta V_{C}\left( t\right) =\Delta V_{\max }\left( 1-e^{-\frac{t}{\tau }}\right) \qquad \text{charging}
+\end{equation*}
+
 \begin{equation*}
-I\left( t\right) =I_{\max }e^{-\frac{t}{\tau }}\qquad \text{charging}
-\end{equation*}%
+	I\left( t\right) =I_{\max }e^{-\frac{t}{\tau }}\qquad \text{charging}
+\end{equation*}
+
 where 
+
 \begin{equation}
-\tau =RC
-\end{equation}%
+	\tau =RC
+\end{equation}
+
 is the time constant.
 
 \begin{enumerate}
-\item Using a capacitor with a capacitance of about $20\unit{%
-%TCIMACRO{\U{3bc}}%
-%BeginExpansion
-\mu%
-%EndExpansion
-F}$ and a resistor of about $1\unit{M%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-},$ create a circuit as shown. This will be our system that we will use to
-test our capacitor model.\begin{figure}[h!]
-\includegraphics[width=1.67in,height=1.67in]{PH4CAX3R}
-\end{figure}You can use one of our power
-supplies, but be careful to either stay in the $0\unit{V}$ to $+5\unit{V}$
-range, or to use a voltage divider to achieve this range at the Arduino
-input. Follow good lab notebook procedures by recording the model you are
-testing and your test setup in your lab notebook. Just a note, we will be
-using directional capacitors. You haven't studied directional capacitors in
-class. For today's lab, the only difference is that these capacitors only
-work one direction. This is a little like our diodes. If the circuit doesn't
-work, try turning your capacitor around.
+	\item 
+	
+	Using a capacitor with a capacitance of about end $20\unit{\mu F}$ and a resistor of about $1\unit{M\Omega},$ create a circuit as shown. This will be our system that we will use to test our capacitor model.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=1.67in,height=1.67in]{PH4CAX3R}
+	\end{figure}
+	You can use one of our power supplies, but be careful to either stay in the $0\unit{V}$ to $+5\unit{V}$ range, or to use a voltage divider to achieve this range at the Arduino input. Follow good lab notebook procedures by recording the model you are testing and your test setup in your lab notebook. Just a note, we will be using directional capacitors. You haven't studied directional capacitors in class. For today's lab, the only difference is that these capacitors only work one direction. This is a little like our diodes. If the circuit doesn't work, try turning your capacitor around.
 
-\item Build your instrument. and write the sketch and Python collection
-codes. Test every part of the instrument before you start collecting
-capacitor data. Don't forget to find your uncertainties. Follow good lab
-notebook procedures by recording your instrument design in your lab notebook.
+	\item Build your instrument. and write the sketch and Python collection codes. Test every part of the instrument before you start collecting capacitor data. Don't forget to find your uncertainties. Follow good lab notebook procedures by recording your instrument design in your lab notebook.
 
-\item Now get ready to collect data for a capacitor charge. Work with a lab
-partner from your group to achieve the data collection. Compare your data
-among your group to make sure things went well. Follow good lab notebook
-procedures by recording your data or giving a location of the stored data in
-your lab notebook.
+	\item Now get ready to collect data for a capacitor charge. Work with a lab partner from your group to achieve the data collection. Compare your data among your group to make sure things went well. Follow good lab notebook procedures by recording your data or giving a location of the stored data in your lab notebook. 
+	
+	\item Take the data from your file and graph it. LoggerPro is fine for both graphing and the curve fit (next item). You should include this graph in your lab notebook (but might also include the curve fit described in  next item on the same graph).
 
-\item Take the data from your file and graph it. LoggerPro is fine for both
-graphing and the curve fit (next item). You should include this graph in
-your lab notebook (but might also include the curve fit described in the
-next item on the same graph).
+	\item Perform the curve fit. As in the last lab, having the proper curve fit the data is a validation of our model! So if the thoretical curve fits the data, it makes sense that something about the model is right. Include the graph of the curve fit and the data in your lab notebook as well as the fit equation and fit parameters (don't forget their uncertainties).
 
-\item Perform the curve fit. As in the last lab, having the proper curve fit
-the data is a validation of our model! So if the thoretical curve fits the
-data, it makes sense that something about the model is right. Include the
-graph of the curve fit and the data in your lab notebook as well as the fit
-equation and fit parameters (don't forget their uncertainties).
+	\item Find the time constant and compare to your predicted value. If these compare within their uncertainties, we have a further validation of the model. Record the time constants and their uncertainties in your lab notebook.
 
-\item Find the time constant and compare to your predicted value. If these
-compare within their uncertainties, we have a further validation of the
-model. Record the time constants and their uncertainties in your lab
-notebook.
-
-\item Draw a conclusion, is our capacitor model good?
+	\item Draw a conclusion, is our capacitor model good?
 \end{enumerate}
 
-%TCIMACRO{\TeXButton{\vspace*{\fill}}{\vspace*{\fill}}}%
-%BeginExpansion
-\vspace*{\fill}%
-%EndExpansion
+
+\vspace*{\fill}

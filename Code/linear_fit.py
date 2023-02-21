@@ -1,7 +1,15 @@
+#############################################################
+# Program to do a simple linear curve fit in python
+#  with data supplied by the user.
+#  The user types the data into numpy arrays by hand.
+#
+# Author:  Todd Lines
+# Date:    2023-02-20
+#############################################################
+# libraries to import
 import scipy as sp
 import numpy as np
 import matplotlib.pyplot as plt
-import random as rd
 
 
 #Type in your data into arrays
