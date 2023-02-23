@@ -3,8 +3,8 @@
 // to determine when they should light. Note that the
 // Arduino code is closer to C++ than python.
 /////////////////////////////////////////////////////////
-int ledPin1=7;
-int ledPin2=8;
+int ledPin1=13;
+int ledPin2=12;
 int i=0; //loop counter
  
 /////////////////////////////////////////////////////////
