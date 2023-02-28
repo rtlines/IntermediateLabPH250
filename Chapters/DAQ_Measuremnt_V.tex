@@ -1,73 +1,42 @@
 %DAQ_Measuremnt_V
 \chapter{First DAQ Measurements: Voltage}
 Let's review what we learned last week. In physics equipment, we try to
-measure voltages. If your data is not a voltage, we try to convert it into a
-voltage. Already we converted current into a voltage (using a shunt
-resistor). But what is a voltage? We said last week that it is a measure of
-electrical potential energy. It is also likely that you know the word
-\textquotedblleft voltage\textquotedblright\ because we live in a world that
-has electricity everywhere. You probably know that your house or apartment
-has wires in the walls that carry \textquotedblleft 110
-Volts.\textquotedblright\ And you probably realize that \textquotedblleft
-voltage\textquotedblright\ is a measure of how much energy there is in the
-wires.
+measure voltages. If your data is not a voltage, we try to convert it into a voltage. Already we converted current into a voltage (using a shunt resistor). But what is a voltage? We said last week that it is a measure of electrical potential energy. It is also likely that you know the word ``voltage'' because we live in a world that has electricity everywhere. You probably know that your house or apartment has wires in the walls that carry ``110 Volts.'' And you probably realize that ``voltage'' is a measure of how much energy there is in the wires.
 
-Soon your PH220 class will explain that \textquotedblleft
-voltage\textquotedblright\ is proportional to the electrical potential
-energy difference. But for us, now, we just need to know that we are
-measuring something proportional to energy and we need to learn how to
-measure it.
+If it hasn't already, soon your PH220 class will explain that ``voltage'' is proportional to the electrical potential energy difference. But for us, now, we just need to know that we are measuring something proportional to energy and we need to learn how to measure it.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=2.8in,height=2.5in]{PH4CAU1I}
 \end{figure}
 
-Because voltage is proportional to a \emph{difference} in electrical
-potential energy, a voltage measurement really is a combination of two
-measurements. Think of gravitational potential energy. If we ask for the
-potential energy difference as Super Guy jumps from the bottom of a building
-to the top we need two measurements, one at the bottom and one at the top. Then 
+Because voltage is proportional to a \emph{difference} in electrical potential energy, a voltage measurement really is a combination of two measurements. Think of gravitational potential energy. If we ask for the potential energy difference as Super Guy jumps from the bottom of a building to the top we need two measurements, one at the bottom and one at the top. Then 
 
 \begin{equation*}
 	\Delta U_{g}=U_{g_{top}}-U_{g_{bottom}}
 \end{equation*}
 
-We will do something very similar in measuring voltages. We will measure the
-potential energy at two places. For example, suppose we have an electric
-circuit as shown in the next figure. 
+We will do something very similar in measuring voltages. We will measure the potential energy at two places. For example, suppose we have an electric circuit as shown in the next figure. 
+
 \begin{figure}[h!]
 	\centering	
     \includegraphics[width=3.5466in,height=1.3932in]{PH4CAU1J}
 \end{figure}
-The circuit is very simple, just a battery and a resistor. You have experience with batteries, and resistors now. A resistor is just a piece of material that has lots of electrical friction, or \textquotedblleft resistance\textquotedblright\ that makes it
-hard for electrons to go through it. If we want to measure the voltage across the resistor, we have to measure on the top and bottom of the resistor. That will give us a measurement proportional to the potential energy difference from one side to the other of the resistor.
 
-Most meters that measure voltage have two \textquotedblleft
-probes\textquotedblright\ and do the difference calculation internally.
-These meters are called \emph{voltmeters} and we used them last week.
+The circuit is very simple, just a battery and a resistor. You have experience with batteries, and resistors now. A resistor is just a piece of material that has lots of electrical friction, or ``resistance'' that makes it hard for electrons to go through it. If we want to measure the voltage across the resistor, we have to measure on the top and bottom of the resistor. That will give us a measurement proportional to the potential energy difference from one side to the other of the resistor.
+
+Most meters that measure voltage have two ``probes'' and do the difference calculation internally. These meters are called \emph{voltmeters} and we used them last week.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=2.9199in,height=1.962in]{PH4CAU1K}
 \end{figure}
 
-In today's world, voltmeters are usually just one part of a device that can
-measure many things. We call these devices multimeters. To measure voltage
-we will set the multimeter on the DC Voltage setting. Notice the two probe
-wires in the figure. We need two probes to make the two measurements and the
-device does the subtraction for us.
+In today's world, voltmeters are usually just one part of a device that can measure many things. We call these devices multimeters. To measure voltage we will set the multimeter on the DC Voltage setting. Notice the two probe wires in the figure. We need two probes to make the two measurements and the device does the subtraction for us.
 
-We learned to use a sand-alone voltmeter in the last lab. But we also need
-to read in voltages in a way that the data shows up on our computer. To get
-the data into our computer we will use a different set of pins on our
-Arduino board. They are called \emph{analog} pins.
+We learned to use a sand-alone voltmeter in the last lab. But we also need to read in voltages in a way that the data shows up on our computer. To get the data into our computer we will use a different set of pins on our Arduino board. They are called \emph{analog} pins.
 
-Even before we begin, we need a warning. We absolutely must not wire up the
-analog pins on our Arduino backwards! This can (and probably will) destroy
-the pin circuitry inside our Arduino. So we will need to be careful in
-wiring for this part of our lab. Where this could be a problem a warning
-sign will appear in the text, just to remind you to be careful! 
+Even before we begin, we need a warning. We absolutely must not wire up the analog pins on our Arduino backwards! This can (and probably will) destroy the pin circuitry inside our Arduino. So we will need to be careful in wiring for this part of our lab. Where this could be a problem a warning sign will appear in the text, just to remind you to be careful! 
 
 \begin{figure}[h!]
 	\centering
@@ -78,22 +47,15 @@ You may see quite a few of these in this lab.
 
 \section{Building a voltmeter}
 
-Our Arduino has what we call and Analog to Digital converter (ADC). That is,
-it takes analog voltage signals that could have any value, and it maps them
-into a set of discrete values and sort of rounds to the nearest whole
-discrete value.
+Our Arduino has what we call and Analog to Digital converter (ADC). That is, it takes analog voltage signals that could have any value, and it maps them into a set of discrete values and sort of rounds to the nearest whole discrete value.
 
-The word ``analog'' might not be familiar.
-Think of our power supply. It has a knob that adjusts the voltage. The knob
-can produce any voltage from $0$ to about $30\unit{V}$. This is an analog
-signal. The voltage can take on any value in a range. So we represent an
-analog signal with real numbers and we might have a voltage of exactly 
+The word ``analog'' might not be familiar. Think of our power supply. It has a knob that adjusts the voltage. The knob can produce any voltage from $0$ to about $30\unit{V}$. This is an analog signal. The voltage can take on any value in a range. So we represent an analog signal with real numbers and we might have a voltage of exactly 
 
 \begin{equation*}
 	4.3276854325532573457\unit{V}
 \end{equation*}
 
-and this would be perfectly valid for an analog signal.
+\noindent and this would be perfectly valid for an analog signal.
 
 A battery, on the other hand, is not this way. It has a fixed voltage, say, $1.5\unit{V}$ like the D-Cell batteries that we used in our last lab. Two D-Cell batteries could be used together to make $3\unit{V}.$ But you can't use D-Cell batteries to get $2.25\unit{V}.$ The batteries come in discrete units.
 
@@ -108,8 +70,7 @@ Our Arduino analog pin is designed to measure voltages in the range $0$ to $5\un
 	\includegraphics[width=2.3618in,height=1.5714in]{PH4CAU1M}
 \end{figure} 
 
-This means that changes in
-voltage that are less than $4.9\unit{mV}$ won't be seen, since it takes a whole $4.9\unit{mV}$ to get a different division. So if we give our Arduino $8\unit{mV}$ this is not enough to fill the second $4.9\unit{mV}$ division, so our Arduino would still read only $4.9\unit{mV}.$ If we gave it $11\unit{mV}$ it would then read $9.8\unit{mV}$ because $9.8\unit{mV}=2\times 4.9 \unit{mV}$ and $9.8$ is the closest whole unit of $4.9\unit{mV}.$
+This means that changes in voltage that are less than $4.9\unit{mV}$ won't be seen, since it takes a whole $4.9\unit{mV}$ to get a different division. So if we give our Arduino $8\unit{mV}$ this is not enough to fill the second $4.9\unit{mV}$ division, so our Arduino would still read only $4.9\unit{mV}.$ If we gave it $11\unit{mV}$ it would then read $9.8\unit{mV}$ because $9.8\unit{mV}=2\times 4.9 \unit{mV}$ and $9.8$ is the closest whole unit of $4.9\unit{mV}.$
 
 \begin{figure}[h!]
     \centering
@@ -124,68 +85,45 @@ As a second example, $3.793\unit{V}$ would be reported as $\allowbreak 3.792\,\a
 	\frac{3.793\unit{V}}{4.9\unit{mV}}=774.\,\allowbreak 08
 \end{equation*}
 
-but we need even units of $\Delta v_{\min },$ so the $0.8$ would be dropped by the A2D converter giving 
+\noindent but we need even units of $\Delta v_{\min },$ so the $0.8$ would be dropped by the A2D converter giving 
 
 \begin{equation*}
 	774\times 4.9\unit{mV}=\allowbreak 3.792\,\allowbreak 6\unit{V}
 \end{equation*}
 
-and our first voltage from our power supply, $4.3276854325532573457\unit{V}$
-would be reported as $4.\,\allowbreak 326\,7\unit{V}$ (make sure you can see
-how we got this result!).
+\noindent and our first voltage from our power supply, $4.3276854325532573457\unit{V}$ would be reported as $4.\,\allowbreak 326\,7\unit{V}$ (make sure you can see how we got this result!).
 
-This means that we can be off in our voltage measurements as much as $4.9%
-\unit{mV}$! In dividing up our voltage range into $1024$ pieces we have
-introduced some error, but we have divided our $0$ to $5\unit{V}$ into
-numeric values that we can use in our computer, so it is worth the cost of
-some error.
+This means that we can be off in our voltage measurements as much as $4.9\unit{mV}$! In dividing up our voltage range into $1024$ pieces we have introduced some error, but we have divided our $0$ to $5\unit{V}$ into numeric values that we can use in our computer, so it is worth the cost of some error.
 
-The amount of error depends on how many different values the ADC converter
-has. Since breaking an analog signal into discrete values is called \emph{
-quantization, }we call this source of error \emph{quantization error.} It is
-the source of much of the error we see in electronic measuring devices. We
-could say that our new voltmeter has an uncertainty of at least the voltage
-resolution
+The amount of error depends on how many different values the ADC converter has. Since breaking an analog signal into discrete values is called \emph{quantization, }we call this source of error \emph{quantization error.} It is the source of much of the error we see in electronic measuring devices. We could say that our new voltmeter has an uncertainty of at least the voltage resolution
 
 \begin{equation*}
 	\delta V_{signal}=\Delta V_{\min }=4.\,\allowbreak 9\unit{mV}
 \end{equation*}
 
-but of course it could be larger if there are other sources of error.
+\noindent but of course it could be larger if there are other sources of error.
 
-The ADC sends the measured value through our USB cable to our computer's
-serial port. But it doesn't send it in units of volts. It sends it in ADC
-units. If we have a signal voltage of $9.8\unit{mV}$ we don't get out $9.8,$
-we get $2$ because $9.8\unit{mV}=2\Delta V_{\min }.$ The ADC units are the
-number of $\Delta V_{\min }$ sized units that are in our signal voltage. To
-get back to voltage units, we need to multiply by $\Delta V_{\min }.$ In our
-code we will do this before reporting the value.
+The ADC sends the measured value through our USB cable to our computer's serial port. But it doesn't send it in units of volts. It sends it in ADC units. If we have a signal voltage of $9.8\unit{mV}$ we don't get out $9.8,$ we get $2$ because $9.8\unit{mV}=2\Delta V_{\min }.$ The ADC units are the number of $\Delta V_{\min }$ sized units that are in our signal voltage. To get back to voltage units, we need to multiply by $\Delta V_{\min }.$ In our code we will do this before reporting the value. 
 
-Of course we would like to see the voltage that we measure. There is a
-simple way to do this. The voltage values we calculate can be sent to our
-computer through the serial cable. We will need an Arduino sketch with some
-additional setup and some additional loop commands. One of these commands
-will turn our ADC units into volts.
+Of course we would like to see the voltage that we measure. There is a simple way to do this. The voltage values we calculate can be sent to our computer through the serial cable. We will need an Arduino sketch with some additional setup and some additional loop commands. One of these commands will turn our ADC units into volts. 
 
-Before we look at the entire sketch, let me introduce the new commands that
-we will need. To get the Arduino to communicate with the computer we use the
-command 
+Before we look at the entire sketch, let me introduce the new commands that we will need. To get the Arduino to communicate with the computer we use the command 
+
 \begin{equation*}
 	\begin{tabular}{l}
 		\ Serial.begin();
-	\end{tabular}%
+	\end{tabular}
 \end{equation*}
-and in the loop function we use the command\ 
+
+\noindent and in the loop function we use the command
+
 \begin{equation*}
 	\begin{tabular}{l}
 		\ Serial.print();
-	\end{tabular}%
+	\end{tabular}
 \end{equation*}
 
-We also need to know that computers make a distinction between integer and
-real numbers. Our voltages will be real numbers, so we need to tell the
-Arduino that we want a real number. The command for this is the word
-\textquotedblleft float.\textquotedblright\ For example,
+We also need to know that computers make a distinction between integer and real numbers. Our voltages will be real numbers, so we need to tell the Arduino that we want a real number. The command for this is the word ``float.'' For example,
 
 \begin{equation*}
 	\begin{tabular}{l}
@@ -193,7 +131,7 @@ Arduino that we want a real number. The command for this is the word
 	\end{tabular}
 \end{equation*}
 
-defines a variable named ``delta\_v\_min'' and sets it to the value $0.0049.$ If we want an integer number we use the word ``int.'' For example
+\noindent defines a variable named ``delta\_v\_min'' and sets it to the value $0.0049.$ If we want an integer number we use the word ``int.''  For example 
 
 \begin{equation*}
 	\begin{tabular}{l}
@@ -201,7 +139,7 @@ defines a variable named ``delta\_v\_min'' and sets it to the value $0.0049.$ If
 	\end{tabular}
 \end{equation*}
 
-defines a variable named ``value'' and sets it equal to $0.$ All this is a little like listing your variables back in PH121. Only here if you don't do it, it doesn't just cost you points, it confuses the Arduino software and the Arduino software will give you an error.
+\noindent defines a variable named ``value'' and sets it equal to $0.$ All this is a little like listing your variables back in PH121. Only here if you don't do it, it doesn't just cost you points, it confuses the Arduino software and the Arduino software will give you an error.
 
 We also need special commands to read our Arduino analog pins. The special Arduino command 
 
@@ -217,8 +155,7 @@ The whole Arduino sketch might look like this:
 \lstinputlisting[language=Arduino]{Code/DAQ_voltmeter.ino}
 
 
-Make sure you understand every line of this code. Write it in the Arduino IDE and run it to help see what the lines do. Lines that begin with two slashes, ``//,'' are comments. The Arduino will ignore these lines. But you shouldn't! The comments tell you, the programmer, what the code is doing. I will ask you in lab to input comments
-for every line. If there is any part of this sketch that is mysterious, work with your group to resolve the mystery and if it is still mysterious, call your instructor over to discuss the sketch with you.
+Make sure you understand every line of this code. Write it in the Arduino IDE and run it to help see what the lines do. Lines that begin with two slashes, ``//,'' are comments. The Arduino will ignore these lines. But you shouldn't! The comments tell you, the programmer, what the code is doing. I will ask you in lab to input comments for every line. If there is any part of this sketch that is mysterious, work with your group to resolve the mystery and if it is still mysterious, call your instructor over to discuss the sketch with you.
 
 \subsection{Wiring the simple voltmeter}
 
@@ -226,43 +163,35 @@ for every line. If there is any part of this sketch that is mysterious, work wit
 	\centering
 	\includegraphics[width=1.8507in,height=0.9677in]{PH4CAU1O}
 \end{figure}
-You knew that was coming, didn't you! We must be very careful to wire our Arduino correctly. Our Arduino can measure $0$ to $5\unit{V}.$ But if we switch the $5\unit{V}$ and the $0\unit{V}$ by plugging them into the wrong pin, our Arduino may be damaged and never work the same way again (probably won't work at all!). So wire
-first, then before you connect the Arduino have group member check your wiring, then check the wiring with a stand-alone meter (that is why we learned to use them last week). Also remember, more than $5\unit{V}$ will damage the Arduino. So only put in voltages in the range $0\unit{V}$ to $5 \unit{V}.$
 
-We need one wire attached to the pin marked A0. We need another wire
-attached to one of our Arduino ground pins marked GND. And we connect the
-first wire to the positive output of our signal source (say, our power
-supply) and the GND wire to our negative output of our signal source (say
-the negative or ground connection on our power supply). That is all there is
-to it!
+You knew that was coming, didn't you! We must be very careful to wire our Arduino correctly. Our Arduino can measure $0$ to $5\unit{V}.$ But if we switch the $5\unit{V}$ and the $0\unit{V}$ by plugging them into the wrong pin, our Arduino may be damaged and never work the same way again (probably won't work at all!). So wire first, then before you connect the Arduino have group member check your wiring, then check the wiring with a stand-alone meter (that is why we learned to use them last week). Also remember, more than $5\unit{V}$ will damage the Arduino. So only put in voltages in the range $0\unit{V}$ to $5 \unit{V}.$
+
+We need one wire attached to the pin marked A0. We need another wire attached to one of our Arduino ground pins marked GND. And we connect the first wire to the positive output of our signal source (say, our power supply) and the GND wire to our negative output of our signal source (say the negative or ground connection on our power supply). That is all there is to it!
 
 \subsection{Seeing the data}
 
-Once the code is compiled and uploaded, the Arduino will send data to the
-serial port. The serial monitor can display the data. The serial monitor is
-found under the Arduino Software Tools menu.
+Once the code is compiled and uploaded, the Arduino will send data to the serial port. The serial monitor can display the data. The serial monitor is found under the Arduino Software Tools menu on the legacy IDE, and down at the bottom hiding behind a tab in the new IDE.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=2.0807in,height=3.0744in]{PH4CAU1P}
 \end{figure}
-You should see something like this:
+
+\noindent You should see something like this:
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=4.5861in,height=2.3151in]{PH4CAU1Q}
 \end{figure}
 
-The Arduino Software can also plot the data from the serial port. Here is a
-plot of the same data that we saw on the serial monitor. 
+The Arduino Software can also plot the data from the serial port. In the next figure there is a plot of the same data that we saw on the serial monitor. 
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=3.563in,height=1.8049in]{PH4CAU1R}
 \end{figure}
-Notice that it plotted our voltage values and it also plotted our ADC values. This makes the voltage values hard to see. We could fix this by commenting out the lines that print the ADC values (putting \textquotedblleft //\textquotedblright\ at the
-beginning of the line). Then those lines won't be executed by the Arduino.
-Then we get just the voltage. 
+
+Notice that it plotted our voltage values and it also plotted our ADC values. This makes the voltage values hard to see. We could fix this by commenting out the lines that print the ADC values (putting ``//'' at the beginning of the line). Then those lines won't be executed by the Arduino. Then we get just the voltage. 
 
 \begin{figure}[h!]
 	\centering
@@ -271,39 +200,36 @@ Then we get just the voltage.
 
 Notice that the horizontal axis is not exactly time. It is just the data point number. We could convert this to time with some calculation if we know how often the Arduino sends us a data point. I will leave this as an exercise.
 
-\section{Extending our voltmeter with a voltage divider\label{Voltmeter with
-Voltage Divider}}
+\section{Extending our voltmeter with a voltage divider\label{Voltmeter with Voltage Divider}}
 
-This Arduino-based voltmeter that we have built is great, but will only let
-us measure voltages in the range $0$ to $5\unit{V}.$ That seems a little
-restrictive. We would like to extend our voltmeter to a larger range, say, $%
-0 $ to $20\unit{V}.$ To do this, we will need to add some electronic
-components and think about what we have learned about voltage, resistance,
-and current. Let's consider this circuit.
+
+
+This Arduino-based voltmeter that we have built is great, but will only let us measure voltages in the range $0$ to $5\unit{V}.$ That seems a little restrictive. We would like to extend our voltmeter to a larger range, say, $0 $ to $20\unit{V}.$ To do this, we will need to add some electronic components and think about what we have learned about voltage, resistance, and current. Let's consider this circuit.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=1.3932in,height=1.3188in]{PH4CAU1T}
+	\includegraphics[width=1.3932in,height=1.1188in]{PH4CAU1T}
 \end{figure}
 
-We have a battery, That will make the current flow much like a pump makes water move through pipes.
+\vspace{1in} % to keep the figure in the right spot in the text
+
+\noindent We have a battery, That will make the current flow much like a pump makes water move through pipes.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=4.2004in,height=2.3229in]{PH4CAU1U}
 \end{figure}
 
-The water in a pipe system gains potential energy as it moves up. In our circuit we will find that electric charge gains potential energy as we move it across a battery. Then the charge will move down the wire like water moves down a pipe until it is out
-of potential energy. Notice that the water in a pipe system will lose all the potential energy that it gained when the pump raised it to the upper tank (see previous figure). That is true of electric charge too. The electric current travels from the battery through the resistor, but in doing so it loses all the potential energy that the battery gave it by the time it returns to the battery.
+The water in a pipe system gains potential energy as it moves up. In our circuit we will find that electric charge gains potential energy as we move it across a battery. Then the charge will move down the wire like water moves down a pipe until it is out of potential energy. Notice that the water in a pipe system will lose all the potential energy that it gained when the pump raised it to the upper tank (see previous figure). That is true of electric charge too. The electric current travels from the battery through the resistor, but in doing so it loses all the potential energy that the battery gave it by the time it returns to the battery.
 
 Now suppose we have two resistors in a circuit.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=1.7279in,height=1.5947in]{PH4CAU1V}
+	\includegraphics[width=1.7279in,height=1.1188in]{PH4CAU1V}
 \end{figure}
 
-Our water analogy can still help us understand what will happen. Suppose
+\noindent Our water analogy can still help us understand what will happen. Suppose
 that we have two turbines in our pipe system. 
 
 \begin{figure}[h!]
@@ -311,16 +237,7 @@ that we have two turbines in our pipe system.
 	\includegraphics[width=3.5985in,height=1.9934in]{PH4CAU1W}
 \end{figure}
 
-The water leaves the high potential energy part of the pump, and is put to work turning the first turbine. The resistance of the turbine will slow the water current. So when the water leaves the turbine, it will have lost some potential energy. Since
-we have a second turbine the current will again be slowed and more potential
-energy will be lost. How much potential energy do we lose as the water
-falls? All of the potential energy that the pump gave it! We must end up
-with the water at the bottom back at the low potential energy. We will find
-this to be true for our electric circuit as well. We will loose some
-potential energy as the electrical energy \textquotedblleft
-falls\textquotedblright\ from the high electric potential \textquotedblleft
-down\textquotedblright\ the first resistor. After the second resistor, we
-can guess that we must be back at the low electric potential we started with.
+The water leaves the high potential energy part of the pump, and is put to work turning the first turbine. The resistance of the turbine will slow the water current. So when the water leaves the turbine, it will have lost some potential energy. Since we have a second turbine the current will again be slowed and more potential energy will be lost. How much potential energy do we lose as the water falls? All of the potential energy that the pump gave it! We must end up with the water at the bottom back at the low potential energy. We will find this to be true for our electric circuit as well. We will loose some potential energy as the electrical energy ``falls'' from the high electric potential ``down'' the first resistor. After the second resistor, we can guess that we must be back at the low electric potential we started with.
 
 \begin{figure}[h!]
 	\centering
@@ -333,7 +250,7 @@ We know that electric potential is a potential energy per unit charge. And energ
 	\Delta V=RI
 \end{equation*}
 
-is satisfied, then we would expect that adding two resistors would just linearly add the effects of the two resistors together
+\noindent is satisfied, then we would expect that adding two resistors would just linearly add the effects of the two resistors together
 
 \begin{eqnarray*}
 	\Delta V_{total} &=&\Delta V_{1}+\Delta V_{2} \\
@@ -346,7 +263,7 @@ Note that the same current must flow through each of the resistors, since the cu
 	\Delta V_{total}=\left( R_{1}+R_{2}\right) I
 \end{equation*}
 
-Our current will be 
+\noindent Our current will be 
 
 \begin{equation*}
 	I=\frac{\Delta V_{total}}{R_{1}+R_{2}}
@@ -359,48 +276,30 @@ But suppose we measure the potential change across just resistor $R_{2}.$
 	\includegraphics[width=1.7625in,height=1.0421in]{PH4CAU1Y}
 \end{figure}
 
-what would we expect to get? We lost voltage across both $\Delta V_{1}$ and $\Delta V_{2}$ so 
+\noindent what would we expect to get? We lost voltage across both $\Delta V_{1}$ and $\Delta V_{2}$ so 
 
 \begin{equation*}
 	\Delta V_{total}=\Delta V_{1}+\Delta V_{2}
 \end{equation*}
 
-because we must loose all the $\Delta V_{total}$ given to the current by the
+\noindent because we must loose all the $\Delta V_{total}$ given to the current by the
 battery. And 
 
 \begin{equation*}
 	\Delta V_{2}=IR_{2}
 \end{equation*}
 
-from Ohm's law. So
+\noindent from Ohm's law. So
 
 \begin{equation*}
 	\Delta V_{2}=\left( \frac{\Delta V_{total}}{R_{1}+R_{2}}\right) R_{2}
 \end{equation*}
 
-This is only part of the total voltage. And if we have two different
-resistors so that $R_{1}\neq R_{2}$ then we can choose for $\Delta V_{2}$ to
-be nearly as much as $\Delta V_{total}$ or nearly as little as $0$ by
-carefully choosing our two resistances. We call a set of two resistors like
-this a \textquotedblleft voltage divider\textquotedblright\ because it
-divides the battery voltage between the two resistors. If $R_{1}$ is bigger
-than $R_{2}$ then $\Delta V_{1}$ is bigger than $\Delta V_{2}.$
+This is only part of the total voltage. And if we have two different resistors so that $R_{1}\neq R_{2}$ then we can choose for $\Delta V_{2}$ to be nearly as much as $\Delta V_{total}$ or nearly as little as $0$ by carefully choosing our two resistances. We call a set of two resistors like this a ``voltage divider'' because it divides the battery voltage between the two resistors. If $R_{1}$ is bigger than $R_{2}$ then $\Delta V_{1}$ is bigger than $\Delta V_{2}.$
 
-Remember that the input can only withstand $0$ to $5\unit{V}.$ More than
-that can destroy the board! But we want to measure a voltage that varies
-from $0$ to $20\unit{V}.$ We now have a way to do this. We will use a
-voltage divider. The voltage across both resistors will be as much as $20%
-\unit{V},$ but we will measure the voltage across only one of the resistors.
-And we will choose our resistor so that when the total voltage is $20\unit{V}
-$ but the voltage across our resistor is $5\unit{V}$ (or less). Since we
-will know the resistances, we can use a little math to calculate what the
-total voltage was using the voltage measurement from just one of the
-resistors.
+Remember that the input can only withstand $0$ to $5\unit{V}.$ More than that can destroy the board! But we want to measure a voltage that varies from $0$ to $20\unit{V}.$ We now have a way to do this. We will use a voltage divider. The voltage across both resistors will be as much as $20\unit{V},$ but we will measure the voltage across only one of the resistors. And we will choose our resistor so that when the total voltage is $20\unit{V} $ but the voltage across our resistor is $5\unit{V}$ (or less). Since we will know the resistances, we can use a little math to calculate what the total voltage was using the voltage measurement from just one of the resistors.
 
-This is like what we did to measure current last lab. We used a voltmeter
-and a resistor and some math to make an ammeter. Today we will use two
-resistors, our Arduino voltmeter, and some math to make a new voltmeter that
-can measure higher voltages. We just need to choose our resistors so that we
+This is like what we did to measure current last lab. We used a voltmeter and a resistor and some math to make an ammeter. Today we will use two resistors, our Arduino voltmeter, and some math to make a new voltmeter that can measure higher voltages. We just need to choose our resistors so that we
 map our $0$ to $20\unit{V}$ to $0$ to $5\unit{V}.$ Once choice might be 
 
 \begin{eqnarray*}
@@ -408,7 +307,7 @@ map our $0$ to $20\unit{V}$ to $0$ to $5\unit{V}.$ Once choice might be
 	R_{2} &=&10\unit{k \Omega}
 \end{eqnarray*}
 
-Let's try it. We would get
+\noindent Let's try it. We would get
 
 \begin{eqnarray*}
 	\Delta V_{2\max } &=&\left( \frac{20\unit{V}}{40\unit{k \Omega }
@@ -416,7 +315,7 @@ Let's try it. We would get
 	&=&4.0\unit{V}
 \end{eqnarray*}
 
-when $\Delta V_{total}=20\unit{V}$ and 
+\noindent when $\Delta V_{total}=20\unit{V}$ and 
 
 \begin{eqnarray*}
 \Delta V_{2\min } &=&\left( \frac{0\unit{V}}{40\unit{k \Omega}
@@ -424,15 +323,11 @@ when $\Delta V_{total}=20\unit{V}$ and
 	&=&0\unit{V}
 \end{eqnarray*}
 
-when $\Delta V_{total}=0\unit{V}.$ Notice that this really didn't work. We
-only got a maximum voltage of $4\unit{V}.$ But this gives us a margin of
-safety. If we give our Arduino more than $5\unit{V}$ we can burn it up. If
-we plan our circuit so we don't get to close to $5\unit{V}$ we are safer. So
-this set of resisters is not a terrible choice.
+\noindent when $\Delta V_{total}=0\unit{V}.$ 
+Notice that this really didn't work. We
+only got a maximum voltage of $4\unit{V}.$ But this gives us a margin of safety. If we give our Arduino more than $5\unit{V}$ we can burn it up. If we plan our circuit so we don't get to close to $5\unit{V}$ we are safer. So this set of resisters is not a terrible choice.
 
-To report out our voltage we need to do this conversion backwards. Say we
-have $\Delta V_{total}=10\unit{V}$ that we are measuring with our new
-instrument. Then 
+To report out our voltage we need to do this conversion backwards. Say we have $\Delta V_{total}=10\unit{V}$ that we are measuring with our new instrument. Then 
 
 \begin{eqnarray*}
 	\Delta V_{2} &=&\left( \frac{10\unit{V}}{40\unit{k \Omega}
@@ -442,184 +337,77 @@ instrument. Then
 
 The $2\unit{V}$ is what we actually measure at the A0 input. But we know
 that this represents $10\unit{V}$ across both resistors, so we want the
-Arduino program to print out $10\unit{V}.$ So we report%
+Arduino program to print out $10\unit{V}.$ So we report
+
 \begin{equation*}
-\Delta V_{reported}=\frac{\Delta V_{2}}{R_{2}}\left( R_{1}+R_{2}\right)
-\end{equation*}%
-or for our case, since we measured $2\unit{V}$ across our resistor,%
-\begin{equation*}
-10\unit{V}=\frac{2\unit{V}}{\left( 10\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}\right) }\left( 40\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}+10\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}\right)
-\end{equation*}%
-We will have to write this math in our code. There is a further
-complication. The Arduino A0 input is giving us a number that represents $0$
-to $4\unit{V}$ for our setup. But that is not what we see on the serial
-port. We see a number from 0 to 1024. We know the $1024$ represents $5\unit{V%
-}$ and the $0$ represents $0\unit{V}.$ So we need to multiply the number
-that comes from our Arduino by $\delta V=4.9\unit{mV}$ once again to get our
-Arduino output into voltage units. So our reported voltage equation is
-something like this. 
-\begin{equation*}
-\Delta V_{reported}=A2D\times \delta V_{2}\times \frac{1}{R_{2}}\left(
-R_{1}+R_{2}\right)
+	\Delta V_{reported}=\frac{\Delta V_{2}}{R_{2}}\left( R_{1}+R_{2}\right)
 \end{equation*}
 
-All this calculation to get our reported voltage must do something to our
-measurement uncertainty. We could do our usual math to find the reported
-uncertainty, but instead, let's think. Every small voltage $\Delta V_{2}$
-would be multiplied by $\left( \frac{1}{R_{2}}\left( R_{1}+R_{2}\right)
-\right) $ to map it into our original $0\unit{V}$ to $20\unit{V}$ range.
-That should work for our smallest voltage that we can detect, namely $\delta
-V=4.9\unit{mV}.$ That is the smallest value $\Delta V_{2}$ could have. So in
-our $0\unit{V}$ to $20\unit{V}$ range the smallest value this can map to is 
-\begin{equation*}
-\delta V_{reported}=\left( \delta V\right) \left( \frac{1}{R_{2}}\left(
-R_{1}+R_{2}\right) \right)
-\end{equation*}%
-The first term in parenthesis is essentially $1$ digitizer unit multiplied
-by $\Delta V_{2}$ and the second term in parenthesis converts the $\Delta
-V_{2}$ value into actual volts measured across both resistors.
+\noindent or for our case, since we measured $2\unit{V}$ across our resistor,
 
-The quantity $\delta V_{reported}$ gives us our quantization error value for
-our new instrument. Our output will be in multiples of 
 \begin{equation*}
-V_{reported}=n\times \delta V_{reported}
-\end{equation*}%
-Putting in numbers gives 
-\begin{eqnarray*}
-\delta V_{reported} &=&\left( 4.\,\allowbreak 884\times 10^{-3}\unit{V}%
-\right) \left( \frac{1}{10\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}}\left( 40\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}+10\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}\right) \right) \\
-&=&0.024\,42\unit{V} \\
-&=&24.42\unit{mV}
-\end{eqnarray*}%
-This is much bigger than our $4.9\unit{mV}$ uncertainty for the simple
-voltmeter. And this is the cost of using a voltage divider to extend our
-voltage range. For the bigger voltage range we get a bigger uncertainty.
+	10\unit{V}=\frac{2\unit{V}}{\left( 10\unit{k\Omega}\right) }\left( 40\unit{k\Omega}+10\unit{k\Omega}\right)
+\end{equation*}
 
-Let's try another example. Suppose we wish to measure $0$ to $20\unit{V}$
-and we look in our case of resistors and find we have the following two
-resistors to use:%
+We will have to write this math in our code. There is a further complication. The Arduino A0 input is giving us a number that represents $0$ to $4\unit{V}$ for our setup. But that is not what we see on the serial port. We see a number from 0 to 1024. We know the $1024$ represents $5\unit{V}$ and the $0$ represents $0\unit{V}.$ So we need to multiply the number that comes from our Arduino by $\delta V=4.9\unit{mV}$ once again to get our Arduino output into voltage units. So our reported voltage equation is something like this. 
+
+\begin{equation*}
+	\Delta V_{reported}=A2D\times \delta V_{2}\times \frac{1}{R_{2}}\left(R_{1}+R_{2}\right)
+\end{equation*}
+
+All this calculation to get our reported voltage must do something to our measurement uncertainty. We could do our usual math to find the reported uncertainty, but instead, let's think. Every small voltage $\Delta V_{2}$ would be multiplied by $\left( \frac{1}{R_{2}}\left( R_{1}+R_{2}\right) \right) $ to map it into our original $0\unit{V}$ to $20\unit{V}$ range. That should work for our smallest voltage that we can detect, namely $\delta V=4.9\unit{mV}.$ That is the smallest value $\Delta V_{2}$ could have. So in our $0\unit{V}$ to $20\unit{V}$ range the smallest value this can map to is  
+
+\begin{equation*}
+	\delta V_{reported}=\left( \delta V\right) \left( \frac{1}{R_{2}}\left(R_{1}+R_{2}\right) \right)
+\end{equation*}
+
+The first term in parenthesis is essentially $1$ digitizer unit multiplied by $\Delta V_{2}$ and the second term in parenthesis converts the $\Delta V_{2}$ value into actual volts measured across both resistors.
+
+The quantity $\delta V_{reported}$ gives us our quantization error value for our new instrument. Our output will be in multiples of 
+
+\begin{equation*}
+	V_{reported}=n\times \delta V_{reported}
+\end{equation*}
+
+\noindent Putting in numbers gives 
+
 \begin{eqnarray*}
-R_{1} &=&98\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-} \\
-R_{2} &=&15\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}
+	\delta V_{reported} &=&\left( 4.\,\allowbreak 884\times 10^{-3}\unit{V} \right) \left( \frac{1}{10\unit{k\Omega}}\left( 40\unit{k\Omega}+10\unit{k\Omega}\right) \right) \\
+                        &=&0.024\,42\unit{V} \\
+                        &=&24.42\unit{mV}
 \end{eqnarray*}
 
-We would expect that our $0$ to $20\unit{V}$ would be mapped to a smaller
-range. Let's find that range.%
+This is much bigger than our $4.9\unit{mV}$ uncertainty for the simple voltmeter. And this is the cost of using a voltage divider to extend our voltage range. For the bigger voltage range we get a bigger uncertainty.
+
+Let's try another example. Suppose we wish to measure $0$ to $20\unit{V}$ and we look in our case of resistors and find we have the following two resistors to use:
+
 \begin{eqnarray*}
-\Delta V_{2\max } &=&\left( \frac{20\unit{V}}{98\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}+15\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}}\right) \left( 15\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}\right) \\
-&=&2.\,\allowbreak 654\,9\unit{V}
-\end{eqnarray*}%
-So our voltage range at the Arduino A0 input will be $0\unit{V}$ to $%
-2.\,\allowbreak 65\unit{V}.$ This set of resistors won't use the full
-Arduino $0\unit{V}$ to $5\unit{V}$ range. But it will measure $0$ to $20%
-\unit{V}.$ The minimum detectable voltage for this new instrument design for
+	R_{1} &=&98\unit{k\Omega} \\
+	R_{2} &=&15\unit{k\Omega}
+\end{eqnarray*}
+
+We would expect that our $0$ to $20\unit{V}$ would be mapped to a smaller range. Let's find that range.
+
+\begin{eqnarray*}
+	\Delta V_{2\max } &=&\left( \frac{20\unit{V}}{98\unit{k\Omega}+15\unit{k\Omega}}\right) \left( 15\unit{k\Omega}\right) \\
+                      &=&2.\,\allowbreak 654\,9\unit{V}
+\end{eqnarray*}
+
+So our voltage range at the Arduino A0 input will be $0\unit{V}$ to $ 2.\,\allowbreak 65\unit{V}.$ This set of resistors won't use the full Arduino $0\unit{V}$ to $5\unit{V}$ range. But it will measure $0$ to $20 \unit{V}.$ The minimum detectable voltage for this new instrument design for
 our $0$ to $20\unit{V}$ source will be 
+
 \begin{eqnarray*}
-\delta V_{reported} &=&\left( \delta V_{2}\right) \left( \frac{1}{R_{2}}%
-\left( R_{1}+R_{2}\right) \right) \\
-&=&\left( 4.\,\allowbreak 880\,3\times 10^{-3}\unit{V}\right) \left( \frac{1%
-}{\left( 15\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}\right) }\left( 98\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}+15\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}\right) \right) \\
-&=&3.\,\allowbreak 676\,5\times 10^{-2}\unit{V} \\
-&=&37\unit{mV}
+	delta V_{reported} &=&\left( \delta V_{2}\right) \left( \frac{1}{R_{2}}\left( R_{1}+R_{2}\right) \right) \\
+                       &=&\left( 4.\,\allowbreak 880\,3\times 10^{-3}\unit{V}\right) \left( \frac{1}{\left( 15\unit{k\Omega}\right) }\left( 98\unit{k\Omega}+15\unit{k\Omega}\right) \right) \\
+                       &=&3.\,\allowbreak 676\,5\times 10^{-2}\unit{V} \\
+                       &=&37\unit{mV}
 \end{eqnarray*}
 
-This uncertainty is much bigger than the uncertainty for our last choice of
-resistors. So $98\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}$ and $15\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}$ are not great choices even though they technically work.
+This uncertainty is much bigger than the uncertainty for our last choice of resistors. So $98\unit{k\Omega}$ and $15\unit{k\Omega}$ are not great choices even though they technically work.
 
-For your version of the voltmeter in lab, you will choose the resistor
-values to use. Here is an Arduino sketch to implement this extended volt
-meter. In it are the not-so-good $98\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}$ and $15\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-},$ but of course \textbf{you should change the sketch to have your resistor
+For your version of the voltmeter in lab, you will choose the resistor values to use. Here is an Arduino sketch to implement this extended volt meter. In it are the not-so-good $98\unit{k\Omega}$ and $15\unit{k\Omega},$ but of course \textbf{you should change the sketch to have your resistor
 values}.
+
 \href{https://dtoliphant.github.io/PH250Manual/Code/DAQ_Extended_voltmeter.ino}{Download here}
 \lstinputlisting[language=Arduino]{Code/DAQ_Extended_voltmeter.ino}
 
@@ -632,32 +420,23 @@ before you plug into your Arduino.
 
 \rule{11cm}{0.03cm}
 
-Here is an example for you to work out on your own before class. Do this and
-compare your result to the results of the other people in your lab group as
-you come into class on lab day.
+Here is an example for you to work out on your own before class. Do this and compare your result to the results of the other people in your lab group as you come into class on lab day.
 
-Suppose we wish to measure $0$ to $15\unit{V}$ and we look in our case of
-resistors and find we have the following two resistors to use:%
+Suppose we wish to measure $0$ to $15\unit{V}$ and we look in our case of resistors and find we have the following two resistors to use:
+
 \begin{eqnarray*}
-R_{1} &=&43.2\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-} \\
-R_{2} &=&15.2\unit{k%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}
-\end{eqnarray*}%
-What range of voltages would we see at the Arduino, and what is the
-quantization error for our measurement?
+	R_{1} &=&43.2\unit{k\Omega} \\
+	R_{2} &=&15.2\unit{k\Omega}
+\end{eqnarray*}
+
+What range of voltages would we see at the Arduino, and what is the quantization error for our measurement?
 
 \rule{11cm}{0.03cm}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section on proposals goes here for block classes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \input{Chapters/Modual_Proposals.tex}
 
 
