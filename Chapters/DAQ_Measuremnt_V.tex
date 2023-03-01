@@ -439,6 +439,7 @@ What range of voltages would we see at the Arduino, and what is the quantization
 
 \input{Chapters/Modual_Proposals.tex}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \vspace*{\fill}
 
@@ -447,25 +448,22 @@ What range of voltages would we see at the Arduino, and what is the quantization
 \section{Lab Assignment}
 
 \begin{enumerate}
-	\item Simple Arduino Voltmeter
+	\item \textbf{Simple Arduino Voltmeter}
 
 	\begin{enumerate}
-		\item Build a circuit with our power supply and a resistor like we did in
-			our last lab. You can choose any resistor. 
+		\item Build a circuit with one of our power supplies and a resistor like we did in our last lab. You can choose any resistor. (see section (\ref{Voltage Measurement with Meter}). 
 			\begin{figure}[h!]
 				\centering
 				\includegraphics[width=1.3932in,height=1.3188in]{PH4CAU1Z}
 			\end{figure}
 
-			(see section (\ref{Voltage Measurement with Meter}). 
+			
 			\begin{figure}[h!]
 				\centering
-				\includegraphics[width=1.8507in,height=0.9677in]{PH4CAU20}
+				\includegraphics[width=1.07in,height=0.5677in]{PH4CAU20}
 			\end{figure}
 
-			This time write the simple
-			voltmeter sketch, wire it up, and measure the voltage across the resistor
-			using our Arduino and the serial monitor. Be careful to stay in the $0$ to $5\unit{V}$ range!
+			This time write the simple voltmeter sketch, wire it up, and measure the voltage across the resistor using our Arduino and the serial monitor. Be careful to stay in the $0$ to $5\unit{V}$ range!
 
 		\item Calculate the uncertainty due to quantization error for your Arduino
 			simple voltmeter
@@ -474,19 +472,20 @@ What range of voltages would we see at the Arduino, and what is the quantization
 			you see in your device output. (This is tricky, does the power supply give a truly constant voltage?)
 	\end{enumerate}
 
-	\item Extended Voltmeter Using a Voltage Divider
+	\item \textbf{Build a new extended Voltmeter Using a Voltage Divider}
 
 		\begin{enumerate}
-			\item Build the voltage divider using two resistors as described in 	section. (\ref{Voltmeter with Voltage Divider}). You will have to think about which resistors from our set will work best. Discuss this with your group, or have group members try the calculations with different combinations.
+			\item Build the voltage divider using two resistors as described in  section. (\ref{Voltmeter with Voltage Divider}). You will have to think about which resistors from our set will work best. Discuss this with your group, or have group members try the calculations with different combinations.
+			
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=1.07in,height=0.5677in]{PH4CAU21}
+			\end{figure}
 
 			\item Use a multimeter to verify that the output of the voltage divider is
 			never more than $5\unit{V}$ and never less than $0\unit{V}.$ Take your power supply all the way from $0\unit{V}$ to $20\unit{V}$ and watch the multimeter to ensure it stays in the $0$ to $5\unit{V}.$ Range.\textbf{\ Do this with a multimeter before you hook up your Arduino.} You are making sure everything works so you won't destroy your Arduino!
 
 			\item 
-				\begin{figure}[h!]
-					\centering
-					\includegraphics[width=1.8507in,height=0.9677in]{PH4CAU21}
-				\end{figure}
 
 				Write the sketch and then hook the output of your voltage divider to the A0 pin and the other side of $R_{2} $ to a GND pin.
 				\begin{figure}[h!]
@@ -498,9 +497,7 @@ What range of voltages would we see at the Arduino, and what is the quantization
 
 				\item What is the quantization error for this voltmeter? Check to see if this matches your values on the serial monitor.
 
-				\item Design a voltage divider that will allow the full $0$ to $30\unit{V}$ range of our power supply to be measured using the Arduino's $0$ to $5\unit{V}$ analog input. What would the quantization error be for this new circuit?
+				\item Design a voltage divider that will allow the full $0$ to $30\unit{V}$ range of our power supply to be measured using the Arduino's $0$ to $5\unit{V}$ analog input. What would the quantization error be for this new circuit? 
 		\end{enumerate}
-	\item Together with your group, fill out a ``brainstorming
-	sheet'' in preparation for your design project later in the
-	semester.
+	\item Together with your group, fill out a ``brainstorming sheet'' in preparation for your design project later in the semester.
 \end{enumerate}

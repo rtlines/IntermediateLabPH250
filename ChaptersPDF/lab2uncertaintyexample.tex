@@ -1,0 +1,188 @@
+
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2960}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Tuesday, February 28, 2023 14:53:58}
+%TCIDATA{LastRevised=Tuesday, February 28, 2023 15:07:06}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\input{tcilatex}
+
+\begin{document}
+
+
+\[
+I=\frac{\Delta V}{R}
+\]
+
+My measurements:
+
+$\Delta V=1.002\unit{V}\pm 0.001\unit{V}$
+
+$R=10\unit{k%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}+0.01\unit{k%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}$
+
+\[
+I=\frac{1.002\unit{V}}{10\unit{k%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}}=\allowbreak 1.\,\allowbreak 002\times 10^{-4}\unit{A}
+\]
+
+This is what I\ expected from my circuit. My home-built ammemter uses a
+shunt resistor
+
+$R_{s}=220\unit{%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}\pm 2.2\unit{%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}$
+
+\bigskip 
+
+I measured the voltage across this resistor to be 
+
+$\Delta V_{s}=22\unit{mV}\pm 0.1\unit{mV}$
+
+So my ameter estimate for the current is 
+
+\[
+I=\frac{\Delta V_{s}}{R_{s}}=\frac{22\unit{mV}}{220\unit{%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}}=\allowbreak \frac{1}{10\unit{%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}}\unit{mV}=\allowbreak 0.000\,1\unit{A}
+\]
+Which looks great! But what about the uncertainty?
+
+\[
+\Delta I=\sqrt{\left( \frac{\partial I}{\partial R_{s}}\delta R_{s}\right)
+^{2}+\left( \frac{\partial I}{\partial \Delta V_{s}}\delta \Delta
+V_{s}\right) ^{2}}
+\]%
+we can take the derivitives
+
+\[
+\frac{\partial I}{\partial R_{s}}=-\frac{\Delta V_{s}}{R_{s}^{2}}
+\]
+
+\[
+\frac{\partial I}{\partial \Delta V_{s}}=\frac{1}{R_{s}}
+\]
+
+\[
+\Delta I=\sqrt{\left( -\frac{\Delta V_{s}}{R_{s}^{2}}\delta R_{s}\right)
+^{2}+\left( \frac{1}{R_{s}}\delta \Delta V_{s}\right) ^{2}}
+\]%
+\[
+\Delta I=\sqrt{\left( -\frac{22\unit{mV}}{\left( 220\unit{%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}\right) ^{2}}\left( 2.2\unit{%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}\right) \right) ^{2}+\left( \frac{1}{220\unit{%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}}\left( 0.1\unit{mV}\right) \right) ^{2}}
+\]
+\[
+I=\allowbreak 0.000\,1\unit{A}\pm 1.\,\allowbreak 098\,5\times 10^{-6}\unit{A%
+}
+\]
+
+$\allowbreak $
+
+\[
+I=\left( 100.0\pm 1.\,\allowbreak 098\,5\right) \unit{%
+%TCIMACRO{\U{3bc}}%
+%BeginExpansion
+\mu%
+%EndExpansion
+A}
+\]%
+This is a fine measurement. But suppose we wanted to improve it. We could
+look at the parts of the uncertainty!
+
+Let's look at the parts to see which part to change to improve the
+measurement
+
+$\left( -\frac{22\unit{mV}}{\left( 220\unit{%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}\right) ^{2}}\left( 2.2\unit{%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}\right) \right) ^{2}=\allowbreak 1.0\times 10^{-12}\unit{A}^{2}$ Bigger
+
+$\left( \frac{1}{220\unit{%
+%TCIMACRO{\U{3a9}}%
+%BeginExpansion
+\Omega%
+%EndExpansion
+}}\left( 0.1\unit{mV}\right) \right) ^{2}=\allowbreak 2.\,\allowbreak
+066\,1\times 10^{-13}\unit{A}^{2}$ Smaller
+
+The first term is bigger. So to implrove we need a better resistor.
+
+\end{document}
