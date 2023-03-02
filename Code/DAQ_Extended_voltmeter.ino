@@ -14,7 +14,7 @@ float R2 = 15000.0;
 int ADC_value = 0;    // Place to put the A2D values
 float voltage = 0.0;  // calculated signal voltage
 //mV Arduino's minimum detectable voltage
-float delta_v_min = 0.0049 
+float delta_v_min = 0.0049; 
  
 /////////////////////////////////////////////////////////
 void setup() {
