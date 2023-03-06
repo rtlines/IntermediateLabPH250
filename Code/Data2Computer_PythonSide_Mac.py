@@ -86,8 +86,8 @@ while (i<N):    #Begin data collection loop
     # the next line just prints the voltage point on the console so the user 
     # feels like something is happening.
     print(arduinoData)
-    # This next line writes combines the time since we started and the Arduino 
-    # value from the serial port into one string
+    # This next line makes sure our Arduino data is in the proper 
+    #   python string format
     writeString=str(arduinoData) #+ " \n"
     # The next line writes our time plus Arduino value to the file.
     dataFile.write(writeString)

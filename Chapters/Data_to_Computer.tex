@@ -116,7 +116,7 @@ The first new code piece is making files for our data. We create a file with a l
 \end{python}
 \vspace{.1in}
 
-The ``fileObject'' is a variable that contains all the file information like the path and file name. It is way easier to type than to include all that information each time we use a file. So we will use fileObject variables. In the code below I named the fileObject variable ``dataFile.'' Of course, you will have to choose your own path where you will place the data file (you can't use mine, because you don't have my computer!) and you will need to choose your own file name. Notice the weird double slashes $\backslash$$\backslash$.'' These are a Python thing and you need to write the path this way.
+The ``fileObject'' is a variable that contains all the file information like the path and file name. It is way easier to type than to include all that information each time we use a file. So we will use fileObject variables. In the code below I named the fileObject variable ``dataFile.'' Of course, you will have to choose your own path where you will place the data file (you can't use mine, because you don't have my computer!) and you will need to choose your own file name. Notice the weird double slashes $\backslash$$\backslash$.'' These are a Python thing and you probably need to write the path this way.
 
 The other new code piece is dealing with serial ports. Like with our Arduino code, we have to set up the serial port. We do that with the line like the this (also see the actual code below).
 
@@ -140,7 +140,7 @@ The COM port number must match. This looks a little uglier on a Mac, but is much
 \end{python}
 \vspace{.1in}
 
-\noindent will read data from the serial port and ``decode it'' so that it is text that we can use in another program. The rest of the example code writes the data point to a file. I have it calculating the time since the beginning of our data collection (we might just need that in a future lab) and outputting that into the file as well.
+\noindent will read data from the serial port and ``decode it'' so that it is text that we can use in another program. The rest of the example code writes the data point to a file. I have the Areduino code calculate a value in miliseconds for when the data points are taken. This is passed along with the voltage through the serial port. From this we could calculate the time since the beginning of our data collection (we might just need that in a future lab). This time in milliseconds is output into the file as well.
 
 We are going to want a name for the amount of time in between data points. In the example code, the amount of time to delay in between data points is named \pyth{sleeptime} and the number of data points is named \pyth{N}.
 
