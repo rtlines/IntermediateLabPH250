@@ -10,7 +10,7 @@ import numpy as np
 #
 # Define variables
 DeltaVps = 2       #V   The power supply voltage applied to the circuit
-Rtest = 5000       #ohms The resistance of the circut begin tested
+Rtest = 42700       #ohms The resistance of the circut begin tested
 Rs = 1000           #ohms The shunt resistance for our ammeter
 DeltaVmin = 5/1024 #V the quantization error for an Arduino
 Rtollarence = 0.01 #% the ristor code tollerance band percentage
@@ -34,8 +34,8 @@ print("The percent error for DeltaVs ", 100*deltaDeltaVs/DeltaVs,"%")
 #Error terms 
 ET1 = (deltaDeltaVs/Rs)**2
 ET2 = (DeltaVs*deltaRs/Rs**2)**2
+print("ET1, ET2 ",ET1,ET2)
 DeltaI = np.sqrt(ET1+ET2)
 print("The uncertainty in our current measurement is ",DeltaI, " A")
 RDeltaI = 100*DeltaI/I
 print("The relative uncertainty in our current measurement is",RDeltaI," %")
-print("ET1, ET2 ",ET1,ET2)

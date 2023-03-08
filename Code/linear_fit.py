@@ -14,16 +14,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Type in your data into arrays
-x=np.array([ 0.,  1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,
-            9., 10.])
-y=np.array([2.95491226, 0.38578942, 4.58771916, 
-            2.16887048, 3.66484311, 2.83660703, 
-            6.6584007 , 7.84011419, 9.55442455, 
-            8.80618692, 7.39340476])
+y=np.array([ 1.339404348, 1.636386957, 2.184509091, 2.442872727, 2.898572727, 3.210991304, 3.925406897 ])
+x=np.array([0.000005,1.56522E-05,2.63182E-05,2.76364E-05,3.99091E-05,3.85652E-05,6.18966E-05])
 
 # Plot the data, you may have to adjust the plot axis 
 #  limits
-plt.axis([-1,11, -1,11])
+#plt.axis([-1,11, -1,11])
 plt.plot(x,y,'bo')
 
 # now let's do the curve fit
@@ -38,7 +34,7 @@ print ("intercept is  ", result.intercept, "+- ",
        result.intercept_stderr)
 
 # Now let's try the curve fit to see how it does
-xf=np.linspace(0, 10, 11)
+xf=np.linspace(0, max(x), 11)
 yf=np.zeros(11)
 for i in range(11):
     yf[i]=result.slope*xf[i] + result.intercept

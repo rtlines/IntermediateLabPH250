@@ -7,7 +7,7 @@
 // resistance of the rest of the circuit.
 /////////////////////////////////////////////////////////
 // Shunt resistor value goes here:
-  float R_shunt= 220;   
+  float R_shunt= 1000;   
   	//ohms  -  remember you have to replace this with your 
   	// actual shunt resistor value
  
@@ -48,13 +48,13 @@ float amperage = 0.0;
   ADC2 = analogRead(AI2);
   
   // Convert the voltage across the 
-  // test resistor to voltage 
+  //   test resistor to voltage 
   //   units using delta_v_min
   voltage = (ADC2-ADC1) * delta_v_min;
  
   // Convert the voltage across R_shunt to voltage units  
-  // using delt_v_min, then convert to
-  // current using R_shunt
+  //   using delt_v_min, then convert to
+  //   current using R_shunt
   amperage = (ADC1-ADC0)* delta_v_min / R_shunt;
  
   // output the voltage, amperage, and resistance
@@ -62,6 +62,5 @@ float amperage = 0.0;
   Serial.print(voltage, 6);  
   Serial.print(" amperage ");
   Serial.print(amperage,6);
-  Serial.print( " resistance " );
-  Serial.println(voltage/amperage, 4);
+ 
 }
