@@ -9,26 +9,17 @@ Let's suppose we have done our experiment and we have some data that look like t
 	\includegraphics[width=3.563in,height=2.7345in]{linear_data}
 \end{figure}
 
-This looks pretty good. It seems to be sort of linear. We might guess from
-this that Ohm's law is begin obeyed. But we want $R_{test}$ and $R_{test}$
-is the slope of this line. We could calculate $R_{test}$ from each pair of $%
-\Delta V$ and $I$ points and find it's uncertainty using standard error
-propagation. But it seems that it would be better to take all the points
-into our analysis to find $R_{test}.$ More data should give us a better
-estimate for $R_{test}.$ Back in PH150 you may have done such a thing using
-a \emph{curve fit}. In the next figure, a curve fit is shown for the data
-from the last figure. 
+This looks pretty good. It seems to be sort of linear. We might guess from this that Ohm's law is begin obeyed. But we want $R_{test}$ and $R_{test}$ is the slope of this line. We could calculate $R_{test}$ from each pair of $\Delta V$ and $I$ points and find it's uncertainty using standard error propagation. But it seems that it would be better to take all the points into our analysis to find $R_{test}.$ More data should give us a better estimate for $R_{test}.$ Back in PH150 you may have done such a thing using a \emph{curve fit}. In the next figure, a curve fit is shown for the data from the last figure. 
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=3.563in,height=2.7345in]{linear_data_with_fit}
 \end{figure}
 
-Notice that I performed this curve fit in python, but if you are a not a
-great Python programer you could do this in Excel. You could also
-do this in LoggerPro or many other data analysis programs. If you need help finding a way to perform a curve fit, talk to your instructor. Here is an example code for doing the curve fit in python.
+Notice that I performed this curve fit in python, but if you are a not a great Python programer you could do this in Excel. You could also do this in LoggerPro or many other data analysis programs. If you need help finding a way to perform a curve fit, talk to your instructor. Here is an example code for doing the curve fit in python.
 
-%\href{https://dtoliphant.github.io/PH250Manual/Code/DAQ_voltmeter.ino}{Here}
+\vspace{0.24in}
+\href{https://raw.githubusercontent.com/rtlines/IntermediateLabPH250/main/Code/linear_fit.py}{Download here}
 
 \lstinputlisting[language=Arduino]{Code/linear_fit.py}
 
@@ -38,7 +29,7 @@ The scipy linregress() function uses the equation for a line
 	y = result.slope*x + result.intercept
 \end{equation*}
 
-Our code gives the result
+\noindent Our code gives the result
 
 \begin {verbatim}
 slope is   0.7737292152727273 +-  0.1612215125332822
@@ -46,7 +37,7 @@ intercept is   1.2996514309090914 +-  0.9537993308988922
 program ended successfully
 \end{verbatim}
 
-which tells us that we have a slope of about $0.774.$ Since our graph
+\noindent which tells us that we have a slope of about $0.774.$ Since our graph
 has $\Delta V$ on the vertical axis and $I$ on the horizontal axis we
 recognize 
 \begin{eqnarray*}

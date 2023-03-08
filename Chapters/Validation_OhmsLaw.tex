@@ -7,7 +7,7 @@ So in a physics lab class, we need to test ideas about how the universe works. W
 
 \section{Ohm's Law Revisited}
 
-We learned several labs ago that voltage and current are linearly related to each other. This is what we would call a \emph{model}, a mental understanding of how part of the universe works. Usually in physics we distil the model into an equation . We call this equation a law. In this case, Ohm's law. 
+We learned several labs ago that voltage and current are linearly related to each other. This is what we would call a \emph{model}, a mental understanding of how part of the universe works. Usually in physics we distill the model into an equation . We call this equation a law. In this case, Ohm's law. 
 
 \begin{equation*}
 	\Delta V=IR
@@ -33,22 +33,15 @@ We might plot our equation to show the $\Delta V$ vs. $I$ relationship.
 
 \noindent Such a device would \emph{not} follow Ohm's law. We would say that such a device is \emph{nonohmic}.
 
-Today we will test our model by taking $\Delta V$ and $I\ $measurements and
-seeing if the equation $\Delta V=IR$ describes the data well. Of course,
-this means we need to measure two things at once with our Arduino. We need
-both $\Delta V$ and $I.$ But this isn't a problem because our Arduninos have five analog inputs. So we just need to have one measurement attached to, say, pin A0 and another to, say, pin A1. Of course both will need to be
+Today we will test our model by taking $\Delta V$ and $I\ $measurements and seeing if the equation $\Delta V=IR$ describes the data well. Of course, this means we need to measure two things at once with our Arduino. We need both $\Delta V$ and $I.$ But this isn't a problem because our Arduninos have five analog inputs. So we just need to have one measurement attached to, say, pin A0 and another to, say, pin A1. Of course both will need to be
 connected to GND as the second measurement because $\Delta V$ measurements
 take two leads. 
 
-But wait, if we are testing Ohm's law, we don't want two $\Delta V$
-measurements, we want $\Delta V$ and $I.$ How do we get $I$ measured by an
-Arduino?
+But wait, if we are testing Ohm's law, we don't want two $\Delta V$ measurements, we want $\Delta V$ and $I.$ How do we get $I$ measured by an Arduino?
 
 \subsection{Measuring current with our Arduino}
 
-Arduinos and other DAQs only measure voltages. Let's review how we measure
-the voltage across a resistor, and then review how to turn that voltage
-measurement into a current measurement.
+Arduinos and other DAQs only measure voltages. Let's review how we measure the voltage across a resistor, and then review how to turn that voltage measurement into a current measurement.
 
 \begin{figure}[h!]
 	\centering
@@ -57,11 +50,7 @@ measurement into a current measurement.
 
 We put the two leads of a voltmeter (shown as a circle with a $\Delta V$\ in it) on either side of the resistor that we are testing. If the voltmeter is our Arduino, the leads on the side of the resister connected to the positive side of the battery should go to A0 and the lead connected to the negative side of the battery should be connected to GND. This is all what an Arduino (or any other DAQ) can do.
 
-To measure a current with our Arduino we have to somehow turn that current
-into a voltage. This is true of most measurements we will do. We need to
-turn temperature, or humidity, or magnetic field, or light intensity into a
-voltage. Turning magnetic field into a voltage is a little tricky, but we
-already know all we need to know to handle current.
+To measure a current with our Arduino we have to somehow turn that current into a voltage. This is true of most measurements we will do. We need to turn temperature, or humidity, or magnetic field, or light intensity into a voltage. Turning magnetic field into a voltage is a little tricky, but we already know all we need to know to handle current.
 
 To turn a current into a voltage, think of Ohm's law again.
 
@@ -81,10 +70,9 @@ To turn a current into a voltage, think of Ohm's law again.
 	\includegraphics[width=3.7395in,height=2.7423in]{PH4CAV2R}
 \end{figure}
 
-\noindent and measure the voltage across that circuit, we will be able to calculate the current.
+\noindent and measure the voltage across that circuit, we will be able to calculate the current. This is familiar from an earlier lab. We called this extra resistor a ``shunt'' resistor.
 
-Of course, if $R_{s}$ is very large, then $R_{s},$ itself, will slow down
-the current. So we want to choose a $R_{s}$ that is much less than $R_{test}. $
+Of course, if $R_{s}$ is very large, then $R_{s},$ itself, will slow down the current. So we want to choose a $R_{s}$ that is much less than $R_{test}. $
 
 \begin{equation*}
 	R_{s}\ll R_{test}
@@ -100,9 +88,7 @@ the current. So we want to choose a $R_{s}$ that is much less than $R_{test}. $
 
 \subsection{Actually making an Arduino measure current}
 
-This idea is great, but let's talk a little bit about how to wire this dual
-measurement. Think again about our two voltage measurements, $\Delta V$ and $\Delta V_{s}.$ Each $\Delta $ implies two measurements. That means we need a total of four measurements to make this work! Let's see where these
-measurements would be on our circuit diagram.
+This idea is great, but let's talk a little bit about how to wire this dual measurement. Think again about our two voltage measurements, $\Delta V$ and $\Delta V_{s}.$ Each $\Delta $ implies two measurements. That means we need a total of four measurements to make this work! Let's see where these measurements would be on our circuit diagram.
 
 \begin{figure}[h!]
 	\centering
@@ -122,11 +108,7 @@ By drawing the diagram, we realize that we can create both $\Delta V$ measuremen
 	\Delta V_{s} &=&V_{A1}-V_{A0}
 \end{eqnarray*}
 
-If we keep our voltage from our battery or power supply in the $0\unit{V}$
-to $+5\unit{V}$ range, then we can use our simple voltmeter sketch. We do
-need to modify it to take three different voltage measurements. And we need
-to add the math to make $\Delta V_{s}$ into $I.$ We could even modify this
-so that our code would report out 
+If we keep our voltage from our battery or power supply in the $0\unit{V}$ to $+5\unit{V}$ range, then we can use our simple voltmeter sketch. We do need to modify it to take three different voltage measurements. And we need to add the math to make $\Delta V_{s}$ into $I.$ We could even modify this so that our code would report out 
 
 \begin{equation*}
 	R=\frac{\Delta V}{I}
@@ -144,9 +126,7 @@ so that our code would report out
 
 \subsubsection{Choosing shunt resistors}
 
-It's harder than you might think to choose a good shunt resistor. The shunt
-resistor resistance shouldn't be big enough to cause too much error in our $\Delta V$ measurement for the resistor we want to measure. Nor should it be so large that it effects the current much. But suppose we find the smallest resistor that we can, say, $10\unit{\Omega}.$ Surely that will not affect the actual $\Delta V$ or $I$ measurements. But still, we may have a problem. Let's consider an actual circuit to see
-why.
+It's harder than you might think to choose a good shunt resistor. The shunt resistor resistance shouldn't be big enough to cause too much error in our $\Delta V$ measurement for the resistor we want to measure. Nor should it be so large that it effects the current much. But suppose we find the smallest resistor that we can, say, $10\unit{\Omega}.$ Surely that will not affect the actual $\Delta V$ or $I$ measurements. But still, we may have a problem. Let's consider an actual circuit to see why.
 
 Suppose we have a circuit where the input voltage from the power supply is $\Delta V_{ps}=2\unit{V}$ and our test resistor is $R=5000\unit{\Omega}.$ And suppose we try to use $R_{s}=10\unit{\Omega}.$ 
 
@@ -219,9 +199,7 @@ We should compare this value to our ADC minimum detectable value
 
 \noindent ADC units. With our entire value of $\Delta V_{s}$ split into only two numbers our uncertainty in our $\Delta V_{s}$ would be something like $50\%.$ That won't make a very good current measurement
 
-Suppose instead, we use $R_{s}=170\unit{*\Omega}.$ 
-
-\noindent This is much bigger, so it will affect the voltage measurement of the test resistor a little. But in the end will work better. If we set our power supply back to $\Delta V_{ps}=2\unit{V}$ the $R_{s}=170\unit{\Omega}$ gives. 
+Suppose instead, we use $R_{s}=170\unit{\Omega}.$  This is much bigger, so it will affect the voltage measurement of the test resistor a little. But in the end will work better. If we set our power supply back to $\Delta V_{ps}=2\unit{V}$ the $R_{s}=170\unit{\Omega}$ gives. 
 
 \begin{eqnarray*}
 	\Delta V_{s} &=&\left( \frac{2\unit{V}}{5000\unit{\Omega}+170\unit{\Omega}}\right) \left( 170\unit{\Omega}\right) \\
@@ -240,23 +218,18 @@ Suppose instead, we use $R_{s}=170\unit{*\Omega}.$
 	\delta \Delta V_{s}=\frac{65.\,\allowbreak 764\unit{mV}}{13}=5.\,\allowbreak1\unit{mV}
 \end{equation*}
 
-This is very near the $\Delta V_{\min }=$ $4.88\,\allowbreak \unit{mV}$ value, but a little bit higher. If $\delta \Delta V_{s}$ from our calculation is larger than $\delta V_{\min ,}$ then we have to use the larger value as our uncertainty in $\Delta V_{s}.$ So we would say $\delta \Delta V_{s}=5.\,\allowbreak 1\unit{mV}.$ But still this is not a terrible
-error. 
+This is very near the $\Delta V_{\min }=$ $4.88\,\allowbreak \unit{mV}$ value, but a little bit higher. If $\delta \Delta V_{s}$ from our calculation is larger than $\delta V_{\min ,}$ then we have to use the larger value as our uncertainty in $\Delta V_{s}.$ So we would say $\delta \Delta V_{s}=5.\,\allowbreak 1\unit{mV}.$ But still this is not a terrible error.  Now our percent error is
 \begin{equation*}
 	100\times \frac{5.\,\allowbreak 058\,8\unit{mV}}{65.\,\allowbreak 764\unit{mV}}=7.\,\allowbreak 7\
 \end{equation*}
 
-This is much better than $50\%$ or $100\%$ error. You might guess that we
-can do a little better by trying other resistance values. And you would be
-right. But if you only need an $8\%$ error, this value would be fine.
+\noindent which is much better than $50\%$ or $100\%$ error. You might guess that we can do a little better by trying other resistance values. And you would be right. But if you only need an $8\%$ error, this value would be fine.
 
-Our stand-alone meters have lots of shunt resistors inside of them. You are
-changing shunt resistors when you change the dial setting, trying to balance these errors. By changing shunt resistors in our circuit we are doing the same thing as turning the dial on the current settings of a multimeter.
+Our stand-alone meters have lots of shunt resistors inside of them. You are changing shunt resistors when you change the dial setting, trying to balance these errors. By changing shunt resistors in our circuit we are doing the same thing as turning the dial on the current settings of a multimeter.
 
 \subsection{Finding Uncertainty in a calculated value}
 
-In the last section I\ gave errors in $\Delta V_{s},$ but didn't finish the
-error in the current, $I.$ Of course, since we had to calculate the current, we also need to find the uncertainty in our current using error propagation. Fortunately we ``remember'' how to do this from PH150. We use our basic form for standard error propagation. If we have a function $f\left( x,y,z\right) $ then the uncertainty in $f$ would be 
+In the last section I\ gave errors in $\Delta V_{s},$ but didn't finish the error in the current, $I.$ Of course, since we had to calculate the current, we also need to find the uncertainty in our current using error propagation. Fortunately we ``remember'' how to do this from PH150. We use our basic form for standard error propagation. If we have a function $f\left( x,y,z\right) $ then the uncertainty in $f$ would be 
 
 \begin{equation*}
 	\delta f=\sqrt{\left( \left( \frac{\partial f}{\partial x}\right)\left(\delta x\right) \right) ^{2}+\left( \left( \frac{\partial f}{\partial y}\right) \left( \delta y\right) \right) ^{2}+\left( \left( \frac{\partial f}{\partial z}\right) \left( \delta z\right) \right) ^{2}}
@@ -305,23 +278,19 @@ it to our expected current. We expect for our example
 	I &=&\frac{\Delta V_{ps}}{R} \\
 	  &=&\frac{2\unit{V}}{5000\unit{\Omega}} \\
       &=&\allowbreak 0.000\,4\unit{A} \\
-      &=&4\times 10^{4}\unit{A}
+      &=&4\times 10^{-4}\unit{A}
 \end{eqnarray*}
 
 \noindent so the fractional uncertainty in the current will be 
 
 \begin{equation*}
 	100\frac{3.\,\allowbreak 000\,8\times 10^{-5}\unit{A}}{4\times 10^{4}\unit{A}}=7.\,\allowbreak 502\
-\end{equation*}%
+\end{equation*}
 
 
-This still isn't great, it's about what we got for the error in $\delta
-\Delta V_{s}$ (but it's better than $50\%$). We might be able to do better.
-But if $8\%$ is OK for our application, then we stop here!
+This still isn't great, it's about what we got for the error in $\delta \Delta V_{s}$ (but it's better than $50\%$). We might be able to do better. But if $8\%$ is OK for our application, then we stop here!
 
-Let's try to figure out what the biggest contributor to our uncertainty
-might be. To do this we look at the terms in our uncertainty calculation
-separately
+Let's try to figure out what the biggest contributor to our uncertainty might be. To do this we look at the terms in our uncertainty calculation separately
 
 \begin{eqnarray*}
 	\left( \left( \frac{1}{R_{s}}\right) \left( \delta \Delta V_{s}\right)\right) ^{2} &=&\left( \left( \frac{1}{170\unit{\Omega}}\right) \left( 5.\,\allowbreak 058\,8\unit{mV}\right) \right) ^{2}=\allowbreak 8.\,\allowbreak 855\,2\times 10^{-10}\unit{A}^{2} \\
@@ -373,12 +342,10 @@ We start by finding the current in the circuit
 \noindent and its fractional uncertainty
 
 \begin{equation*}
-	f_{I}=\frac{dI}{I}
+	f_{I}=\frac{\delta I}{I}
 \end{equation*}
 
-As you can see, it is probably best to put all this in a symbolic package
-(like Mathmatica or Maple, or Sage, or whatever your favorite symbolic math
-processor might be). That way, you can change values of, say, $R_{s}$ and $\Delta V_{s}$ without redoing everything. At least consider using a spreadsheet program or even in Python!.
+As you can see, it is probably best to put all this in a symbolic package (like Mathmatica or Maple, or Sage, or sympy, or whatever your favorite symbolic math processor might be). That way, you can change values of, say, $R_{s}$ and $\Delta V_{s}$ without redoing everything. At least consider using a spreadsheet program or even in Python!.
 
 Let's try this once more with $R_{s}=500\unit{\Omega}$ just to see what would happen.
 
