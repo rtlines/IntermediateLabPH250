@@ -1,12 +1,6 @@
 %Resistors_Capacitors
 \chapter{Resistors and Capacitors}
-In this lab, we will not build a new instrument. We will use an instrument
-we built in a previous lab (or at least only a new version of that
-instrument adjusted for today's resistance values). You will notice a
-pattern in what we do from now on in PH250. We will build an instrument and
-then test a model with that instrument. The instrument must be designed so
-that it can take the data needed to test the model. In today's lab, we will
-test the model of how capacitors work in a circuit. If your PH220 class is
+In this lab, we will not build a new instrument. We will use an instrument we built in a previous lab (or at least only a new version of that instrument adjusted for today's resistance values). You will notice a pattern in what we do from now on in PH250. We will build an instrument and then test a model with that instrument. The instrument must be designed so that it can take the data needed to test the model. In today's lab, we will test the model of how capacitors work in a circuit. If your PH220 class is
 moving along nicely, this model will be familiar.
 
 \section{The Model to Test}
@@ -15,168 +9,141 @@ moving along nicely, this model will be familiar.
 \includegraphics[width=1.67in,height=1.67in]{PH4CAW37}
 \end{figure}
 
-Let's start by thinking of hooking up a capacitor and a resistor in series
-with a battery. The capacitor will become charged. The voltage across the
-capacitor as a function of time will be given by
+Let's start by thinking of hooking up a capacitor and a resistor in series with a battery. The capacitor will become charged. The voltage across the capacitor as a function of time will be given by
 
 \begin{equation*}
-\Delta V_{C}\left( t\right) =\Delta V_{\max }\left( 1-e^{-\frac{t}{\tau }%
-}\right) \qquad \text{charging}
-\end{equation*}%
-where 
+	\Delta V_{C}\left( t\right) =\Delta V_{\max }\left( 1-e^{-\frac{t}{\tau } }\right) \qquad \text{charging}
+\end{equation*}
+
+\noindent where 
+
 \begin{equation}
-\tau =RC
-\end{equation}%
-is the product of the resistance, $R$, and the capacitance, $C.$ The current
-in the circuit as a function of time will be given by%
+	\tau =RC
+\end{equation}
+
+\noindent is the product of the resistance, $R$, and the capacitance, $C.$ The current in the circuit as a function of time will be given by 
+
 \begin{equation*}
-I\left( t\right) =I_{\max }e^{-\frac{t}{\tau }}\qquad \text{charging}
-\end{equation*}%
-while we charge up the capacitor. The quantity 
+	I\left( t\right) =I_{\max }e^{-\frac{t}{\tau }}\qquad \text{charging}
+\end{equation*}
+
+\noindent while we charge up the capacitor. The quantity 
+
 \begin{equation*}
-\tau =RC
-\end{equation*}%
-is called the time constant.
+	\tau =RC
+\end{equation*}
+
+\noindent is called the time constant.
 
 We should review what a time constant is. Think of a particular case, say, 
+
 \begin{eqnarray*}
-\Delta V_{battery} &=&1.5\unit{V} \\
-R &=&2\unit{%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-} \\
-C &=&10\unit{F}
-\end{eqnarray*}%
-then%
+	\Delta V_{battery} &=&1.5\unit{V} \\R &=&2\unit{\Omega} \\C &=&10\unit{F}
+\end{eqnarray*}
+
+\noindent then
+
 \begin{equation*}
-V_{C}(t)=\left( 1.5\unit{V}\right) \left( 1-e^{-\frac{t}{\left( 2\unit{%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}\right) \left( 10\unit{F}\right) }}\right)
-\end{equation*}%
-and 
+	V_{C}(t)=\left( 1.5\unit{V}\right) \left( 1-e^{-\frac{t}{\left( 2\unit{\Omega}\right) \left( 10\unit{F}\right) }}\right)
+\end{equation*}
+
+\noindent and 
+
 \begin{eqnarray*}
-\tau &=&\left( 2\unit{%
-%TCIMACRO{\U{3a9}}%
-%BeginExpansion
-\Omega%
-%EndExpansion
-}\right) \left( 10\unit{F}\right) \\
-&=&\allowbreak 20.0\unit{s}
-\end{eqnarray*}%
-We can plot this\begin{figure}[h!]
-\includegraphics[width=2.8885in,height=1.58in]{PH4CAW38}
-\end{figure}Notice, that by about $t=70\unit{s%
-}$ we essentially have $\Delta V_{C}=\Delta V_{battery}.$ But up to that
-point, the voltage across the capacitor changes in a very non-linear way.
-The part of the equation that looks like%
+	\tau &=&\left( 2\unit{\Omega}\right) \left( 10\unit{F}\right) \\
+	     &=&\allowbreak 20.0\unit{s}
+\end{eqnarray*}
+
+We can plot this
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=2.8885in,height=1.58in]{PH4CAW38}
+\end{figure}
+
+Notice, that by about $t=70\unit{s}$ we essentially have $\Delta V_{C}=\Delta V_{battery}.$ But up to that point, the voltage across the capacitor changes in a very non-linear way. The part of the equation that looks like
+
 \begin{equation*}
-\left( 1-e^{-\frac{t}{RC}}\right)
-\end{equation*}%
-is interesting. What is $e^{0}$?%
+	\left( 1-e^{-\frac{t}{RC}}\right)
+\end{equation*}
+
+\noindent is interesting. What is $e^{0}$?
+
 \begin{equation*}
-e^{0}=1
-\end{equation*}%
+	e^{0}=1
+\end{equation*}
+
 So at $t=0$ we do have $\Delta V_{C}=0$ on the capacitor because 
+
 \begin{equation*}
-\left( 1-e^{-\frac{t}{RC}}\right) =\left( 1-1\right)
-\end{equation*}%
-For any positive time, $e^{-\frac{t}{RC}}$ will be less than $1.$ For large
-positive times $\frac{t}{RC}$ gets to be a big number. So $e^{-\frac{t}{RC}}$
-gets very small. Then $\left( 1-e^{-\frac{t}{RC}}\right) $ gets very close
-to $1.$ That means that 
+	\left( 1-e^{-\frac{t}{RC}}\right) =\left( 1-1\right)
+\end{equation*}
+
+For any positive time, $e^{-\frac{t}{RC}}$ will be less than $1.$ For large positive times $\frac{t}{RC}$ gets to be a big number. So $e^{-\frac{t}{RC}}$ gets very small. Then  $\left(1-e^{-\frac{t}{RC}}\right) $ gets very close to $1.$ That means that 
+
 \begin{equation*}
-\underset{t\rightarrow \infty }{\lim }\Delta V_{C}=\underset{t\rightarrow
-\infty }{\lim }\Delta V_{battery}\left( 1-e^{-\frac{t}{RC}}\right) =\Delta
-V_{battery}\left( 1\right) =\Delta V_{battery}
-\end{equation*}%
-just as we saw in the graph and as we know it must.
+	\underset{t\rightarrow \infty }{\lim }\Delta V_{C}=\underset{t\rightarrow\infty }{\lim }\Delta V_{battery}\left( 1-e^{-\frac{t}{RC}}\right) =\Delta V_{battery}\left( 1\right) =\Delta V_{battery}
+\end{equation*}
+
+\noindent just as we saw in the graph and as we know it must.
 
 But what if $t=\tau =RC?$ Then 
+
 \begin{eqnarray*}
-\Delta V_{C} &=&\Delta V_{battery}\left( 1-e^{-\frac{RC}{RC}}\right) = \\
-&=&\Delta V_{battery}\left( 1-e^{-1}\right) \\
-&=&\allowbreak 0.632\,12\Delta V_{battery} \\
-&\approx &63\%\Delta V_{battery}
-\end{eqnarray*}%
+	\Delta V_{C} &=&\Delta V_{battery}\left( 1-e^{-\frac{RC}{RC}}\right) = \\
+	             &=&\Delta V_{battery}\left( 1-e^{-1}\right) \\
+	             &=&\allowbreak 0.632\,12\Delta V_{battery} \\
+	             &\approx &63\%\Delta V_{battery}
+\end{eqnarray*}
+
 The time $\tau $ is the time it takes for the capacitor to be $63\%$ charged!
 
-The quantity $\tau $ is called the \emph{time constant} because it tells us
-something about how long it takes for $\Delta V_{c}$ to go from $0$ to get
-to $\Delta V_{battery}.$ The \textquotedblleft
-t-looking-thing\textquotedblright\ is a Greek letter \textquotedblleft
-t.\textquotedblright\ It is pronounced \textquotedblleft
-tau.\textquotedblright\ This quantity will be useful in planning your
-experiment.
+The quantity $\tau $ is called the \emph{time constant} because it tells us something about how long it takes for $\Delta V_{c}$ to go from $0$ to get to $\Delta V_{battery}.$ The ``t-looking-thing'' is a Greek letter ``t.'' It is pronounced ``tau.'' This quantity will be useful in planning your experiment.
 
-Notice what we have done. We have used our model to form an equation, and we
-have used part of that equation to understand how much time it will take to
-perform a test (experiment) of the model. This is typical, we have to get an
-idea of how to make the measurement from the model we are testing.
+Notice what we have done. We have used our model to form an equation, and we have used part of that equation to understand how much time it will take to perform a test (experiment) of the model. This is typical, get an idea of how to make the measurement from the model we are testing.
 
-But! you say, I don't really remember where all of these equations came
-from. Or maybe your PH220 class hasn't gotten to allowing current to flow
-yet so you have not done this. If any of this is mysterious, please read the
-section of our PH220 book that covers RC circuits. But if it is vaguely
-familiar or seems to make sense, really we can test our model of how
-capacitors work just knowing a little about capacitors and the equations
-that came from the model.
+But! you say, I don't really remember where all of these equations came from. Or maybe your PH220 class hasn't gotten to allowing current to flow yet so you have not done this. If any of this is mysterious, please read the section of our PH220 book that covers RC circuits. But if it is vaguely familiar or seems to make sense, really we can test our model of how capacitors work just knowing a little about capacitors and the equations that came from the model.
 
 \section{The Instrument}
 
-To test our capacitor model we need to measure the voltage across the
-capacitor as a function of time. We could also measure the current in the
-circuit as a function of time. One of these is sufficient to test the model.
-I am going to describe measuring the voltage across the capacitor as a
-function of time. But you know from a previous lab how we might add current
-as a function of time.
+To test our capacitor model we need to measure the voltage across the capacitor as a function of time. We could also measure the current in the circuit as a function of time. One of these is sufficient to test the model. I am going to describe measuring the voltage across the capacitor as a function of time. But you know from a previous lab how we might add current as a function of time.
 
-We need a device that measures voltage and how it changes as a function of
-time. But that is just what our Arduino's do! We already know how to build
-this device. Suppose we can live with a $0\unit{V}$ to $+5\unit{V}$ range of 
-$\Delta V_{battery}.$ Then even our simple voltmeter will work. Since it is
-a function of time that we are testing, we need to output both voltage and
-time from our Arduino. We can't guarantee that either of our capacitor leads
-will be at ground, so we will have to be careful in wiring this voltmeter to
-give $\Delta V_{C}.$
+We need a device that measures voltage and how it changes as a function of time. But that is just what our Arduino's do! We already know how to build this device. Suppose we can live with a $0\unit{V}$ to $+5\unit{V}$ range of $\Delta V_{battery}.$ Then even our simple voltmeter will work. Since it is a function of time that we are testing, we need to output both voltage and time from our Arduino. We can't guarantee that either of our capacitor leads will be at ground, so we will have to be careful in wiring this voltmeter to give $\Delta V_{C}.$
 
 Remember that $\Delta V_{C}$ is the difference between two voltage
-measurements. \begin{figure}[h!]
-\includegraphics[width=2.2321in,height=1.8455in]{PH4CAW39}
-\end{figure}so 
+measurements. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=2.2321in,height=1.8455in]{PH4CAW39}
+\end{figure}
+
+\noindent so 
+
 \begin{equation*}
-\Delta V_{C}=V_{2}-V_{1}
-\end{equation*}%
-neither of which will be ground, so we really have to measure both with our
-Arduino. We also need a ground connection. The wiring diagram might look
-like this:\begin{figure}[h!]
-\includegraphics[width=3.2759in,height=1.9501in]{PH4CAW3A}
-\end{figure}and our sketch will be a little
+	\Delta V_{C}=V_{2}-V_{1}
+\end{equation*}
+
+neither of which will be ground, so we really have to measure both with our Arduino. We also need a ground connection. The wiring diagram might look like this:
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=3.2759in,height=1.9501in]{PH4CAW3A}
+\end{figure}
+
+\noindent and our sketch will be a little
 like the one from our last lab.
 
-
-\href{https://dtoliphant.github.io/PH250Manual/Code/RC_Volts_vsTime.ino}{Download here}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\href{https://raw.githubusercontent.com/rtlines/IntermediateLabPH250/main/Code/RC_Volts_vsTime.ino}{Download here}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \lstinputlisting[language=Arduino]{Code/RC_Volts_vsTime.ino}
 
+This is just a voltmeter, but one with two A2D pins and a ground. This sketch also gives us time using the millis() function. This function gives the number of milliseconds since our experiment began. We can use our python code from a previous lab to save the data into a file. I modified the previous code just a bit, so here is an updated version.
 
-
-
-This is just a voltmeter, but one with two A2D pins and a ground. This
-sketch also gives us time using the millis() function. This function gives
-the number of milliseconds since our experiment began. We can use our python
-code from a previous lab to save the data into a file. I modified the
-previous code just a bit, so here is an updated version.
-
-
-\href{https://dtoliphant.github.io/PH250Manual/Code/RC_ReadSaveFile.py}{Download here}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\href{https://raw.githubusercontent.com/rtlines/IntermediateLabPH250/main/Code/RC_ReadSaveFile.py}{Download here}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \inputpython{Code/RC_ReadSaveFile.py}{0}{10000}
-
-
 
 The resulting data could be plotted in python. It might look something like this.
 
@@ -185,14 +152,15 @@ The resulting data could be plotted in python. It might look something like this
 	\includegraphics[width=2.9101in,height=1.7538in]{RC_circuit_data}
 \end{figure}
 
-I plotted this in python. You might plot it in Excel or LoggerPro or many other plotting tools. Before we fit a line to data. But looking at the data, a linear fit doesn't seem appropriate
-for this data. So we need to go beyond what we have done so far. To do this we need a curve fit tool that can use whatever equation that might fit the data. Python can do this, and so can LoggerPro.  But Excel can't. We will have to be more picky about what tool to use to match our data. 
+I plotted this in python. You might plot it in Excel or LoggerPro  or many other plotting tools. Before we fit a line to data. But looking at the data, a linear fit doesn't seem appropriate for this data. So we need to go beyond what we have done so far. To do this we need a curve fit tool that can use whatever equation that might fit the data. Python can do this, and so can LoggerPro.  But Excel can't. We will have to be more picky about what tool to use to match our data. 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % include a module on curve fitting for non-linear functions. As of this writing 
-%   the choices are using LoggerPro
+%   the choices are using 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	\input{Chapters/Module_Curve_fitting_in_LoggerPro}
 %   or python
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{Chapters/Module_Curve_fitting_in_python}
 	
 \vspace*{\fill}
@@ -200,8 +168,7 @@ for this data. So we need to go beyond what we have done so far. To do this we n
 
 \section{Lab Assignment}
 
-We have two equations for charge as a function of time for a RC circuit.
-They are
+We have two equations for charge as a function of time for a RC circuit. They are
 
 \begin{equation*}
 	\Delta V_{C}\left( t\right) =\Delta V_{\max }\left( 1-e^{-\frac{t}{\tau }}\right) \qquad \text{charging}
@@ -211,23 +178,22 @@ They are
 	I\left( t\right) =I_{\max }e^{-\frac{t}{\tau }}\qquad \text{charging}
 \end{equation*}
 
-where 
+\noindent where 
 
 \begin{equation}
 	\tau =RC
 \end{equation}
 
-is the time constant.
+\noindent is the time constant.
 
 \begin{enumerate}
-	\item 
-	
-	Using a capacitor with a capacitance of about end $20\unit{\mu F}$ and a resistor of about $1\unit{M\Omega},$ create a circuit as shown. This will be our system that we will use to test our capacitor model.
+	\item 	Using a capacitor with a capacitance of about end $20\unit{\mu F}$ and a resistor of about $1\unit{M\Omega},$ create a circuit as shown. This will be our system that we will use to test our capacitor model.
 	
 	\begin{figure}[h!]
 		\centering
 		\includegraphics[width=1.67in,height=1.67in]{PH4CAX3R}
 	\end{figure}
+
 	You can use one of our power supplies, but be careful to either stay in the $0\unit{V}$ to $+5\unit{V}$ range, or to use a voltage divider to achieve this range at the Arduino input. Follow good lab notebook procedures by recording the model you are testing and your test setup in your lab notebook. Just a note, we will be using directional capacitors. You haven't studied directional capacitors in class. For today's lab, the only difference is that these capacitors only work one direction. This is a little like our diodes. If the circuit doesn't work, try turning your capacitor around.
 
 	\item Build your instrument. and write the sketch and Python collection codes. Test every part of the instrument before you start collecting capacitor data. Don't forget to find your uncertainties. Follow good lab notebook procedures by recording your instrument design in your lab notebook.
@@ -236,7 +202,7 @@ is the time constant.
 	
 	\item Take the data from your file and graph it. LoggerPro is fine for both graphing and the curve fit (next item). You should include this graph in your lab notebook (but might also include the curve fit described in  next item on the same graph).
 
-	\item Perform the curve fit. As in the last lab, having the proper curve fit the data is a validation of our model! So if the thoretical curve fits the data, it makes sense that something about the model is right. Include the graph of the curve fit and the data in your lab notebook as well as the fit equation and fit parameters (don't forget their uncertainties).
+	\item Perform the curve fit. As in the last lab, having the proper curve fit the data is a validation of our model! So if the theoretical curve fits the data, it makes sense that something about the model is right. Include the graph of the curve fit and the data in your lab notebook as well as the fit equation and fit parameters (don't forget their uncertainties).
 
 	\item Find the time constant and compare to your predicted value. If these compare within their uncertainties, we have a further validation of the model. Record the time constants and their uncertainties in your lab notebook.
 
