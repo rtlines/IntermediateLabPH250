@@ -9,9 +9,9 @@ import numpy as np
 #
 #
 # Define variables
-DeltaVps = 2       #V   The power supply voltage applied to the circuit
-Rtest = 42700       #ohms The resistance of the circut begin tested
-Rs = 1000           #ohms The shunt resistance for our ammeter
+DeltaVps = 2.3      #V   The power supply voltage applied to the circuit
+Rtest = 10000      #ohms The resistance of the circut begin tested
+Rs = 1000       #ohms The shunt resistance for our ammeter
 DeltaVmin = 5/1024 #V the quantization error for an Arduino
 Rtollarence = 0.01 #% the ristor code tollerance band percentage
 deltaRs=0.01*Rs

@@ -6,13 +6,15 @@ moving along nicely, this model will be familiar.
 \section{The Model to Test}
 
 \begin{figure}[h!]
-\includegraphics[width=1.67in,height=1.67in]{PH4CAW37}
+	\centering
+	\includegraphics[width=1.67in,height=1.67in]{PH4CAW37}
 \end{figure}
 
 Let's start by thinking of hooking up a capacitor and a resistor in series with a battery. The capacitor will become charged. The voltage across the capacitor as a function of time will be given by
 
 \begin{equation*}
-	\Delta V_{C}\left( t\right) =\Delta V_{\max }\left( 1-e^{-\frac{t}{\tau } }\right) \qquad \text{charging}
+	\Delta V_{C}\left( t\right) =\Delta V_{\max }\left( 1-e^{-\frac{t}{\tau } }\right) \qquad \text{Charging}
+	\label{charging}
 \end{equation*}
 
 \noindent where 
@@ -24,7 +26,7 @@ Let's start by thinking of hooking up a capacitor and a resistor in series with 
 \noindent is the product of the resistance, $R$, and the capacitance, $C.$ The current in the circuit as a function of time will be given by 
 
 \begin{equation*}
-	I\left( t\right) =I_{\max }e^{-\frac{t}{\tau }}\qquad \text{charging}
+	I\left( t\right) =I_{\max }e^{-\frac{t}{\tau }}\qquad \text{Charging}
 \end{equation*}
 
 \noindent while we charge up the capacitor. The quantity 
@@ -130,9 +132,9 @@ neither of which will be ground, so we really have to measure both with our Ardu
 	\includegraphics[width=3.2759in,height=1.9501in]{PH4CAW3A}
 \end{figure}
 
-\noindent and our sketch will be a little
-like the one from our last lab.
+\noindent and our sketch will be a little like the one from our last lab.
 
+\vspace{0.24in}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \href{https://raw.githubusercontent.com/rtlines/IntermediateLabPH250/main/Code/RC_Volts_vsTime.ino}{Download here}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -200,9 +202,9 @@ We have two equations for charge as a function of time for a RC circuit. They ar
 
 	\item Now get ready to collect data for a capacitor charge. Work with a lab partner from your group to achieve the data collection. Compare your data among your group to make sure things went well. Follow good lab notebook procedures by recording your data or giving a location of the stored data in your lab notebook. 
 	
-	\item Take the data from your file and graph it. LoggerPro is fine for both graphing and the curve fit (next item). You should include this graph in your lab notebook (but might also include the curve fit described in  next item on the same graph).
+	\item Take the data from your file and graph it. Graphing is easy in python, but you could use LoggerPro if you have this on your computer. You should include this graph in your lab notebook (but might also include the curve fit described in  next item on the same graph).
 
-	\item Perform the curve fit. As in the last lab, having the proper curve fit the data is a validation of our model! So if the theoretical curve fits the data, it makes sense that something about the model is right. Include the graph of the curve fit and the data in your lab notebook as well as the fit equation and fit parameters (don't forget their uncertainties).
+	\item Perform the curve fit. As in the last lab, having the proper curve fit the data is a validation of our model! So if the theoretical curve fits the data, it makes sense that something about the model might be right. Note that we have an equation from our theory, equation (\ref{charging}). If our data fits a different curve, that could be evidence that our theory is wrong! We hope the data fits this curve and no other. But Excel doesn't have this equation built into it. So we can't use Excel this time.  Python might be a good choice, or LoggerPro.  Once you have the curve fit and the fit parameters (and their uncertainties) make a graph of the data and the fit. Error bars would be a good idea. Include the graph of the curve fit and the data in your lab notebook as well as the fit equation and fit parameters (don't forget their uncertainties).
 
 	\item Find the time constant and compare to your predicted value. If these compare within their uncertainties, we have a further validation of the model. Record the time constants and their uncertainties in your lab notebook.
 
