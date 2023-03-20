@@ -1,44 +1,52 @@
 
-#include <dht_nonblocking.h>
-
 // ===================================================
-// RobotDyn SD/RTC Arduino shield example
-// Nolan Chandler
-// Last revised: 2020-11-18
+// DataLogger based on the 
+// RobotDyn SD/RTC Arduino shield example by Nolan Chandler
 //
-// Meant to serve as a starting point for data logging
-// using both a real-time clock (RTC) and a microSD 
-// card.
+// Todd Lines Nolan Chandler
+// Last revised: 2023-02-22
 //
-// Collects data at a given rate, and saves them with 
-// a timestamp on the SD card to files called 
-// "LOG000.TXT", "LOG001.TXT", etc. A new file is 
-// opened every N samples to collect another N samples.
+// Saves temperature and humidity measurements from a 
+//   DHT11 to a SD card with time stamp as an example 
+//   of data logging
+//
+// Collects data at a given rate, that is set by the 
+//   DHT11 sensor and saves them with a timestamp on 
+//   the SD card to files called // "LOG000.TXT", 
+//   "LOG001.TXT", etc. A new file is opened every N 
+//   samples to collect another N samples.
 // ===================================================
 
-// include statements
+// ==== include statements
 #include <SPI.h>
 #include <SD.h>
 
-// by Adafruit. Must be manually installed
-// Real time clock library
+// RTC libary by Adafruit. Must be manually installed
 #include "RTClib.h" 
 
-// DHT11 sensor library
-#include <dht_nonblocking.h>
+//#include <Wire.h>
+//#include <SPI.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
 
-// global variables and data types
-// DHT11 sensor data type
-#define DHT_SENSOR_TYPE DHT_TYPE_11
-static const int DHT_SENSOR_PIN = 2;
-DHT_nonblocking dht_sensor( DHT_SENSOR_PIN, DHT_SENSOR_TYPE );
-float temperature, humidity;
+#define BME_SCK 13
+#define BME_MISO 12
+#define BME_MOSI 11
+#define BME_CS 10
 
-//SD card pin
+#define SEALEVELPRESSURE_HPA (1013.25)
+
+Adafruit_BME280 bme; // I2C
+//Adafruit_BME280 bme(BME_CS); // hardware SPI
+//Adafruit_BME280 bme(BME_CS, BME_MOSI, BME_MISO, BME_SCK); // software SPI
+
+unsigned long delayTime;
+
+//SD card pin to use
 const int SD_PIN = 9;
 File logfile;
 
-// Real time clock type
+// Real time clock type and variable
 RTC_DS1307 rtc;
 
 // data collection variables to set up how often data are recorded
@@ -46,35 +54,13 @@ int i = 0;
 int N = 50; // Number of samples per file
 int waittime_ms = 3000; // milliseconds between samples
 
-// ====================================================
-// special functions
-// ====================================================
 
-/*
- * Poll for a measurement, keeping the state machine alive.  Returns
- * true if a measurement is available.
- */
-static bool measure_environment( float *temperature, float *humidity ) { 
-      //static unsigned long measurement_timestamp = millis( );
-      ///* Measure once every four seconds. */
-      //if( millis( ) - measurement_timestamp > 3000ul ){
-      //   if( dht_sensor.measure( temperature, humidity ) == true ) {
-      //      measurement_timestamp = millis( );
-      //   return( true );
-      //   }
-    
-    if( dht_sensor.measure( temperature, humidity ) == true ) {
-        return( true );
-    }
-    else return( false );
-  }
 
 
 // =========================================
 // initializes the RTC, 
 // and checks to see if it has been set
 // =========================================
-
 void init_RTC()
 {
   Serial.print("Initializing RTC...");
@@ -138,6 +124,26 @@ File open_next_logfile()
   return SD.open(filename, FILE_WRITE);
 }
 
+void printValues() {
+    Serial.print("Temperature = ");
+    Serial.print(bme.readTemperature());
+    Serial.println(" °C");
+
+    Serial.print("Pressure = ");
+
+    Serial.print(bme.readPressure() / 100.0F);
+    Serial.println(" hPa");
+
+    Serial.print("Approx. Altitude = ");
+    Serial.print(bme.readAltitude(SEALEVELPRESSURE_HPA));
+    Serial.println(" m");
+
+    Serial.print("Humidity = ");
+    Serial.print(bme.readHumidity());
+    Serial.println(" %");
+
+    Serial.println();
+}
 
 // ====================================================
 // SETUP
@@ -159,13 +165,34 @@ void setup() {
    init_SD();
 
    logfile = open_next_logfile();
+   
+   //setup BME280 
+      Serial.println(F("BME280 test"));
+      unsigned status;
+      // default settings
+      status = bme.begin();  
+      // You can also pass in a Wire library object like &Wire2
+      // status = bme.begin(0x76, &Wire2)
+      if (!status) {
+         Serial.println("Could not find a valid BME280 sensor, check wiring, address, sensor ID!");
+         Serial.print("SensorID was: 0x"); Serial.println(bme.sensorID(),16);
+         Serial.print("        ID of 0xFF probably means a bad address, a BMP 180 or BMP 085\n");
+         Serial.print("   ID of 0x56-0x58 represents a BMP 280,\n");
+         Serial.print("        ID of 0x60 represents a BME 280.\n");
+         Serial.print("        ID of 0x61 represents a BME 680.\n");
+         while (1) delay(10);
+      }
+    
+      Serial.println("-- Default Test --");
+      delayTime = 1000;
 
+      Serial.println();
    }
+
 
 // ====================================================
 // LOOP
 // ====================================================
-
   
 void loop( )
 {
@@ -174,7 +201,9 @@ void loop( )
   
   //get the time for the data sample
   DateTime now = rtc.now();
-
+  //BME print value function
+  printValues();
+/*  
   //Measure temperature and humidity.  If the functions returns
   //   true, then a measurement is available. 
 if (i < N) {
@@ -219,11 +248,12 @@ if (i < N) {
         logfile.println();
         i++;
         }
-  //delay(waittime_ms); //ms
+
+  //   delay(waittime_ms); //ms
 
   }
-  // Reached N samples, open the next log 
-  // file to record N more
+    // Reached N samples, open the next log 
+    // file to record N more
   else {
     logfile.close();
     // comment out the next two lines to stop 
@@ -231,7 +261,6 @@ if (i < N) {
     i = 0;
     logfile = open_next_logfile();
     }
+*/    
+  logfile.close();
   } 
-
-
-
