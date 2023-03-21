@@ -18,7 +18,6 @@ print("Find a curve fit to a user defined function")
 
 #Here is where you define the function to use in the fit
 def RC_Charging(x, A, B, C):
-    x=np.longdouble(x)
     y = A*(1-np.exp(-B*x)) + C
     return y
 
@@ -35,8 +34,9 @@ ydata = np.array([0.5, 0.76, 0.97, 1.15, 1.3, 1.42,
                   2.05, 2.12, 2.18, 2.24, 2.28, 2.33])
 
 #we also need the ydata uncertainty for error bars. 
-#  Say it is 0.2V
-ydata_err = 0.2 #V
+#  Say it is 0.1  (you sould calculate what your
+#  value should be)
+ydata_err = 0.1 #V
 
 #Now plot the data so we can see the data points
 #plt.plot(xdata, ydata, 'o')

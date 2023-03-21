@@ -19,7 +19,6 @@ print("Find a curve fit to a user defined function")
 
 #Here is where you define the function to use in the fit
 def RC_Charging(x, A, B, C):
-    x=np.longdouble(x)
     y = A*(1-np.exp(-B*x)) + C
     return y
 
@@ -38,7 +37,7 @@ def RC_Charging(x, A, B, C):
 xdata = []
 ydata = []
 
-file =open("C:\\Users\\rtlines\\Documents\\RCdata.csv")
+file =open("C:\\Users\\rtlines\\Documents\\RC_Data_Kavin.csv")
 for line in file.readlines():
     #xtitles.append( (line.split(',')[0]) )
     xtitle =  line.split(',')[0]
@@ -51,7 +50,7 @@ xdata=np.array(xdata)
 ydata=np.array(ydata)
 #we also need the ydata uncertainty for error bars. 
 #  Say it is 0.2V
-ydata_err = 0.2 #V
+ydata_err = np.sqrt(2)*0.0049 #V
 
 #Now plot the data so we can see the data points
 #plt.plot(xdata, ydata, 'o')
