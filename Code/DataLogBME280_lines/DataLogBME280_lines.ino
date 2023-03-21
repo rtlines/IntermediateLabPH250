@@ -51,7 +51,7 @@
 // data collection variables to set up how often data are recorded
    int i = 0;
    int N = 50; // Number of samples per file
-   int waittime_ms = 3000; // milliseconds between samples
+   int waittime_ms = 30000; // milliseconds between samples
 
 
 // =========================================
@@ -98,7 +98,7 @@ void init_SD() {
 void printValues() {
   Serial.print("Temperature = ");
   Serial.print(bme.readTemperature());
-  Serial.println(" °C");
+  Serial.println(" C");
   Serial.print("Pressure = ");
   Serial.print(bme.readPressure() / 100.0F);
   Serial.println(" hPa");
@@ -158,14 +158,22 @@ void loop( ) {
    String dataString = ""; 
    //get the time for the data sample
    DateTime now = rtc.now();
-   // make an output string that has the time and date
-      dataString = dataString +now.year()+'-'+now.month()+'-'+now.day()+', '+now.hour()+":"+now.minute()+":"+now.second();
-
    // add to this the temperature, pressure, and humidity from the BME280
-     Serial.print(dataString);
+     Serial.print(now.year());
+     Serial.print("-");
+     Serial.print(now.month());
+     Serial.print("-");
+     Serial.print(now.day());
+     Serial.print(" , ");
+     Serial.print(now.hour());
+     Serial.print(":");
+     Serial.print(now.minute());
+     Serial.print(":");
+     Serial.print(now.second());
+     Serial.print(" ");
      Serial.print(", Temp, ");
      Serial.print(bme.readTemperature());
-     Serial.print(" °C, ");
+     Serial.print(" C, ");
      Serial.print("Pressure = ");
      Serial.print(bme.readPressure() / 100.0F);
      Serial.print(" hPa, ");
@@ -186,10 +194,21 @@ void loop( ) {
       //   a problem.
       if (dataFile) {
          // print our data point, Start with the RTC time stamp
-         dataFile.print(dataString);
-         dataFile.print(", Temp, ");
+         dataFile.print(now.year());
+         dataFile.print("-");
+         dataFile.print(now.month());
+         dataFile.print("-");
+         dataFile.print(now.day());
+         dataFile.print(" , ");
+         dataFile.print(now.hour());
+         dataFile.print(":");
+         dataFile.print(now.minute());
+         dataFile.print(":");
+         dataFile.print(now.second());
+         dataFile.print(" ");
+         //
          dataFile.print(bme.readTemperature());
-         dataFile.print(" °C, ");
+         dataFile.print(" C, ");
          dataFile.print("Pressure = ");
          dataFile.print(bme.readPressure() / 100.0F);
          dataFile.print(" hPa, ");
