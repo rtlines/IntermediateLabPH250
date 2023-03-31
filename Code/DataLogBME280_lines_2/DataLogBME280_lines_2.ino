@@ -87,26 +87,81 @@ void init_SD() {
   Serial.println(" done!");
   }
 
+// ======================================================
+// prints out a time stamp YY:MM:DD HH:MM:SS serial monitor.
+//   assuming more data will follow on the same line
+// ======================================================
+   void timeStamp(){
+      DateTime now = rtc.now();
+      Serial.print(now.year());
+      Serial.print("-");
+      Serial.print(now.month());
+      Serial.print("-");
+      Serial.print(now.day());
+      Serial.print(" ");
+      Serial.print(now.hour());
+      Serial.print(":");
+      Serial.print(now.minute());
+      Serial.print(":");
+      Serial.print(now.second());
+      }
+// ======================================================
+// prints out a time stamp YY:MM:DD HH:MM:SS to a data file.
+//   assuming more data will follow on the same line
+// ======================================================
+   void timeStampToFile(File file){
+      DateTime now = rtc.now();
+      file.print(now.year());
+      file.print("-");
+      file.print(now.month());
+      file.print("-");
+      file.print(now.day());
+      file.print(" ");
+      file.print(now.hour());
+      file.print(":");
+      file.print(now.minute());
+      file.print(":");
+      file.print(now.second());
+      }
 
 // ======================================================
 // prints out BME280 data to the serial monitor.
 //   From the Adafruit BME280 test code.
 //   Not used, but kept for testing.
 // ======================================================
-void printValues() {
-  Serial.print("Temperature = ");
-  Serial.print(bme.readTemperature());
-  Serial.println(" C");
-  Serial.print("Pressure = ");
-  Serial.print(bme.readPressure() / 100.0F);
-  Serial.println(" hPa");
-  Serial.print("Approx. Altitude = ");
-  Serial.print(bme.readAltitude(SEALEVELPRESSURE_HPA));
-  Serial.println(" m");
-  Serial.print("Humidity = ");
-  Serial.print(bme.readHumidity());
-  Serial.println(" %");
-  Serial.println();
+void printBMEValues() {
+     Serial.print(", Temperature = ");
+     Serial.print(bme.readTemperature());
+     Serial.print(" C, ");
+     Serial.print("Pressure = ");
+     Serial.print(bme.readPressure() / 100.0F);
+     Serial.print(" hPa, ");
+     Serial.print("Approx. Altitude = ");
+     Serial.print(bme.readAltitude(SEALEVELPRESSURE_HPA));
+     Serial.print(" m, ");
+     Serial.print("Humidity = ");
+     Serial.print(bme.readHumidity());
+     Serial.println(" %");
+  }
+
+// ======================================================
+// prints out BME280 data to a data file.
+//   From the Adafruit BME280 test code.
+//   Not used, but kept for testing.
+// ======================================================
+void printBMEValuesToFile(File file) {
+     file.print(", Temperature = ");
+     file.print(bme.readTemperature());
+     file.print(" C, ");
+     file.print("Pressure = ");
+     file.print(bme.readPressure() / 100.0F);
+     file.print(" hPa, ");
+     file.print("Approx. Altitude = ");
+     file.print(bme.readAltitude(SEALEVELPRESSURE_HPA));
+     file.print(" m, ");
+     file.print("Humidity = ");
+     file.print(bme.readHumidity());
+     file.println(" %");
   }
 
 // ====================================================
@@ -146,8 +201,9 @@ void setup() {
        Serial.println("-- Default Test --");
        Serial.println("BME280 Started");
        File dataFile = SD.open("datalog.txt", FILE_WRITE);
-          dataFile.println("START OF NEW DATA COLLECT - Logger 2");
-          dataFile.close();
+       Serial.println("START OF NEW DATA COLLECT");
+       dataFile.println("START OF NEW DATA COLLECT");
+       dataFile.close();
   }  // End of setup
 
 
@@ -158,6 +214,7 @@ void setup() {
 void loop( ) {
    String dataString = ""; 
    //get the time for the data sample
+   /*
    DateTime now = rtc.now();
    // add to this the temperature, pressure, and humidity from the BME280
      Serial.print(now.year());
@@ -171,6 +228,11 @@ void loop( ) {
      Serial.print(now.minute());
      Serial.print(":");
      Serial.print(now.second());
+     */
+     timeStamp();
+     printBMEValues();
+
+     /*
      Serial.print(", Temperature = ");
      Serial.print(bme.readTemperature());
      Serial.print(" C, ");
@@ -183,15 +245,22 @@ void loop( ) {
      Serial.print("Humidity = ");
      Serial.print(bme.readHumidity());
      Serial.println(" %");
+     */
     
-   // open the file. note that only one file can be open at a time,
-   // so you have to close this one before opening another.
-      File dataFile = SD.open("datalog.txt", FILE_WRITE);
-      // If the file is available, write to it, but then close it 
-      //   right after. We will only keep the file open while we are 
-      //   writing to it. This is safer. It helps prevent getting files 
-      //   corrupted, and let's the Arduino keep adding to the file after 
-      //   a problem.
+
+     File dataFile = SD.open("datalog.txt", FILE_WRITE);
+     if (dataFile) {
+        Serial.println("datafile write!");
+        timeStampToFile(dataFile);
+        printBMEValuesToFile(dataFile);
+        }
+        // if the file does't open, pop up an error:
+      else {
+        Serial.println("error opening datalog.txt");
+        }
+     dataFile.close();
+     
+/*
       if (dataFile) {
          // print our data point, Start with the RTC time stamp
          dataFile.print(now.year());
@@ -225,6 +294,7 @@ void loop( ) {
       else {
          Serial.println("error opening datalog.txt");
          }
+*/         
    delay(waittime_ms); // time between data points
    // End of Loop
    }

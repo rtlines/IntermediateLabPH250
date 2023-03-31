@@ -39,6 +39,7 @@ ydata = []
 
 file =open("C:\\Users\\rtlines\\Documents\\RC_Data_Kavin.csv")
 for line in file.readlines():
+    print(line)
     #xtitles.append( (line.split(',')[0]) )
     xtitle =  line.split(',')[0]
     xdata.append( float(line.split(',')[1]) )
@@ -46,6 +47,7 @@ for line in file.readlines():
     ydata.append( float(line.split(',')[3]) )
 
 file.close()
+
 xdata=np.array(xdata)
 ydata=np.array(ydata)
 #we also need the ydata uncertainty for error bars. 

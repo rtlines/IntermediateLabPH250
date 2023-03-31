@@ -91,6 +91,13 @@ void init_SD() {
   }
 
 
+String get_time() {
+  String dataString="";
+  DateTime now = rtc.now();
+   // make an output string that has the time and date
+  dataString = dataString +now.year()+'-'+now.month()+'-'+now.day()+', '+now.hour()+":"+now.minute()+":"+now.second();
+  return(dataString);
+  }
 
 
 // ====================================================
@@ -135,10 +142,13 @@ void setup() {
 void loop( ) {
    String dataString = ""; 
    //get the time for the data sample
-   DateTime now = rtc.now();
+   //DateTime now = rtc.now();
    // make an output string that has the time and date
-      dataString = dataString +now.year()+'-'+now.month()+'-'+now.day()+', '+now.hour()+":"+now.minute()+":"+now.second();
+   // dataString = dataString +now.year()+'-'+now.month()+'-'+now.day()+', '+now.hour()+":"+now.minute()+":"+now.second();
+   dataString = get_time();
+   Serial.println(dataString);
 
+/*
    // add to this the temperature, pressure, and humidity from the BME
      Serial.print(dataString);
      Serial.print(", Temp, ");
@@ -191,5 +201,6 @@ void loop( ) {
          Serial.println("error opening datalog.txt");
          }
    delay(waittime_ms); // time between data points
+   */
    // End of Loop
    }

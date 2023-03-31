@@ -32,12 +32,12 @@
 // ==== global variables and data types
 // DHT11 sensor data type
 #define DHT_SENSOR_TYPE DHT_TYPE_11
-static const int DHT_SENSOR_PIN = 2;
+static const int DHT_SENSOR_PIN = 3;
 DHT_nonblocking dht_sensor( DHT_SENSOR_PIN, DHT_SENSOR_TYPE );
 float temperature, humidity;
 
 //SD card pin to use
-const int SD_PIN = 9;
+const int SD_PIN = 10;
 File logfile;
 
 // Real time clock type and variable
@@ -229,6 +229,3 @@ if (i < N) {
     logfile = open_next_logfile();
     }
   } 
-
-
-

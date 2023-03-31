@@ -5,7 +5,7 @@ import datetime
 
 #path_name = r"C:\\Users\\rtlines\\OneDrive - BYU-Idaho\\BYUI-Synced\\CodeProjects\\Fridge\\LOGS\\"
 path_name = r"C:\\Users\\rtlines\\OneDrive - BYU-Idaho\\BYUI-Synced\\CodeProjects\\Fridge\\"
-file_name = r'Fridge_2023_03_21.TXT'
+file_name = r'Fridge_2023_03_23_2.TXT'
 
 print("  ")
 
@@ -26,7 +26,6 @@ with open(file_to_open, mode='r') as fid:
          line_part_C  = line.split(',')[2]
          line_part_D  = line.split(',')[3]
          line_part_E  = line.split(',')[4]
-         print(line_part_A, line_part_B)
          line_part_B = line_part_B.replace(" Temperature =","").replace("C","").strip()   
          temps.append(float(line_part_B))
          line_part_A=line_part_A.strip()
@@ -38,7 +37,9 @@ with open(file_to_open, mode='r') as fid:
 tempC=np.array(temps)
 tempf=(tempC* 9/5) + 32
 time=np.array(time)
-preferedTemp =  np.full(shape=(np.size(time)), fill_value=72)
+preferedTemp =  np.full(shape=(np.size(time)), fill_value=0)
+MaxTemp =  np.full(shape=(np.size(time)), fill_value=10)
+TooHighTemp = np.full(shape=(np.size(time)), fill_value=12)
 print(max(tempf)) 
 print(min(tempf))
 print(np.mean(tempf))
@@ -50,5 +51,10 @@ plt.xlabel("time in minutes")
 plt.ylabel('temperature in deg F')
 
 plt.plot(time,tempf)
-plt.plot(time,preferedTemp,linestyle = 'dotted')
+plt.plot(time,preferedTemp,linestyle = 'dotted', color = 'g')
+plt.plot(time,MaxTemp,linestyle = 'dotted',  color = 'r')
+plt.plot(time,TooHighTemp,linestyle = 'dotted',  color = 'm')
 plt.show()
+# remove the cooldown and then take an average
+print(tempf[100:len(tempf)].mean())
+print(tempf.argmax())
