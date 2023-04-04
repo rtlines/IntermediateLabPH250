@@ -34,7 +34,7 @@ import time
 timeBetween=5 #seconds
  
 # define the number of data points to collect
-N=10
+N=20
  
 #the next line opens a file and creates a pointer or handle for that file
 #  to use as a reference. You have to use double slashes in the path.
@@ -48,7 +48,7 @@ dataFile=open('C:\\Users\\rtlines\\Documents\\data2.txt','w')
 #  set the COM port based on where the Arduino IDE says the Arduino
 #  is plugged into your computer. On Windows, this is usually COM1 
 #  through COM 8.
-ser=serial.Serial('COM7', baudrate = 9600, timeout=1)
+ser=serial.Serial('COM3', baudrate = 9600, timeout=1)
  
 #there will be a delay before the first data point comes from the 
 #  serial port, warn the user so they don't worry.

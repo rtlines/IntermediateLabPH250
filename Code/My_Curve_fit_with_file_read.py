@@ -18,9 +18,14 @@ print("  ")
 print("Find a curve fit to a user defined function")
 
 #Here is where you define the function to use in the fit
-def RC_Charging(x, A, B, C):
-    y = A*(1-np.exp(-B*x)) + C
+#def RC_Charging(x, A, B, C):
+#    y = A*(1-np.exp(-B*x)) + C
+#    return y
+
+def RC_Discharging(x, A, B, C):
+    y = A*(np.exp(-B*x)) + C
     return y
+
 
 #here is where you give the data to fit. Put it into numpy 
 #  arrays. Say our data is voltage vs. time. Put the
@@ -37,14 +42,14 @@ def RC_Charging(x, A, B, C):
 xdata = []
 ydata = []
 
-file =open("C:\\Users\\rtlines\\Documents\\RC_Data_Kavin.csv")
+file =open("C:\\Users\\rtlines\\Documents\\data2.txt")
 for line in file.readlines():
-    print(line)
-    #xtitles.append( (line.split(',')[0]) )
-    xtitle =  line.split(',')[0]
-    xdata.append( float(line.split(',')[1]) )
-    ytitle = line.split(',')[2]
-    ydata.append( float(line.split(',')[3]) )
+    if(len(line)>3):   # remove blank lines
+       print(line)
+       xtitle =  line.split(',')[0]
+       xdata.append( float(line.split(',')[1]) )
+       ytitle = line.split(',')[2]
+       ydata.append( -float(line.split(',')[3]) )
 
 file.close()
 
@@ -66,7 +71,7 @@ ydata_err = np.sqrt(2)*0.0049 #V
 #  RC_Charting()) and it needs the fit parameters and
 #  for the error on the fit parameters we need the 
 # covariance matrix to be output
-parameters, covariance = curve_fit(RC_Charging, 
+parameters, covariance = curve_fit(RC_Discharging, 
                                    xdata, ydata)
 
 #Pull out the fit prameters
@@ -89,7 +94,7 @@ SE_C = SE[2]
 #  y value estimates at once using our #  function 
 #  with our fit equation.  I called the new y-values
 #  fit_y.
-fit_y = RC_Charging(xdata, fit_A, fit_B, fit_C)
+fit_y = RC_Discharging(xdata, fit_A, fit_B, fit_C)
 
 #Plot the data (as dots) and the fit (as a line) to 
 #  see if the equation makes sense as a good fit.
