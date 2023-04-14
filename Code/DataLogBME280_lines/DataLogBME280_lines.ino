@@ -26,31 +26,36 @@
 // RTC libary by Adafruit. Must be manually installed
    #include "RTClib.h" 
 
-// BME280 libaries by Adafruit.
-   #include <SPI.h>
-   #include <Adafruit_Sensor.h>
-   #include <Adafruit_BME280.h>
-   // global variables for BME280
-   #define BME_SCK 13
-   #define BME_MISO 12
-   #define BME_MOSI 11
-   #define BME_CS 10
-   #define SEALEVELPRESSURE_HPA (1013.25)
-   // delcair a varibale for the bme data, we are using I2C
-   Adafruit_BME280 bme; // I2C
-   //Adafruit_BME280 bme(BME_CS); // hardware SPI
-   //Adafruit_BME280 bme(BME_CS, BME_MOSI, BME_MISO, BME_SCK); // software SPI
+// BME280 libaries by Adafruit - From the Adafruit BME280
+//  example code
+    #include <SPI.h>
+    #include <Adafruit_Sensor.h>
+    #include <Adafruit_BME280.h>
+    // global variables for BME280
+    #define BME_SCK 13
+    #define BME_MISO 12
+    #define BME_MOSI 11
+    #define BME_CS 10
+    #define SEALEVELPRESSURE_HPA (1013.25)
+    // delcair a varibale for the bme data, we are using I2C
+    Adafruit_BME280 bme; // I2C
+    //Adafruit_BME280 bme(BME_CS); // hardware SPI
+    //Adafruit_BME280 bme(BME_CS, BME_MOSI, BME_MISO, BME_SCK); // software SPI
 
-// SD card pin to use
+  // SD card pin to use
    const int SD_PIN = 9;
    File logfile;
 
-// Real time clock type and variable
-   RTC_DS1307 rtc;
+  // Real time clock type and variable
+    RTC_DS1307 rtc;
 
 // data collection variables to set up how often data are recorded
    int waittime_ms = 30000; // milliseconds between samples
 
+
+////////////////////////////////////////////
+// Special custom functions
+///////////////////////////////////////////
 
 // =========================================
 // initializes the RTC, 
@@ -71,11 +76,9 @@ void init_RTC() {
     "WARNING: RTC has not been previously set");
   }
 
-
 // ======================================================
 // attempts to initialize the SD card for reading/writing
 // ======================================================
-
 void init_SD() {
   Serial.print("Initializing SD card...");
   //
@@ -109,10 +112,13 @@ void printValues() {
   Serial.println();
   }
 
+//////////////////////////////////////////////////
+// Required standard functions
+/////////////////////////////////////////////////
+
 // ====================================================
 // SETUP
 // ====================================================
-
 void setup() {
    // Open serial communications
       Serial.begin(9600);
@@ -153,13 +159,13 @@ void setup() {
 
 // ====================================================
 // LOOP
-// ====================================================
-  
+// ==================================================== 
 void loop( ) {
    String dataString = ""; 
    //get the time for the data sample
    DateTime now = rtc.now();
-   // add to this the temperature, pressure, and humidity from the BME280
+   // Add to this the temperature, pressure, and humidity 
+   //   from the BME280
      Serial.print(now.year());
      Serial.print("-");
      Serial.print(now.month());
