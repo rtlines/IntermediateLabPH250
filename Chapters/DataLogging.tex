@@ -131,6 +131,18 @@ The Elegoo data files also include an example code. This time the code is much s
 
 If you have time, it might be good to try to write out the data to the serial monitor and the SD card in a nice format that is easy to read.
 
+\section{Difficulties with Larger Data Sets and Sensor Libraries}
+So far logging temperatures has been a challenge, but not too bad. But there can be some difficulties. Arduino microcontrollers have very little memory. Our DHT11 only gives two data points, temperature and humidity. But some sensors have more. The Adafruit BME680 also measures temperature, humidity, atmospheric pressure, altitude, relative humidity, and air quality.  Our dataloggers can handle all this, but in our Arduino code we have to become much more frugal about memory use.  In the DHT11 code we could make the data easy to understand by putting in words and units in the output.  For the BME680 we don't have that privileged.  We won't use this today (and depending on your group design project, maybe not at all), but here is an example you can download of a much more memory frugal code for the BME680.
+
+\begin{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\href{https://raw.githubusercontent.com/rtlines/IntermediateLabPH250/main/Code/DataLogBME680_lines.ino}{Download here}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{center}
+
+\noindent You might have to revisit this as you write codes for our group design projects.
+
+
 \section{Lab Assignment}
 	
 	Work in groups of three to five for this set of problems. We have enough equipment for you to each build your own data logger, but work together and don't go on to another step until each te]am member has completed the previous step.
