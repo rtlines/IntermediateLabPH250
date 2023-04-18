@@ -235,7 +235,53 @@ The comments are not required for the sketch to work, but they help us remember 
 
 Also notice that Arduino programs are called ``sketches.'' Most of the commands are special Arduino commands. And luckily, they make sense when we read them. Try it out. Type in this sketch including the comments and compile and upload it to your Arduino. If all goes well, the LED light will begin to blink. If all did go well, go on to the next section. If it did not, call over an instructor. 
 
-Save your sketch and maybe take a photo of your hardware set up. Place both in your lab notebook along with notes on how you got it to work. We will build on this sketch, so spend some time documenting what you did in your lab notebook so you can refer to it later.
+
+You will want to make a record of what you have done so you can look it up later when you need to repeat what we just did in a future project (like making a blinking light on your instrument so you know it is working!).  Scientists record what they do in lab notebooks. Traditionally these are bound blank books that you write in with a pen.  But in industry today companies use electronic lab notebooks.  You are probably very familiar with Google Docs or other on-line document sharing tools.  We will use such a tool that is widely used in both industry and academia. That is a Jupyter notebook.  Note that Jupyter notebooks on their own are not secure enough to protect intellectual property. They would need to be safeguarded withing a professional lab notebook system.  But our homework for this class isn't considered a national security risk or even an intellectual property risk. So Jupyter notebooks are just fine for us. You may have seen them in other classes that use python.  If not, don't worry, we can help you become comfortable with them.  
+
+Chances are you already have the Jupyter system because it comes standard as part of the Anaconda python system.  If you installed Anaconda, you can just go to your list of programs and start Jupyter. If you don't find it, call over your instructor or TA.  Here is how that looks in Windows (For those with Macs, it will look more Macish).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=3.18353in,height=3.15674in]{Jupyter_start.jpg}
+\end{figure}
+
+This is a little weird, but Jupyter will start in your web browser!  
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=3.8353in,height=1.15674in]{Jupyter_browser.jpg}
+\end{figure}
+
+Jupyter notebooks use a browser as the program to display things and to let us input things into the notebook.  You open a new notebook by going to the ``New'' button on the top right and selecting the Python3 option.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=3.8353in,height=1.15674in]{Jupyter_new_file.jpg}
+\end{figure}
+
+You get a new tab in your browser with an input window. The input window is called a ``cell'' and you can choose what kind of cell it is by going up to the Cell drop down menu and choosing ``Cell Type.'' Notice that we get the choices ``code'' and ``markdown'' among others. Choose the ``Markdown'' option and you can input text, like a description of what we have been doing so far in this lab!
+  
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=3.8353in,height=1.15674in]{Jupyter_input.jpg}
+\end{figure}
+
+The ``Code'' type cells are a good place to put your Arduino code.  And you can drop photos into the Markdown type notebook cells as well. You can even type math into the Markdown cells by placing the math symbols between dollar signs. That will take some practice, but the code 
+
+\begin{verbatim}
+	Here is some math $\frac {e^x}{x}$
+\end{verbatim}
+
+\noindent will become this!
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=3.8353in,height=1.15674in]{Jupyter_math.jpg}
+\end{figure}
+
+\noindent It looks like real math! This will take some getting used to.  So start with what we have done so far today. Make sure you have saved sketch. Then write a description of what we have done so far in a Markdown cell and copy your code into a Code cell. Maybe take a photo of your hardware set up and include it in another Markdown cell. We will build on this sketch, so spend some time documenting what you did in your lab notebook so you can refer to it later.
+
+An example lab notebook can be downloaded \href{https://raw.githubusercontent.com/rtlines/IntermediateLabPH250/main/Code/LAB3TEST.ipynb}{here} for reference.
 
 \section{Second Computer Control: Two LED blink}
 
