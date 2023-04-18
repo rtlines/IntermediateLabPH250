@@ -371,6 +371,32 @@ Again save your sketch. You should probably say in your lab notebook that
 you used the previous hardware setup. You might want to describe in your lab
 notebook how the mathematical algorithm works.
 
+But at this point, you probably want to be able to submit your lab notebook for grading. This seems simple, but we need to modify your Anaconda system to make it work well. To do this, start an Anaconda Powershell Prompt.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=4.0704in,height=3.7228in]{Anaconda_Powershell.jpg}
+\end{figure}
+
+This opens a big black box. In the black box type the following lines.
+
+\begin{verbatim}
+	python -m pip install -U notebook-as-pdf
+	pyppeteer-install
+\end{verbatim}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=4.0704in,height=1.1228in]{Anaconda_pdf_mod.jpg}
+\end{figure}
+
+A lot of words and symbols will go by if you are successful.  After they are done you can try to save your Jupyter notebook as a pdf file for submission. From the File drop down menu choose ``Download as'' and then ``PDF via HTML.'' You should find that your browser downloaded a PDF version of your notebook into your download directory.  Try this before you go on to the next part of the lab. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=4.0704in,height=3.8228in]{Jupyter_pdf_output.jpg}
+\end{figure}
+
 \section{Fourth Computer Control: Two LED blink in the Fibonacci sequence}
 
 Suppose instead of LED\ lights we had large radio transmitters. And suppose
