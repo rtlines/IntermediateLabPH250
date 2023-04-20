@@ -1,16 +1,27 @@
-//www.elegoo.com
-//2016.12.08
+/////////////////////////////////////////////////////////////////////////////////
+// sonic sensor with light and buzzer
+//
+// Todd Lines
+//
+// based on the exaple sonic and buzzer code from www.elegoo.com 2016.12.08
+//
+// Last modified 2023-04-19
+///////////////////////////////////////////////////////////////////////////////
+// library includes
 #include "pitches.h"
 #include "SR04.h"
+// global variables
 #define TRIG_PIN 12
 #define ECHO_PIN 11
 SR04 sr04 = SR04(ECHO_PIN,TRIG_PIN);
 long a;
 int ledPin = 7;
 
-// notes in the melody:
-//int melody[] = {
-//  NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_G5, NOTE_A5, NOTE_B5, NOTE_C6};
+// notes in the sound to play:
+// longer sound with melody
+//  int melody[] = {
+//        NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_G5, NOTE_A5, NOTE_B5, NOTE_C6};
+//  Short anoying blas of sound
 int melody[] = {NOTE_C5};
 int duration = 500;  // 500 miliseconds
 

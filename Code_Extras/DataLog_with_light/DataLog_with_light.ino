@@ -28,6 +28,7 @@ float data;
 int i = 0;
 int N = 50; // Number of samples per file
 int waittime_ms = 500; // milliseconds between samples
+int ledPin = 7;
 
 // ====================================================
 
@@ -38,7 +39,7 @@ void setup()
 
   init_RTC();
   
-  // (note 24-hour time: 3pm -> 15)	
+  // (note 24-hour time: 3pm -> 15)  
   // This line sets the RTC with an 
   // explicit date & time, for example: 
   // to set January 21, 2014 at 3:18pm 
@@ -48,6 +49,8 @@ void setup()
   init_SD();
 
   logfile = open_next_logfile();
+
+  pinMode(ledPin, OUTPUT);
 }
 
 // ==================================================
@@ -93,6 +96,13 @@ void loop ()
     Serial.print(data);
     Serial.println();
 
+    if (i%2==0) {
+      digitalWrite(ledPin,HIGH);
+    }
+    else{
+      digitalWrite(ledPin,LOW);
+    }
+    }
     delay(waittime_ms); //ms
     i++;
   }
