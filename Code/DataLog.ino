@@ -19,7 +19,11 @@
 // by Adafruit. Must be manually installed
 #include "RTClib.h" 
 
+# We have two types of dataloggers. If the battery 
+#    holder is black use pin 9.  If the battery holder 
+#    is brown then use pin 10.
 const int SD_PIN = 9;
+
 File logfile;
 
 RTC_DS1307 rtc;
