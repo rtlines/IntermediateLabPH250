@@ -28,12 +28,13 @@ float data;
 int i = 0;
 int N = 50; // Number of samples per file
 int waittime_ms = 500; // milliseconds between samples
-int ledPin = 7;
+int ledPin = 8;
 
 // ====================================================
 
 void setup()
 {
+  pinMode(ledPin, OUTPUT);
   // Open serial communications
   Serial.begin(9600);
 
@@ -49,8 +50,6 @@ void setup()
   init_SD();
 
   logfile = open_next_logfile();
-
-  pinMode(ledPin, OUTPUT);
 }
 
 // ==================================================
@@ -95,14 +94,12 @@ void loop ()
     Serial.print(',');
     Serial.print(data);
     Serial.println();
-
-    if (i%2==0) {
-      digitalWrite(ledPin,HIGH);
-    }
-    else{
-      digitalWrite(ledPin,LOW);
-    }
-    }
+    if (i%2 == 0) {
+       digitalWrite(ledPin, HIGH);
+       }
+    else {
+       digitalWrite(ledPin, LOW);
+       }
     delay(waittime_ms); //ms
     i++;
   }
