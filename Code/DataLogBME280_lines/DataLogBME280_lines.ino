@@ -43,7 +43,7 @@
     //Adafruit_BME280 bme(BME_CS, BME_MOSI, BME_MISO, BME_SCK); // software SPI
 
   // SD card pin to use
-   const int SD_PIN = 9;
+   const int SD_PIN = 10;
    File logfile;
 
   // Real time clock type and variable
@@ -52,7 +52,9 @@
 // data collection variables to set up how often data are recorded
    int waittime_ms = 30000; // milliseconds between samples
 
-
+// pint to blink for light to indicate operation
+   int ledPin = 8;
+   int n = 0;
 ////////////////////////////////////////////
 // Special custom functions
 ///////////////////////////////////////////
@@ -154,6 +156,8 @@ void setup() {
        File dataFile = SD.open("datalog.txt", FILE_WRITE);
           dataFile.println("START OF NEW DATA COLLECT - Logger 2");
           dataFile.close();
+     // set up ledPin for blinking to show operation
+        pinMode(ledPin, OUTPUT);
   }  // End of setup
 
 
@@ -232,5 +236,15 @@ void loop( ) {
          Serial.println("error opening datalog.txt");
          }
    delay(waittime_ms); // time between data points
+   
+   if (n==0){
+      digitalWrite(ledPin, HIGH);
+      n=1;
+      }
+   else {
+      digitalWrite(ledPin, LOW);
+      n=0;
+      }
+   
    // End of Loop
    }
