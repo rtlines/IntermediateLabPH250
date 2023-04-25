@@ -71,8 +71,8 @@
    RTC_DS1307 rtc;
    
 // pin to blink for light to indicate operation
-   int ledPin = 8;
-   int n = 0;
+   int ledPin = 8; // this is where you wire the LED
+   int n = 0;      // to toggle the LED on or off 
 
 // =========================================
 // initializes the RTC, 
@@ -220,6 +220,11 @@ void loop( ) {
      dataFile.close();
   //
   delay(1000); // time between data points
+  //
+  // Now turn the light on or off for this itteration
+  //  of the loop.  Set up n for the next loop.  If
+  //  n=0 this time the light turns off so set n=1 for 
+  //  next time to turn it off.
   if (n==0){
       digitalWrite(ledPin, HIGH);
       n=1;
