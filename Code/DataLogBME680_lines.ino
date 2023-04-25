@@ -1,3 +1,5 @@
+#include <LiquidCrystal.h>
+
 
 // ===================================================
 // DataLogger based on the 
@@ -63,10 +65,14 @@
   //Adafruit_BME680 bme(BME_CS, BME_MOSI, BME_MISO,  BME_SCK);
 
 // SD card pin to use
-   const int SD_PIN = 9;
+   const int SD_PIN = 10;
 
 // Real time clock type and variable
    RTC_DS1307 rtc;
+   
+// pin to blink for light to indicate operation
+   int ledPin = 8;
+   int n = 0;
 
 // =========================================
 // initializes the RTC, 
@@ -153,6 +159,8 @@ void setup() {
        dataFile.println("START OF NEW COLLECT");
        Serial.println("START OF NEW COLLECT");
        dataFile.close();
+    // set up ledPin for blinking to show operation
+        pinMode(ledPin, OUTPUT);
   }  // End of setup
 
 
@@ -212,5 +220,13 @@ void loop( ) {
      dataFile.close();
   //
   delay(1000); // time between data points
+  if (n==0){
+      digitalWrite(ledPin, HIGH);
+      n=1;
+      }
+   else {
+      digitalWrite(ledPin, LOW);
+      n=0;
+      }
   // End of Loop
   }

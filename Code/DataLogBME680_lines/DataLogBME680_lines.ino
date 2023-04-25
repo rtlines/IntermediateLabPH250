@@ -70,7 +70,7 @@
 // Real time clock type and variable
    RTC_DS1307 rtc;
    
-// pint to blink for light to indicate operation
+// pin to blink for light to indicate operation
    int ledPin = 8;
    int n = 0;
 
