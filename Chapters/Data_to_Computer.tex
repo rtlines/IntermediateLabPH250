@@ -12,18 +12,18 @@ But wait, you might say, I didn't use snakes in PH150. What are you even talking
 
 The Anaconda distribution of Python is designed for scientific work (so it has most of the science libraries of functions already installed) It can be found at https://www.continuum.io/downloads. There is an install link for Windows, Mac, and Linux. Choose the one for your operating system\footnote{If you have a Linux computer, it is likely that you will want to actually see if Anaconda is in your distribution's repository. If you are not a Linux user and you have no idea what that means you can ignore it.}
 
-When you click on the green download button it will download an executable file. Meanwhile the website tries to get you to subscribe, and offers you the opportunity to code with Anaconda in the cloud. I encourage you to ignore these opportunities and to just use the executable file to install python. In windows it looks like this 
+If you are runing Windows or Mac, when you click on the green download button it will download an executable file. Meanwhile the website tries to get you to subscribe, and offers you the opportunity to code with Anaconda in the cloud. I encourage you to ignore these opportunities and to just use the executable file to install python. In windows it looks like this 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=4.0in,height=1.9in]{PH4CAU23}
+	\includegraphics[width=4.0in,height=3.0in]{PH4CAU23}
 \end{figure}
 
 Choose ``Save File'' and when the file is downloaded open it to start the installation. You should see something like this: 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=3.1502in,height=2.2361in]{PH4CAU24}
+	\includegraphics[width=3.02in,height=2.01in]{PH4CAU24}
 \end{figure}
 
 Choose ``Next'' and follow the installation instructions. If all goes well, you should have a new set of apps. Here is what mine looked like on my Windows 10 computer. 
@@ -37,7 +37,7 @@ The list of the apps has an app called Spyder. Let's launch it to see what it do
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=5.655in,height=2.4898in]{PH4CAU26}
+	\includegraphics[width=6.655in,height=4.0in]{PH4CAU26}
 \end{figure}
 
 What we get is something like the Arduino program that we have been using to write Arduino sketches. Spyder is a place to write and run Python commands. Only this time there is no checking and uploading the code, because the Python code will run on our computer, not on an Arduino.
@@ -46,7 +46,7 @@ In the figure above, the command just says to print ``hello new python users!'' 
 can do much more than print silly messages in little windows. We will have our Python system read a serial port and save our data to a file. But we need an additional piece of Python to do this. We need functions that can handle serial ports. These functions are already written by someone, and put together in a package called a \textquotedblleft library.\textquotedblright\
 But this library isn't included in what we have downloaded. So we need to fix this next.
 
-\subsection{Getting the PySerial library for Anaconda -- Don't skip this}
+\section{Getting the PySerial library for Anaconda -- Don't skip this}
 
 Now that we have Python, we need to enhance it with the PySerial library so that we can read our data from the computer serial port. If you have installed the Anaconda package as your Python distribution, follow along here. If you have a different distribution of python, ask your instructor for help.
 
@@ -58,12 +58,6 @@ We will use the Anaconda prompt to get the PySerial library. The Anaconda prompt
 \end{figure}
 
 Once you launch the Anaconda prompt it just looks like a big black box. 
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=2.2831in,height=1.5796in]{PH4CAU28}
-\end{figure}
-
 We can type commands in that box that will modify the Anaconda Python programs that we installed. In our case we want to type in the command \texttt{conda install pyserial}.
 
 \begin{figure}[h!]
@@ -102,7 +96,7 @@ Suppose that we set up our Arduino to send data to the port. The Arduino sends d
 	\includegraphics[width=4.7444in,height=1.3188in]{PH4CAV2L}
 \end{figure}
 
-The computer has placed every data point sent by the Arduino into it's buffer, and the buffer must be read in sequence. You can't skip data values. But this is just what we want to do, skip some data values and take a value every few seconds. A way to do this is to continuously read in data, but only store it every few seconds. We will use this technique in the code that follows.
+The computer has placed every data point sent by the Arduino into it's buffer, and the buffer must be read in sequence. You can't skip data values that are in the buffer. But this is just what we want to do, skip some data values and take a value every few seconds. A way to do this is to continuously read in data, but only store it every so often. We will use this technique in the code that follows.
 
 Just for fun, let's think of an actual data collection. Suppose we want to measure a voltage from our Arduino, but we want to measure it many times, each time five seconds apart. This way we are looking at how the voltage changes over time. We might want $10$ total measurements.
 
@@ -116,7 +110,7 @@ The first new code piece is making files for our data. We create a file with a l
 \end{python}
 \vspace{.1in}
 
-The ``fileObject'' is a variable that contains all the file information like the path and file name. It is way easier to type than to include all that information each time we use a file. So we will use fileObject variables. In the code below I named the fileObject variable ``dataFile.'' Of course, you will have to choose your own path where you will place the data file (you can't use mine, because you don't have my computer!) and you will need to choose your own file name. Notice the weird double slashes $\backslash$$\backslash$.'' These are a Python thing and you probably need to write the path this way.
+The ``fileObject'' is a variable that contains all the file information like the path and file name. It is way easier to type than to include all that information each time we use a file. So we will use fileObject variables. In the code below I named the fileObject variable ``dataFile.'' Of course, you will have to choose your own path where you will place the data file (you can't use mine, because you don't have my computer!) and you will need to choose your own file name. Notice the weird double slashes $\backslash$$\backslash$.'' These are a Python thing on Windows computers and you probably need to write the path this way if you have a Windows based computer. It is different in Mac and Linux (more on this below).
 
 The other new code piece is dealing with serial ports. Like with our Arduino code, we have to set up the serial port. We do that with the line like the this (also see the actual code below).
 
@@ -239,8 +233,7 @@ You can find your username by going to your download folder then right click on 
 
 \subsubsection{Mac Port}
 
-Mac computers also deal with serial ports differently. So we need to change that next line of code after the dataFile line that begins with \textit{ser = serial...}. The line of code will need look something like \textit{ser = serial.Serial(`/dev/cu.usbmodem1411', baudrate = 9600, timeout = 1)}. However, yours may vary slightly by a different usbmodem number. To find out
-what to place between the apostrophes is by going to your arduino code, click on \textbf{Tools}, scroll down to \textbf{Port} and write down what is written there minus what is in the parenthesis.
+Mac computers also deal with serial ports differently. So we need to change that next line of code after the dataFile line that begins with \textit{ser = serial...}. The line of code will need look something like \textit{ser = serial.Serial(`/dev/cu.usbmodem1411', baudrate = 9600, timeout = 1)}. However, yours may vary slightly by a different usbmodem number. To find out what to place between the apostrophes is by going to your arduino code, click on \textbf{Tools}, scroll down to \textbf{Port} and write down what is written there minus what is in the parenthesis.
 
 \subsection{Mac version of the python code}
 
@@ -272,6 +265,8 @@ Make sure you understand each line of this code. It is a little fancy in that it
 	\item Make sure you save this program and record what you did in your lab notebook.
 	
 	\item Make sure your lab group members all have Python programs that run and save data correctly. Help if they do not.
+	
+	\item Rejoice!  This is a major outcome of the course and you just did it!
 	\end{enumerate}
 
 \end{enumerate}
