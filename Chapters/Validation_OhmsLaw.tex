@@ -7,7 +7,7 @@ So in a physics lab class, we need to test ideas about how the universe works. W
 
 \section{Ohm's Law Revisited}
 
-We learned several labs ago that voltage and current are linearly related to each other. This is what we would call a \emph{model}, a mental understanding of how part of the universe works. Usually in physics we distill the model into an equation . We call this equation a law. In this case, Ohm's law. 
+We learned several labs ago that voltage and current are linearly related to each other. This is what we would call a \emph{model}, a mental understanding of how part of the universe works. Usually in physics we distill the model into an equation. We call this equation a law. In this case, Ohm's law. 
 
 \begin{equation*}
 	\Delta V=IR
@@ -92,13 +92,14 @@ This idea is great, but let's talk a little bit about how to wire this dual meas
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=4.2583in,height=3.1185in]{PH4CAV2S}
+	\includegraphics[width=3.2583in,height=2.1185in]{PH4CAV2S}
 \end{figure}
 
 By drawing the diagram, we realize that we can create both $\Delta V$ measurements with only three individual voltage measurements because the voltage at point 2 and the voltage at point 3 should be the same. So we could wire our circuit like this:
 
 \begin{figure}[h!]
-	\includegraphics[width=4.2004in,height=2.8928in]{PH4CAV2T}
+		\centering
+	\includegraphics[width=3.2583in,height=2.1185in]{PH4CAV2T}
 \end{figure}
 
 \noindent and of course we need to wire the negative pole of the battery or power supply to the GND pin. Then our two voltage difference measurements will be formed from 
@@ -126,7 +127,9 @@ If we keep our voltage from our battery or power supply in the $0\unit{V}$ to $+
 
 \subsubsection{Choosing shunt resistors}
 
-It's harder than you might think to choose a good shunt resistor. The shunt resistor resistance shouldn't be big enough to cause too much error in our $\Delta V$ measurement for the resistor we want to measure. Nor should it be so large that it effects the current much. But suppose we find the smallest resistor that we can, say, $10\unit{\Omega}.$ Surely that will not affect the actual $\Delta V$ or $I$ measurements. But still, we may have a problem. Let's consider an actual circuit to see why.
+It's harder than you might think to choose a good shunt resistor. The shunt resistor resistance shouldn't be big enough to cause too much error in our $\Delta V$ measurement for the resistor we want to measure (Think of our voltage divider, the two resistors will share the voltage from the battery, so every bit of $\Delta V_{shunt}$ is error in our measurement of $\Delta V_{test}$).
+
+The shunt resistance should also be small enough that it doesn't effect the current much. But suppose we find the smallest resistor that we can, say, $10\unit{\Omega}.$ Surely that will not affect the actual $\Delta V$ or $I$ measurements. But still, we may have a problem. Let's consider an actual circuit to see why.
 
 Suppose we have a circuit where the input voltage from the power supply is $\Delta V_{ps}=2\unit{V}$ and our test resistor is $R=5000\unit{\Omega}.$ And suppose we try to use $R_{s}=10\unit{\Omega}.$ 
 
@@ -134,7 +137,7 @@ Suppose we have a circuit where the input voltage from the power supply is $\Del
 	\includegraphics[width=4.6527in,height=2.9265in]{PH4CAV2U}
 \end{figure}
 
-The two resistors together are a voltage divider. We recognize this from our previous labs. So we expect the voltage drop across each resistor to sum to the voltage given by the power supply
+The two resistors together are a voltage divider. So we expect the voltage drop across each resistor to sum to the voltage given by the power supply
 
 \begin{equation*}
 	\Delta V_{ps}=\Delta V_{R}+\Delta V_{s}
@@ -174,7 +177,7 @@ Now we can find the voltage drop across just $R_{s}$
 	\Delta V_{\min }=\frac{5\unit{V}}{1024}=4.\,\allowbreak 88\unit{mV}
 \end{equation*}
 
-\noindent and this is larger than $\Delta V_{s}$ so once we use our Arduino analog to digital converter (ADC), $\Delta V_{s}$ will appear to be zero! Our current meter that we built will say our current measurement will be zero even thought there is a current flowing. That is a 100\% error!
+\noindent and this is larger than $\Delta V_{s}$ so once we use our Arduino analog to digital converter $\Delta V_{s}$ will appear to be zero! Our current meter that we built will say our current measurement will be zero even thought there is a current flowing. That is a 100\% error!
 
 We might try to improve things by increasing the power supply voltage. Even
 if we increased the voltage from the power supply to, say, $5\unit{V}$ (our
@@ -197,7 +200,7 @@ We should compare this value to our ADC minimum detectable value
 	N=\frac{9\,.98\unit{mV}}{4.\,\allowbreak 88\unit{mV}}=2
 \end{equation*}
 
-\noindent ADC units. With our entire value of $\Delta V_{s}$ split into only two numbers our uncertainty in our $\Delta V_{s}$ would be something like $50\%.$ That won't make a very good current measurement
+\noindent ADC units. With our entire value of $\Delta V_{s}$ split into only two numbers our uncertainty in our $\Delta V_{s}$ would be something like $50\%.$ That won't make a very good current measurement.
 
 Suppose instead, we use $R_{s}=170\unit{\Omega}.$  This is much bigger, so it will affect the voltage measurement of the test resistor a little. But in the end will work better. If we set our power supply back to $\Delta V_{ps}=2\unit{V}$ the $R_{s}=170\unit{\Omega}$ gives. 
 
@@ -220,7 +223,7 @@ Suppose instead, we use $R_{s}=170\unit{\Omega}.$  This is much bigger, so it wi
 
 This is very near the $\Delta V_{\min }=$ $4.88\,\allowbreak \unit{mV}$ value, but a little bit higher. If $\delta \Delta V_{s}$ from our calculation is larger than $\delta V_{\min ,}$ then we have to use the larger value as our uncertainty in $\Delta V_{s}.$ So we would say $\delta \Delta V_{s}=5.\,\allowbreak 1\unit{mV}.$ But still this is not a terrible error.  Now our percent error is
 \begin{equation*}
-	100\times \frac{5.\,\allowbreak 058\,8\unit{mV}}{65.\,\allowbreak 764\unit{mV}}=7.\,\allowbreak 7\
+	100\times \frac{5.\,\allowbreak 058\,8\unit{mV}}{65.\,\allowbreak 764\unit{mV}}=7.\,\allowbreak 7\%
 \end{equation*}
 
 \noindent which is much better than $50\%$ or $100\%$ error. You might guess that we can do a little better by trying other resistance values. And you would be right. But if you only need an $8\%$ error, this value would be fine.
@@ -263,7 +266,7 @@ In our current case, our function $f$ is the current $I$ and it is a function of
 	\delta I=\sqrt{\left( \left( \frac{1}{R_{s}}\right) \left( \delta \Delta V_{s}\right) \right) ^{2}+\left( \left( -\frac{\Delta V_{s}}{R_{s}^{2}}\right) \left( \delta R_{s}\right) \right) ^{2}}
 \end{equation*}
 
-Let's try this for our example in the last section. We have $\Delta V_{s}=9\,.98\unit{mV}$ and $R_{s}=170\unit{\Omega}.$ We know that $\delta \Delta V_{s}=$ $5.\,\allowbreak 058\,8\unit{mV}$ and our resistors are only good to $1\%$ so that would be $\delta R_{S}=1.7\unit{\Omega}$
+Let's try this for our example in the last section. We have $R_{s}=170\unit{\Omega}.$ We know that $\delta \Delta V_{s}=$ $5.\,\allowbreak 058\,8\unit{mV}$ and our resistors are only good to $1\%$ so that would be $\delta R_{S}=1.7\unit{\Omega}$
 
 \begin{eqnarray*}
 	\delta I &=&\sqrt{\left( \left( \frac{1}{170\unit{\Omega}}\right) \left( 5.\,\allowbreak 058\,8\unit{mV}\right) \right) ^{2}+\left(
@@ -306,8 +309,7 @@ but very small $R_{s}$ is also bad. You have to do the math to find this out.
 
 \subsubsection{Iterate to find an optimal value}
 
-Since there is an $R_{s}$ in the bottom of both terms in our current uncertainty, let's try changing the $R_{s}$ value and see if the uncertainty gets better. We have to start all the way back at the top with $\Delta V_{s}. $ We will have to go through all our calculations again! A
-spreadsheet or symbolic math processor might be a good way to go so you aren't putting the same things in your calculator over and over.
+Since there is an $R_{s}$ in the bottom of both terms in our current uncertainty, let's try changing the $R_{s}$ value and see if the uncertainty gets better. We have to start all the way back at the top with $\Delta V_{s}. $ We will have to go through all our calculations again! A symbolic math processor or python might be a good way to go so you aren't putting the same things in your calculator over and over.
 
 We start by finding the current in the circuit
 
@@ -345,7 +347,7 @@ We start by finding the current in the circuit
 	f_{I}=\frac{\delta I}{I}
 \end{equation*}
 
-As you can see, it is probably best to put all this in a symbolic package (like Mathmatica or Maple, or Sage, or sympy, or whatever your favorite symbolic math processor might be). That way, you can change values of, say, $R_{s}$ and $\Delta V_{s}$ without redoing everything. At least consider using a spreadsheet program or even in Python!.
+As you can see, it is probably best to put all this in a symbolic package (like Mathmatica or Maple, or Sage, or python's sympy, or whatever your favorite symbolic math processor might be). That way, you can change values of, say, $R_{s}$ and $\Delta V_{s}$ without redoing everything. At least consider using a spreadsheet program or even in Python!.
 
 Let's try this once more with $R_{s}=500\unit{\Omega}$ just to see what would happen.
 
@@ -436,8 +438,8 @@ for what we want first. You can check your uncertainty calculations by
 looking at the fluctuation of the digits to see if we are right (or if some
 other uncertainty factor has crept in that we haven't handled yet).
 
-When we started this lab we said we were testing Ohm's law, and we wanted to find $R_{test}$ uncertainty $\delta R_{test}$ to see if Ohm's law really
-works. In finding the uncertainty in our measuring devices we haven't found $\delta R_{test}.$ We will review a different way to do that analysis.
+When we started this lab we said we were testing Ohm's law, and we wanted to find $R_{test}$ with it's uncertainty $\delta R_{test}$ to see if Ohm's law really
+works. We can find $R_{test} = \frac{\Delta V}{I}$. But how do we find $\delta R_{test}$? In finding the uncertainty in our measuring devices we haven't found $\delta R_{test}.$ We could use standard error propagation again to do this. But let's not!  We will review a different way to find $\delta R_{test}.$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Insert a linear fit module here. Your choices as of this writing are
@@ -457,7 +459,7 @@ This lab is practice, but it is imperfect practice. We do know that Ohm's
 law works, so we are going to use it in designing instruments. But you
 really need a different instrument, one that does not depend on Ohm's law,
 to test Ohm's law in a credible way. In next week's lab, we will test a
-different physical model with the same basic instrument that we build today. The instrument will depend on Ohm's law, but the new physical model must not if the experiment is to be valid.
+different physical model with the same basic instrument that we built today. The instrument will depend on Ohm's law, but the new physical model must not if the experiment is to be valid.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Normal semesters the proposal section goes here
@@ -499,7 +501,7 @@ different physical model with the same basic instrument that we build today. The
 	\item Compare your data and conclusions to the data and conclusions of your lab group members. Have them look at your results as well.
 \end{enumerate}
 
-	\item If you still have time, repeat part 2 for a diode. Do your results support the Ohm model for how potential and current are related?
+	\item If you still have time (you might this time!), repeat part 2 for a diode. Do your results support the Ohm model for how potential and current are related?
 
 	\item Could you have your Arduino sketch report the calculated uncertainties for $\Delta V,$ $I,$ and $R?$ If you have time (you probably won't) give this a try.
 \end{enumerate}
