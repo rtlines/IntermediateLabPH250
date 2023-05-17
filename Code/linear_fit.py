@@ -1,3 +1,4 @@
+
 #######################################################
 # Program to do a simple linear curve fit in python
 #  with data supplied by the user.
@@ -33,7 +34,7 @@ result= sp.stats.linregress(x, y)
 #   y-intercept) Let's print out the slope and intercept
 print ("slope is  ",result.slope, "+- ", result.stderr)
 print ("intercept is  ", result.intercept, "+- ", 
-       result.intercept_stderr)
+       result.intercept_stderr) 
 
 # Now let's try the curve fit to see how it does
 xf=np.linspace(0, max(x), 11)
