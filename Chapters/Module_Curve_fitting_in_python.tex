@@ -36,7 +36,7 @@ We can see that
 	\end{tabular}
 \end{equation*}
 
-I suppose we could have just used the theory variables like $\Delta V_max$ in python. you might choose to do that.
+I suppose we could have just used the theory variables like $\Delta V_{max}$ in python. you might choose to do that.
 
 \vspace{1in}
 
@@ -61,7 +61,7 @@ Our curve fit might look like this
 
 If you look at the code you will notice that there is a big difference between the linregress() function and our curve\_fit() function when it comes to the uncertainties in the coefficients. The linregress() function just gave the uncertainteis. But the curve\_fit() function returns a covariance matrix. The diagonal elements of this matrix are our uncertainties on our coefficents -- squared! So we had to take a square root to get the uncertainties.
 
-The curve fit looks nice and that is comforting. For my data, it looks like our capacitor model might be correct, an important thing to check is to see if the curve fit goes through the error bars on all of the data. If it does, it is a good sign that the curve fit might represent the data well.
+The curve fit looks nice and that is comforting. For my data, it looks like our capacitor model might be correct, an important thing to check is to see if the curve fit goes through the error bars on all of the data. If it does, it is a good sign that the curve fit might represent the data well.  Beware! you have to put your own estimate for the uncertainties of your voltage measurements into the code! I overestimated the size of the error bars on purpose to make sure you couldn't miss them in the plot. Yours might be smaller (or bigger!) depending on how you design your instrument.
 
 But now let's go back to our little list of curve fit parameters. We identified 
 

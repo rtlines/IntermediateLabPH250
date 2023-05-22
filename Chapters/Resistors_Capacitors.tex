@@ -189,7 +189,7 @@ We have two equations for charge as a function of time for a RC circuit. They ar
 \noindent is the time constant.
 
 \begin{enumerate}
-	\item 	Using a capacitor with a capacitance of about end $20\unit{\mu F}$ and a resistor of about $1\unit{M\Omega},$ create a circuit as shown. This will be our system that we will use to test our capacitor model.
+	\item 	Using a capacitor with a capacitance of about $20\unit{\mu F}$ and a resistor of about $1\unit{M\Omega},$ create a circuit as shown. This will be our system that we will use to test our capacitor model.
 	
 	\begin{figure}[h!]
 		\centering
@@ -198,13 +198,13 @@ We have two equations for charge as a function of time for a RC circuit. They ar
 
 	You can use one of our power supplies, but be careful to either stay in the $0\unit{V}$ to $+5\unit{V}$ range, or to use a voltage divider to achieve this range at the Arduino input. Follow good lab notebook procedures by recording the model you are testing and your test setup in your lab notebook. Just a note, we will be using directional capacitors. You haven't studied directional capacitors in class. For today's lab, the only difference is that these capacitors only work one direction. This is a little like our diodes. If the circuit doesn't work, try turning your capacitor around.
 
-	\item Build your instrument. and write the sketch and Python collection codes. Test every part of the instrument before you start collecting capacitor data. Don't forget to find your uncertainties. Follow good lab notebook procedures by recording your instrument design in your lab notebook.
+	\item Build your instrument. and write the sketch and Python collection codes. Test every part of the instrument before you start collecting capacitor data. Don't forget to find your uncertainties. If you start your python code but it doesn't finish, remember to close the serial port and the file before trying again. Follow good lab notebook procedures by recording your instrument design in your lab notebook.
 
 	\item Now get ready to collect data for a capacitor charge. Work with a lab partner from your group to achieve the data collection. Compare your data among your group to make sure things went well. Follow good lab notebook procedures by recording your data or giving a location of the stored data in your lab notebook. 
 	
 	\item Take the data from your file and graph it. Graphing is easy in python, but you could use LoggerPro if you have this on your computer. You should include this graph in your lab notebook (but might also include the curve fit described in  next item on the same graph).
 
-	\item Perform the curve fit. As in the last lab, having the proper curve fit the data is a validation of our model! So if the theoretical curve fits the data, it makes sense that something about the model might be right. Note that we have an equation from our theory, equation (\ref{charging}). If our data fits a different curve, that could be evidence that our theory is wrong! We hope the data fits this curve and no other. But Excel doesn't have this equation built into it. So we can't use Excel this time.  Python might be a good choice, or LoggerPro.  Once you have the curve fit and the fit parameters (and their uncertainties) make a graph of the data and the fit. Error bars would be a good idea. Include the graph of the curve fit and the data in your lab notebook as well as the fit equation and fit parameters (don't forget their uncertainties).
+	\item Perform the curve fit. As in the last lab, having the proper curve fit the data is a validation of our model! So if the theoretical curve fits the data, it makes sense that something about the model might be right. Note that we have an equation from our theory, equation (\ref{charging}). If our data fits a different curve, that could be evidence that our theory is wrong! We hope the data fits this curve and no other. We know python can do this and so can LoggerPro.  Python might be a good choice.  Once you have the curve fit and the fit parameters (and their uncertainties) make a graph of the data and the fit. Error bars would be a good idea (but don't use my uncertainty values, calculate your own!). Include the graph of the curve fit and the data in your lab notebook as well as the fit equation and fit parameters (don't forget their uncertainties).
 
 	\item Find the time constant and compare to your predicted value. If these compare within their uncertainties, we have a further validation of the model. Record the time constants and their uncertainties in your lab notebook.
 
