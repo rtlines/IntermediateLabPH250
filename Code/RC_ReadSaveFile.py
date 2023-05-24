@@ -80,24 +80,46 @@ while (i<N):    #Begin data collection loop
     # the next line just prints the voltage point on the console so the user 
     # feels like something is happening.
     print(arduinoData)
-    # This next line writes combines the time since we started and the Arduino 
-    # value from the serial port into one string
+    # This next line writes the time since we started and the Arduino 
+    #   value from the serial port into one string.  That seems simple
+    #   enough. But there is a historical issue that makes this harder.
+    #   Windows puts in two characters to say we have reached the end
+    #   of a line.  They are no printing characters so lets represent 
+    #   as as <CR> and <LF>. Linux just uses one <LF>  and some macs
+    #   use <LF> and some <CR>. Sigh.  If we arn't careful, we can use
+    #   the wrong one and get an extra blank line on some systems.
+    #   The next line gives the option to add in one or two of these
+    #   non-printing characters.  Usually just printing what we read
+    #   in is fine.  You might need to add a "new line" version of the 
+    #   non printing new line characters by adding a \n to the end of 
+    #   your data text data that you read in.  Or a \r might work, or
+    #   both!  If you are having difficult output, try this.
+    #   The next line also makes sure our data line is in string 
+    #   format. 
     writeString=str(arduinoData) #+ " \n"
-    # The file write command adds a new line character The Arduino added a 
-    #   new line character, so we have double spacing. Let's remove one of 
-    #   them before we write to the file.
+    # Of course it could be that you have a \n and don't need one. 
+    #   The next line removes the end of line characthers in case you
+    #   have extras.
     writeString = writeString.replace("\n", "")
-    # The next line writes our time plus Arduino value to the file.
+    # The next line writes our time plus Arduino value to the file. If 
+    #   it doesn't have a new line character, it will supply one (well,
+    #   sometimes.  If you don't need this line, comment it out)
     dataFile.write(writeString)
-    # and finely we increment the loop counter
+    # And finely we increment the loop counter so we can go get the next
+    #  line of data.
     i=i+1      # end Data collection loop   
     
-# Print out a message saying we are done
+# We are done!  Print out a message saying we are done
 print("done with data collection, closing the file and the serial port")
 # Close the file
 dataFile.close()
 # Close the serial port   
 ser.close() 
+# Note if you code does not finish running, your file will still be open
+#  and your serial port will still be locked to the code.  That means
+#  runing the code again won't work.  So if this happens, type the last
+#  two commands in the console windown to close the file and the 
+#  serial port.
 #---------------------------------------------------------------------
 #---------------------------------------------------------------------
  

@@ -12,52 +12,33 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
-
 # Define the Gaussian function
 print("  ")
 print("Find a curve fit to a user defined function")
 
 #Here is where you define the function to use in the fit
-#def RC_Charging(x, A, B, C):
-#    y = A*(1-np.exp(-B*x)) + C
-#    return y
-
-def RC_Discharging(x, A, B, C):
-    y = A*(1 - np.exp(- B*x)) + C
+def RC_Charging(x, A, B, C):
+    y = A*(1-np.exp(-B*x)) + C
     return y
 
+def linefunc(x, m, b):
+    y = x*m +b
+    return y
 
 #here is where you give the data to fit. Put it into numpy 
 #  arrays. Say our data is voltage vs. time. Put the
 #  time #  values in the xdata array and the voltage 
 #  values in the #  ydata array. For the exmple the units
 #  are seconds and volts
-#  The pythong serial capture program gives data in the form
-#  <"time in sec ">,<time>,<" voltage across C">,<voltage>
-#  The "time in sec" and " voltage across C " are helpful 
-#  on the serial monitor, but not when we read the data in 
-#  from a file.  Here we will need to strip off these 
-#  data titles.
+xdata=np.array([0.001274, 0.001764, 0.001029, 0.00049, 0.000735, 0.002058, 
+            0.000049, 0.000735, 0.001127, 0.00147  ])
+ydata=np.array([2.8824 , 3.807, 2.3275, 1.1907, 1.7003, 4.3659, 0.3087, 
+            1.7787, 2.5333, 3.1164 ])
 
-xdata = []
-ydata = []
-
-file =open("C:\\Users\\rtlines\\Documents\\RCdata2.csv")
-for line in file.readlines():
-    if(len(line)>3):   # remove blank lines
-       print(line)
-       xtitle =  line.split(',')[0]
-       xdata.append( float(line.split(',')[1]) )
-       ytitle = line.split(',')[2]
-       ydata.append( float(line.split(',')[3]) )
-
-file.close()
-
-xdata=np.array(xdata)
-ydata=np.array(ydata)
 #we also need the ydata uncertainty for error bars. 
-#  Say it is 0.2V
-ydata_err = np.sqrt(2)*0.0049 #V
+#  Say it is 0.1  (you sould calculate what your
+#  value should be)
+ydata_err = 0.1 #V
 
 #Now plot the data so we can see the data points
 #plt.plot(xdata, ydata, 'o')
@@ -71,30 +52,33 @@ ydata_err = np.sqrt(2)*0.0049 #V
 #  RC_Charting()) and it needs the fit parameters and
 #  for the error on the fit parameters we need the 
 # covariance matrix to be output
-parameters, covariance = curve_fit(RC_Discharging, 
+#parameters, covariance = curve_fit(RC_Charging, 
+#                                   xdata, ydata)
+parameters, covariance = curve_fit(linefunc, 
                                    xdata, ydata)
 
 #Pull out the fit prameters
-fit_A = parameters[0]
-fit_B = parameters[1]
-fit_C = parameters[2]
+fit_m = parameters[0]
+fit_b = parameters[1]
+#fit_C = parameters[2]
 
 
 #Pull out the uncertanty from the diagonal elements 
 #  of the covariance matrix. Remember that the 
 #  diagonal elements #  are the error squared.
 SE = np.sqrt(np.diag(covariance))
-SE_A = SE[0]
-SE_B = SE[1]
-SE_C = SE[2]
+SE_m = SE[0]
+SE_b = SE[1]
+#SE_C = SE[2]
 
 #Use the fit parameters to make a set of estamated 
 #  y values #  from the fit equation. We can pass 
-#  in the whole xdata array # and get out all the 
+#  in the whole xdata array #  and get out all the 
 #  y value estimates at once using our #  function 
 #  with our fit equation.  I called the new y-values
 #  fit_y.
-fit_y = RC_Discharging(xdata, fit_A, fit_B, fit_C)
+#fit_y = RC_Charging(xdata, fit_A, fit_B, fit_C)
+fit_y = linefunc(xdata, fit_m, fit_b)
 
 #Plot the data (as dots) and the fit (as a line) to 
 #  see if the equation makes sense as a good fit.
@@ -106,20 +90,20 @@ plt.plot(xdata, fit_y, 'b-', label='fit')
 plt.legend()
 plt.show()
 
-#and print out our fit parameters and their uncertainties
+#and print out our fit parameters and their 
+#  uncertainties
 print("  ")
-print(F'The value of A is {fit_A:.5f} with standard error of {SE_A:.5f}.')
-print(F'The value of B is {fit_B:.5f} with standard error of {SE_B:.5f}.')
-print(F'The value of C is {fit_C:.5f} with standard error of {SE_C:.5f}.')
+print('The value of A is ',fit_m, end =" ") 
+print ('with standard error of ', SE_m)
+print('The value of B is ', fit_b, end =" ")
+#print('with standard error of', SE_b)
+#print('The value of C is', fit_C, end =" ")
+#print('with standard error of', SE_C)
 print("  ")
 
-# the time constant is 1/B. Let's out put this for the user
-tau = 1/fit_B
-delta_tau = (1/(fit_B**2))*SE_B
-print(F'The time constant is {tau:.2f} +- {delta_tau:.2f} seconds')
-print("  ")
-#sometimes the curve fit routine throws a math warning, let the user know 
-#  that the program ended and not to be upset about the warning
-
-print("successful end of program, warning about overflow may follow")
+#sometimes the curve fit routine throws a 
+#  math warning, let the user know that the program 
+#  ended and not to be upset about the warning
+print('successful end of program')
+print('warning about overflow may follow')
 print("  ")
