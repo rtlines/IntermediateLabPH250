@@ -1,7 +1,7 @@
 %DataLogging
 %%swith to your GitHub not done yet.
 \chapter{DataLogging}
-It today's lab, we are going to measure temperature. We will use a transducer that turns temperature (energy of the air molecules around us) into a voltage. So we are still learning to use transducers. But instead of concentrating on validating a physical model for temperature, we are going to concentrate on building an independent system to measure temperature, one that doesn't have to be connected to our computer.
+It today's lab, we are going to measure temperature. We will use a transducer that turns temperature (energy of the air molecules around us) into a voltage. ``Transducer'' is a general word for a device that turns some energy measurement into a voltage (really any form of energy to a different form of energy).  But really our temperature measurement is just to have something useful to measure. We will take a break from testing physics models today. And we will learn about a second way to collect data so that we can analyze it on a computer. 
 
 Often we need to have a data collection device that can operate far from our computer, but still save data for later use. For example, if you were to launch your Arduino-instrument on a high altitude balloon.
 
@@ -10,7 +10,7 @@ Today we all need to be able to have our Arduino collect data and save it with n
 \begin{figure}[h!] 
 	\centering
 	\caption{Top of a prototyping shield}
-	\includegraphics[width=3.614in,height=2.3981in]{20200309_133406}
+	\includegraphics[width=3.1614in,height=2.03981in]{20200309_133406}
 \end{figure}
 
 \section{Arduino Shields}
@@ -26,18 +26,12 @@ Today we all need to be able to have our Arduino collect data and save it with n
 	
 	Many shields are compatible with other shields such that they can be stacked onto each other. This will depend on what pins each shield is using and on the physical placement of both the bottom and top pins.
 	
-	Because shields are designed for a specific functionality the manufactures will often provide example code that utilizes those features. This code can then be modified and/or combined with other code to get your Arduino to do what ever you want. While working with shields be aware of the pins that the shield is using. So you don't interfere with its operation use other pins for your experiments.
+	Because shields are designed for a specific functionality the manufactures will often provide example code that utilizes those features. This code can then be modified and/or combined with other code to get your Arduino to do what ever you want. While working with shields be aware of the pins that the shield is using. So you don't interfere with its operation. For example pin 9 or 10 will be a special pin for our particular shield that we will use today.  You can't use one of these special pins for your instrument because it is already being used for the shield, itself.
 
 \section{Data Logger Shield}
-	Data logging is one of the most important parts of any experiment. Data for many experiments often depend on time. The data logger shield allows us to not only save the data to an SD card but we can also save the time along with it. This is because it has a built in real time clock(RTC). The data logger shield is shown in the next figure.
+	Data logging is a fancy name for storing data.  Usually data logging involves the time that the data point is collected as well as the data, itself. And this is often one of the most important parts of any experiment. We will use a data logger shield that has a real time clock(RTC) and a SD card slot built into it. The data logger shield allows us to not only save the data to an SD card but we can also save the time along with it. This is just what we want!
 	
-	Take a close look at the figure \ref{Data_Logger}. You will notice that the SD card slot (right next to the words ``Data logger Shield'') is close to an integrated circuit (IC). That IC (a black rectangle) controls the SD card. 
-	
-	There is also a battery holder. It has a battery in it, but the image also shows a piece of blue paper covering both sides of the battery. This is for shipping so that the battery isn't drained while not in use. The battery is needed for the real time clock. So that it keeps time even if there is no other power to the board. 
-	
-	But why do we need a clock on our datalogger?  Often we just need to know what time the data was collected.  But more importantly, we might wish to compare our data to data collected on another instrument. If we know what time the data points were gathered, the comparison is easier.  For one example, suppose I am measuring the temperature from the ground to $30km$. My instrument measures temperature (like the one we will build today) but I want to know the temperature as a function of altitude.  I will need an altimeter to collect data along with my temperature instrument.  To match up the data from my instrument and the altimeter, both can record the time for each data point and then I can match the times from my temperature data and the times from the altitude data to get my temperature as a function of altitude.  Our BYU-I High Altitude Research Team uses this method for most of their instruments.
-	
-	On our data logger shield the electronics for the RTC are right next to the battery. Note the smaller IC and the silver cylinder. The cylinder holds a small quartz crystal tunning fork that keeps oscillating. These oscillations are counted by the IC and are used to keep time. 
+	Take a close look at the figure \ref{Data_Logger}. You will notice that the SD card slot (right next to the words ``Data logger Shield'') is close to an integrated circuit (IC). That IC (a black rectangle) controls the SD card slot. 
 	
 	\begin{figure}[h!] 
 		\centering
@@ -46,12 +40,21 @@ Today we all need to be able to have our Arduino collect data and save it with n
 		\includegraphics[width=3.614in,height=2.3981in]{20200310_110036}
 	\end{figure}
 	
-	Just like on your Arduino the pins are all labeled. But notice that some of the pins are labeled with a white square and a back number. These pins (A4, A5, 9,11,12 and 13) are the pins that the shield uses for its functions. Make sure that your experiment doesn't use these pins. Pins A4 and A5 are used for the RTC and pins 9,11,12 and 13 are used for the SD card. The bottom of shield gives additional labels to these pins that describe their function. 
-
-
+	There is also a battery holder. It has a battery in it, but the image also shows a piece of blue paper covering both sides of the battery. This is for shipping so that the battery isn't drained while not in use. The battery is needed for the real time clock. So that it keeps time even if there is no other power to the board. If your shield has the blue paper, you can take it out now.
+	
+	But why do we need a clock on our data logger?  Often we just need to know what time the data was collected.  But more importantly, we might wish to compare our data to data collected on another instrument. If we know what time the data points were gathered, the comparison is easier.  For one example, suppose I am measuring the temperature from the ground to $30km$. My instrument measures temperature (like the one we will build today) but I want to know the temperature as a function of altitude.  I will need an altimeter to collect data along with my temperature instrument.  To match up the data from my instrument and the altimeter, both can record the time for each data point and then I can match the times from my temperature data and the times from the altitude data to get my temperature as a function of altitude.  Our BYU-I High Altitude Research Team uses this method for most of their instruments.
+	
+	On our data logger shield the electronics for the RTC are right next to the battery. Note the smaller IC and the silver cylinder. The cylinder holds a small quartz crystal tuning fork that keeps oscillating. These oscillations are counted by the IC and are used to keep time. 
+	
+	
+	Just like on your Arduino the shield pins are all labeled. But notice that one one of our data logger shield types some of the pins are labeled with a white square and a back number. These pins (A4, A5, 9,11,12 and 13) are the pins that the shield uses for its functions. Make sure that your experiment doesn't use these pins. Pins A4 and A5 are used for the RTC and pins 9,11,12 and 13 are used for the SD card. The bottom of shield gives additional labels to these pins that describe their function.
+	 
+ 	We have two types of data logger shields. And the second type does not have the nice little white warning boxes to tell you to not use the pins it uses.  But most of the pins that you can't use are the same (A4, A5, 10,11,12 and 13). The big difference is that for the second type of shield pin 9 got changed to pin 10.  These second kind of shield have a brown battery holder.  
+ 
+ 
 
 \section{Set up}
-	The Data Logger shield uses a library. To get that library follow these steps in the Arduino software.
+	The Data Logger shield uses a library. Libraries are extensions to the computer language we are using. We used one to extend python so we could get data from the serial port (pyserisl).  We will do something similar to get our data logger shield to work. But this time we have to be very specific. Our real time clock was made by a company named \href{http://www.adafruit.com}{ Adafruit}. If you think about it, they are the only people who for sure know how the clock works.  After all, they designed it! We need to use their real time clock library and no one else's.  To get that library follow these steps in the Arduino software.
 	
 	\begin{enumerate}
 		\item Under "Tools" go to ``Manage Libraries ...''
@@ -59,13 +62,13 @@ Today we all need to be able to have our Arduino collect data and save it with n
 		\item Find the library by Adafruit and install it.
 	\end{enumerate}
 
-    The first time the software is run on the Arduino with the Data Logger shield the RTC needs to be set.  Pull out the paper that keeps the battery from contacting  and put the battery back (if the paper is still there). Then upload the code below. Check the serial monitor. If it says that the ``RTC has not been set!'' or if the date and time are incorrect then you will need to remove the comment back slashes on the line 
+    The first time the software is run on the Arduino with the Data Logger shield the RTC needs to be set.  Pull out the paper that keeps the battery from contacting  and put the battery back (if the paper is still there). Then use the code below in an Arduino program (like the Adafruit RTC example code that they provided with the library!). Check the serial monitor. If it says that the ``RTC has not been set!'' or if the date and time are incorrect then you will need to remove the comment back slashes on the line 
     
     \begin{lstlisting}[language=Arduino]
    		 rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0));
     \end{lstlisting}
     
-    \noindent but change the numbers to match the current date and time. Then upload the code again. This will set the clock. This only needs to be done once, as the battery will keep time from then on. So put the comment back slashes back in and upload the code again.
+    \noindent but change the numbers to match the current date and time. Then upload the code again. This will set the clock. This only needs to be done once, as the battery will keep time from then on. So put the comment back slashes back in and upload the code again. Here is an example data logger code that does all this.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \href{https://raw.githubusercontent.com/rtlines/IntermediateLabPH250/main/Code/DataLog.ino}{Download here}
@@ -73,11 +76,11 @@ Today we all need to be able to have our Arduino collect data and save it with n
     \lstinputlisting[language=Arduino]{Code/DataLog.ino}
 
 
-The code above saves random data to the SD card. When you have it working check to see that the data file is on the SD card by putting the SD card in your computer and opening the file.  
+The code above saves random data to the SD card. When you have it working check to see that the data file is on the SD card by putting the SD card in your computer and opening the file.  Note that by default it is using pin 9 for the SD card reader/writer. But if you have the data logger shield with the brown battery holder you will need to change the code to use pin 10.
 
-Of course, we don't want random data. You will need to modify the code such that it saves the temperature. But just getting the time information to safe to the SD card is a great first step!
+Of course, we don't want random data. You will need to modify the code such that it saves the temperature. But just getting the time information to save to the SD card is a great first step!
 
-Before we go on to add the sensor, spend a few moments looking at the example code.  Notes that at the end there are some special functions that do things like initialize the RTC and the SD card reader.  These are used by the setup() function to get things working. You should not have to change these much.  But do note that they need to be part of your code for the datalogger shield to work.
+Before we go on to add the sensor, spend a few moments looking at the example code.  Notes that at the end there are some special functions that do things like initialize the RTC and the SD card reader.  These are used by the setup() function to get things working. You should not have to change these much.  But do note that they need to be part of your code for the data logger shield to work.
 
 Also notice up at the top of the example code there are more include statements and some special variables.  Like the 
 
@@ -88,12 +91,13 @@ line or the
  \begin{lstlisting}[language=Arduino]
 	SD_PIN = 9; 
 \end{lstlisting}
-line. These are also needed by the datalogger. So we will have to include them in our codes. 
+
+\noindent line. These are also needed by the data logger. So we will have to include them in our data logger codes. 
 
 One strategy might be to start with the example code so we are sure we have all of these new parts included.
 
 \section{Adding in your sensor}
-So now that you have your time being recorded (plus a random number) we want to make the modification so that our datalogger is recording temperatures.  We will start with the thermistor from your Arduino kit. This termistor was produced by the Elegoo company that made your kit.  It might be tempting to google termistors to find out how to use it. \textbf{But don't do this! } This thermistor was made by a specific company, and we need to go to that specific company to learn how to use it.  We might find similar instructions for other thermistors from other companies, but they almost certainly won't be right for our specific thermistor.  We need the Elegoo instructions. 
+So now that you have your time being recorded (plus a random number) we want to make the modification so that our data logger is recording temperatures.  We will start with the thermistor from your Arduino kit. This thermistor was produced by the Elegoo company that made your kit.  It might be tempting to google thermistors to find out how to use it. \textbf{But don't do this! } This thermistor was made by a specific company, and we need to go to that specific company to learn how to use it.  We might find similar instructions for other thermistors from other companies, but they almost certainly won't be right for our specific thermistor.  We need the Elegoo instructions. 
 
 And these instructions are hidden on the CD that came with your kit.  But who has a CD player in their computer anymore?  To get around this we will go to the Elegoo web site and download their instructions. Here is a link:
 
@@ -102,37 +106,39 @@ And these instructions are hidden on the CD that came with your kit.  But who ha
  \href{https://www.elegoo.com/products/elegoo-uno-project-super-starter-kit}{Link to Elegoo website}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{center}
-Once you are there look for their Support area and choose ``Arduino kits files downloads.'' For any sensors you get (including the ones for your group design projects) the procedure will be similar. You will need to get information for your Arduino code from the manufacturer of your sensor. We have an UNO R3 starter kit, so choose that option on the website.  And download the files for the Super Starter Kit.  The Elegoo web site changes from time to time, so you may have to do some hunting. Once you have downloaded the zip file, you will find that there is a PDF file that tells you how to use all of the things in your kit. We want the thermistor. That shows up in ``Lesson 15'' but there is a catch.  Elegoo's lesson 15 has an LCD display that is nice, but not what we want. So you can't just take their wiring diagram without thinking. you need to look for the part that is just for the thermistor.  A comparison with Elegoo's Lesson 14 might be helpful, because Lesson 14 shows how to hook up the LCD display.  You don't want any of that.  So take that away and see what is left!  You will see that you need your thermistor and a resistor. The wiring is pretty easy.  Does it matter which resistor?  Of course it does. We need to follow the manufacturers directions if we want our temperature measurement to work.  
 
-What about the code?  We know we need to add something to our datalogger code.  If you look at the Elegoo files you downloaded, you will see example code for all of the lessons.  Under Lesson 15 there is code called Thermometer.ino.  That looks promising!  But we know we will need just the part about measuring temperaturee, not the part about LCD displays.  When you open the code you will find something like this:
+Once you are there look for their Support area and choose ``Arduino kits files downloads.'' For any sensors you get (including the ones for your group design projects) the procedure will be similar. You will need to get information for your Arduino code from the manufacturer of your sensor. We have an UNO R3 starter kit, so choose that option on the website.  And download the files for the Super Starter Kit.  The Elegoo web site changes from time to time, so you may have to do some hunting. Once you have downloaded the zip file, you will find it includes a PDF file that tells you how to use all of the things in your kit. We want the thermistor. That shows up in ``Lesson 15'' but there is a catch.  Elegoo's lesson 15 has an LCD display that is nice, but not what we want. So you can't just take their wiring diagram without thinking. you need to look for the part that is just for the thermistor.  A comparison with Elegoo's Lesson 14 might be helpful, because Lesson 14 shows how to hook up the LCD display.  You don't want any of that.  So take that away and see what is left!  You will see that you need your thermistor and a resistor. The wiring is pretty easy.  Does it matter which resistor?  Of course it does. We need to follow the manufacturers directions if we want our temperature measurement to work.  
 
-\begin{small}
-\begin{verbatim}
+What about the code?  We know we need to add something to our data logger code.  If you look at the Elegoo files you downloaded, you will see example code for all of the lessons.  Under Lesson 15 there is code called Thermometer.ino.  That looks promising!  But we know we will need just the part about measuring temperature, not the part about LCD displays.  When you open the code you will find something like this:
+
+
+\begin{scriptsize}
+\begin{lstlisting}[language=Arduino]
 	int tempReading = analogRead(tempPin);
 	// This is OK
 	double tempK = log(10000.0 * ((1024.0 / tempReading - 1)));
 	tempK = 1/(0.001129148+(0.000234125+(0.0000000876741*tempK*tempK))*tempK);
 	float tempC = tempK - 273.15;            // Convert Kelvin to Celcius
-\end{verbatim}
-\end{small}
+\end{lstlisting}
+\end{scriptsize}
 
-This looks like the part that we need! And it fits our model for making a new instrument! We are converting temperature into a voltage and then using math to convert from voltage back to temperature so we can print the temperature. Of course there must be some physics behind this math. And a good book on thermal resistance could give you that physics. The specific values in the math are usually determined by a curve fit for the specific thermistor.  Because this isn't a class on thermal resistance, we won't study this physics. But we will use the results of other scientists who have by using their mathematical formula to recreate temperature from our voltage measurement.
+This looks like the part that we need! And it fits our model for making a new instrument! We are converting temperature into a voltage using a piece of equipment (the Thermistor) and then using math to convert from voltage back to temperature so we can print the temperature. Of course there must be some physics behind this math. And a good book on thermal resistance could give you that physics. The specific values in the math are usually determined by a curve fit for the specific thermistor.  Because this isn't a class on thermal resistance, we won't study this physics. But we will use the results of other scientists who have by using their mathematical formula to recreate temperature from our voltage measurement.
 
-You will need to add this math into your datalogger code.  Be careful.  I showed the math for the conversion, but you might need other parts of the code (e.g. do you need to set tempPin?). This math should replace the code that makes random numbers in our datalogger code.  Your challenge is to make this integration of the new and old code happen.
+You will need to add this math into your data logger code.  Be careful.  I showed the math for the conversion, but you might need other parts of the code (e.g. do you need to set tempPin?). This math should replace the code that makes random numbers in our data logger code.  Your challenge is to make this integration of the new and old code happen.
 
 \section{Digital Data}
 You might be tempted to complain about how Elegoo built this temperature sensor.  Couldn't they have worked a little harder and incorporated all this math into their sensor?  Of course we would have to pay more for such a sensor, but if it's not too much more it might be worth it!  
 
 The answer is ``yes!'' And it turns out we have such an upgraded temperature sensor in our kit.  It is the DHT11.  It is blue and looks like a little blue box attached to a small circuit board.  
 
-But what does it look like to get the data already formatted for us?  To do this computer engineers have developed ways to transfer data from one piece of electronics to another. We have already leaned about one of these, the Universal Serial Bus or USB.  But there are other ways of doing this and our DHT11 uses the digital pins on our Arduino to transfer its data. You can see this in the Elegoo Lesson 11. Again we have to go to the manufacturer to find out how to use the new sensor.  So we look at the Elegoo documentation. And it has a wiring diagram! The DHT11 needs power and a ground and a digital pin.
+But what does it look like to get the data already formatted for us?  To do this computer engineers have developed ways to transfer data from one piece of electronics to another. We have already leaned about one of these, the Universal Serial Bus or USB.  But there are other ways of doing this and our DHT11 uses the digital pins on our Arduino to transfer its data. You can see this in the Elegoo Lesson 11. Again we have to go to the manufacturer to find out how to use the new sensor!  So we look at the Elegoo documentation. And it has a wiring diagram! The DHT11 needs power and a ground and a digital pin.
 
-The Elegoo data files also include an example code. This time the code is much simpler. There is no LCD display part to ignore.  Your job is to integrate this into a new copy of your datalogger example code and to save the temperature data to the SD card.
+The Elegoo data files also include an example code. This time the code is much simpler. There is no LCD display part to ignore.  Your job is to integrate this into a new copy of your data logger example code and to save the temperature data to the SD card.
 
 If you have time, it might be good to try to write out the data to the serial monitor and the SD card in a nice format that is easy to read.
 
 \section{Difficulties with Larger Data Sets and Sensor Libraries}
-So far logging temperatures has been a challenge, but not too bad. But there can be some difficulties. Arduino microcontrollers have very little memory. Our DHT11 only gives two data points, temperature and humidity. But some sensors have more. The Adafruit BME680 also measures temperature, humidity, atmospheric pressure, altitude, relative humidity, and air quality.  Our dataloggers can handle all this, but in our Arduino code we have to become much more frugal about memory use.  In the DHT11 code we could make the data easy to understand by putting in words and units in the output.  For the BME680 we don't have that privileged.  We won't use this today (and depending on your group design project, maybe not at all), but here is an example you can download of a much more memory frugal code for the BME680 sensor.
+So far logging temperatures has been a challenge, but not too bad. But there can be some difficulties. Arduino microcontrollers have very little memory. Our DHT11 only gives two data points, temperature and humidity. But some sensors have more. The Adafruit BME680 also measures temperature, humidity, atmospheric pressure, altitude, relative humidity, and air quality.  Our data loggers can handle all this, but in our Arduino code we have to become much more frugal about memory use.  In the DHT11 code we could make the data easy to understand by putting in words and units in the output.  For the BME680 we don't have that privileged.  We won't use this today (and depending on your group design project, maybe not at all), but here is an example you can download of a much more memory frugal code for the BME680 sensor.
 
 \begin{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,7 +154,7 @@ So far logging temperatures has been a challenge, but not too bad. But there can
 	Work in groups of three to five for this set of problems. We have enough equipment for you to each build your own data logger, but work together and don't go on to another step until each te]am member has completed the previous step.
 	
 	\begin{enumerate}
-		\item Get the Datalogger sheild up and running and set the correct date and time..
+		\item Get the Data logger shield up and running and set the correct date and time if needed.
 		
 		\item Modify the code to take data from a thermistor (included in your kit) and do the math to turn the thermal resistance into a temperature. You will have to look at your Arduino kit manual to know how to write this code. You can start with the example code, but you will have to modify it for the thermistor measurement. Record the temperature on the SD card.
 		
