@@ -65,10 +65,20 @@ print("L_A = ", L_A, "+-",delta_LA)
 
 # Now make the plot
 
-x=[1,2]
-y=[L_A,L_th]
-yerror=[delta_LA, delta_Lth]
-plt.errorbar(x,y, yerr = yerror, fmt = 'o')
+xA=[1]
+yA=[L_A]
+xT=[2]
+yT=[L_th]
+yerrorA=[delta_LA]
+yerrorT=[delta_Lth]
+plt.xlabel(" ")
+plt.xlim([0, 3])
+plt.ylabel("Inductance (N/A**2)")
+plt.errorbar(xA,yA, yerr = yerrorA, fmt = 'o')
+plt.errorbar(xT,yT, yerr = yerrorT, fmt = 'o')
+ax = plt.gca()
+ax.xaxis.set_tick_params(labelbottom=False)
+plt.legend(['L from resonance',"L from theory"],loc ="upper left")
 plt.show()
 
 
