@@ -1,0 +1,548 @@
+
+\documentclass{sebase}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{LECTURENOTES}
+
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2960}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Monday, June 14, 2010 14:35:44}
+%TCIDATA{LastRevised=Wednesday, June 07, 2023 14:18:41}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Style Editor\TLLectureNotes">}
+%TCIDATA{Language=American English}
+%TCIDATA{CSTFile=AG.cst}
+
+\input{tcilatex}
+\begin{document}
+
+
+Today I am supposed to verify our physics model for magnetic induction. We
+are supposed to make an LRC circuit with a known capacitor value and a coil
+for the inductor, but we don't know the inductance of the coil. We can
+calcualte the coil inductance by measuring the coil number of turns and
+dimensions. Then we can hook the LRC circuit to a signal generator and an
+oscilloscope and look for it's resonance frequency. Knowing the resonance
+frequency and the capacitance we can calculate the inductance and compare
+this to our inductance calculation. If they match, we have not falsified the
+inductance model (so we contintue to have confidence in the model).
+
+Another group told me that the inductance of these coils is 
+
+$L=\frac{2.\,\allowbreak 305\,7\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}%
+^{2}}{\unit{s}^{2}}\unit{kg}$
+
+and my capacitor today has
+
+$C=26.4\times 10^{-9}\unit{F}$
+
+according to my multimeter. i know it is dangerous to trust the other
+group's value, but let's see what resonant frequency it would give. 
+
+$f=\frac{1}{2\pi \sqrt{\left( L\right) \left( C\right) }}$
+
+$f=\frac{1}{2\pi \sqrt{\left( \frac{2.\,\allowbreak 305\,7\times 10^{-3}}{%
+\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}\right) \left(
+26.4\times 10^{-9}\unit{F}\right) }}\bigskip $ : $\frac{20399.}{\unit{s}}$
+
+I measusred my resonant frequency to be $16.09\unit{kHz}$
+
+So we are off by $\frac{20399.}{\unit{s}}-16.09\unit{kHz}=\allowbreak \frac{%
+4309.0}{\unit{s}}$ That seems like a lot
+
+\bigskip Let's check the inductance estimate. First, let me put our
+inductance equation into terms I\ can measure
+
+$L=\mu _{o}n^{2}V=\mu _{o}A\ell =\mu _{o}n^{2}\pi r^{2}\ell =\mu _{o}\frac{%
+N^{2}}{\ell ^{2}}\pi r^{2}\ell =\mu _{o}\frac{N^{2}}{\ell }\pi r^{2}=\mu _{o}%
+\frac{N^{2}}{\ell }\pi \frac{D^{2}}{4}$
+
+\bigskip $N=4\times 104=\allowbreak 416.0$
+
+\bigskip I count 103 turns per layer and I\ estimate 4 layers
+
+\bigskip $N=4\times 104=\allowbreak 416.0$
+
+$\mu _{o}=\allowbreak \frac{1.\,\allowbreak 256\,6\times 10^{-6}}{\unit{A}%
+^{2}}\frac{\unit{m}}{\unit{s}^{2}}\unit{kg}$
+
+$D=0.045\unit{m}$
+
+$\ell =0.147\unit{m}$
+
+$L=\mu _{o}\frac{N^{2}}{\ell }\pi r^{2}=\left( \allowbreak \frac{%
+1.\,\allowbreak 256\,6\times 10^{-6}}{\unit{A}^{2}}\frac{\unit{m}}{\unit{s}%
+^{2}}\unit{kg}\right) \left( \frac{\left( \allowbreak 416.0\right) ^{2}}{%
+0.147\unit{m}}\right) \left( \pi \right) \left( \frac{\left( 0.045\unit{m}%
+\right) ^{2}}{4}\right) =\allowbreak \frac{2.\,\allowbreak 352\,8\times
+10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}$
+
+Now try this for our resonant frequency 
+
+\bigskip $f=\frac{1}{2\pi \sqrt{\left( \allowbreak \frac{2.\,\allowbreak
+352\,8\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}%
+\right) \left( 26.4\times 10^{-9}\unit{F}\right) }}\bigskip $ : $\frac{20194.%
+}{\unit{s}}$ 
+
+This seems like our original estimate from the other group and might be too
+far off. We don't know until we do the uncertainies. But we could try a
+trick to check our value. We could solve for the inductance knowing the
+resonant frequency and see what value of inductance that would give
+
+$f=\frac{1}{2\pi \sqrt{\left( L\right) \left( C\right) }}$
+
+$f^{2}=\frac{1}{4\pi ^{2}\left( L\right) \left( C\right) }$
+
+$L=\frac{1}{4\pi ^{2}\left( f^{2}\right) \left( C\right) }$
+
+\bigskip $L=\frac{1}{4\pi ^{2}\left( \left( 16.09\unit{kHz}\right)
+^{2}\right) \left( 26.4\times 10^{-9}\unit{F}\right) }=\allowbreak \frac{%
+3.\,\allowbreak 706\,2\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{%
+s}^{2}}\unit{kg}$
+
+This is higher than the inductance that the resonant frequency gives. Maybe
+my estimate of the number of layers in the coil is bad. Let's try changing
+the number of layers. We really can't tell what the number of layers should
+be just from looking at the coil and the professor won't let me take it
+apart. 
+
+Suppose there are only three layers
+
+$N=3\times 104=\allowbreak 312$
+
+$L=\mu _{o}\frac{N^{2}}{\ell }\pi r^{2}=\mu _{o}\frac{N^{2}}{\ell }\pi \frac{%
+D^{2}}{4}=\left( \allowbreak \frac{1.\,\allowbreak 256\,6\times 10^{-6}}{%
+\unit{A}^{2}}\frac{\unit{m}}{\unit{s}^{2}}\unit{kg}\right) \left( \frac{%
+\left( 312\right) ^{2}}{0.147\unit{m}}\right) \left( \pi \right) \left( 
+\frac{\left( 0.045\unit{m}\right) ^{2}}{4}\right) =\allowbreak \frac{%
+1.\,\allowbreak 323\,4\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{%
+s}^{2}}\unit{kg}$
+
+and then our prediction for the resonant frequency would be
+
+$f=\frac{1}{2\pi \sqrt{\left( \allowbreak \frac{1.\,\allowbreak 323\,4\times
+10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}\right)
+\left( 26.4\times 10^{-9}\unit{F}\right) }}=\allowbreak \frac{26926.}{\unit{s%
+}}$
+
+That got worse! Suppose there are five layers
+
+$N=5\times 104=\allowbreak 520$
+
+$L=\mu _{o}\frac{N^{2}}{\ell }\pi r^{2}=\left( \allowbreak \frac{%
+1.\,\allowbreak 256\,6\times 10^{-6}}{\unit{A}^{2}}\frac{\unit{m}}{\unit{s}%
+^{2}}\unit{kg}\right) \left( \frac{\left( \allowbreak 520\right) ^{2}}{0.147%
+\unit{m}}\right) \left( \pi \right) \left( \frac{\left( 0.045\unit{m}\right)
+^{2}}{4}\right) =\allowbreak \frac{3.\,\allowbreak 676\,2\times 10^{-3}}{%
+\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}$
+
+$f=\frac{1}{2\pi \sqrt{\left( \frac{3.\,\allowbreak 676\,2\times 10^{-3}}{%
+\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}\right) \left(
+26.4\times 10^{-9}\unit{F}\right) }}=\allowbreak \frac{16155.}{\unit{s}}$
+
+That seems much better!
+
+We just need to do the uncertainty calculations to see if we are OK with our
+model and the measurement.
+
+\bigskip Let's start with 
+
+\bigskip $L=\mu _{o}\frac{\left( layers\times count\right) ^{2}}{\ell }\pi 
+\frac{D^{2}}{4}$
+
+The $count$ is a pure integer, so ideally there is no uncertainty. But we
+don't know how many layers there are. We ended up picking $5$ but it could
+be $\pm 1$ layer at least. $\mu _{o}$ is 
+
+$\mu _{o}=\left( 1.\,\allowbreak 256\,6\times 10^{-6}\pm 1.9\times
+10^{-16}\right) \allowbreak \frac{\unit{N}}{\unit{A}^{2}}$
+
+Our length is 
+
+$\ell =\left( 0.147\pm 0.005\right) \unit{m}$
+
+and $\pi $ we can take to as many digits as we need. The diameter $D$ is 
+
+$D=\left( 0.045\pm 0.05\right) \unit{m}$ 
+
+where I was just not sure where to stop with the windings in layers and the
+plastic spool end hiding the layers.
+
+Then our uncertainty in $L$ would be
+
+$\delta L=\sqrt{\left( \frac{\partial L}{\partial \mu _{o}}\delta \mu
+_{o}\right) ^{2}+\left( \frac{\partial L}{\partial layers}\delta
+layers\right) ^{2}+\left( \frac{\partial L}{\partial count}\delta
+count\right) ^{2}+\left( \frac{\partial L}{\partial \ell }\delta \ell
+\right) ^{2}+\left( \frac{\partial L}{\partial D}\delta D\right) ^{2}}$
+
+$\delta L=\sqrt{\left( \frac{\left( layers\times count\right) ^{2}}{\ell }%
+\pi \frac{D^{2}}{4}\delta \mu _{o}\right) ^{2}+\left( \mu _{o}\frac{2\left(
+layers\times count\right) }{\ell }\pi \frac{D^{2}}{4}\delta layers\right)
+^{2}+\left( \mu _{o}\frac{2\left( layers\times count\right) }{\ell }\pi 
+\frac{D^{2}}{4}\delta count\right) ^{2}+\left( \mu _{o}\frac{\left( \left(
+layers\times count\right) \right) ^{2}}{\ell 2}\pi \frac{D^{2}}{4}\delta
+\ell \right) ^{2}+\left( \mu _{o}\frac{\left( l\times c\right) ^{2}}{\ell }%
+\pi \frac{D}{2}\delta D\right) ^{2}}$
+
+This looks messy enought that I want to do each term separately then combine
+them in the end
+
+$\left( \frac{\left( layers\times count\right) ^{2}}{\ell }\pi \frac{D^{2}}{4%
+}\delta \mu _{o}\right) ^{2}=\left( \frac{\left( 5\times 104\right) ^{2}}{%
+0.147\unit{m}}\pi \frac{\left( 0.45\unit{m}\right) ^{2}}{4}\delta \mu
+_{o}\right) ^{2}=\left( \left( \frac{\left( \allowbreak 520\right) ^{2}}{%
+0.147\unit{m}}\right) \left( \pi \right) \left( \frac{\left( 0.045\unit{m}%
+\right) ^{2}}{4}\right) \left( 1.9\times 10^{-16}\allowbreak \frac{\unit{N}}{%
+\unit{A}^{2}}\right) \right) ^{2}=\allowbreak \frac{3.\,\allowbreak
+089\,7\times 10^{-25}}{\unit{A}^{4}}\frac{\unit{m}^{4}}{\unit{s}^{4}}\unit{kg%
+}^{2}$
+
+$\left( \mu _{o}\frac{2\left( layers\times count\right) }{\ell }\pi \frac{%
+D^{2}}{4}\delta layers\right) ^{2}=\left( \left( \allowbreak \frac{%
+1.\,\allowbreak 256\,6\times 10^{-6}}{\unit{A}^{2}}\frac{\unit{m}}{\unit{s}%
+^{2}}\unit{kg}\right) \frac{2\left( 5\times 104\right) }{0.147\unit{m}}\pi 
+\frac{\left( 0.045\unit{m}\right) ^{2}}{4}\left( 1\right) \right)
+^{2}=\allowbreak \frac{1.\,\allowbreak 999\,2\times 10^{-10}}{\unit{A}^{4}}%
+\frac{\unit{m}^{4}}{\unit{s}^{4}}\unit{kg}^{2}$
+
+$\left( \mu _{o}\frac{2\left( layers\times count\right) }{\ell }\pi \frac{%
+D^{2}}{4}\delta count\right) ^{2}=\left( \left( \allowbreak \frac{%
+1.\,\allowbreak 256\,6\times 10^{-6}}{\unit{A}^{2}}\frac{\unit{m}}{\unit{s}%
+^{2}}\unit{kg}\right) \frac{2\left( 5\times 104\right) }{0.147\unit{m}}\pi 
+\frac{\left( 0.045\unit{m}\right) ^{2}}{4}\left( 0\right) \right)
+^{2}=\allowbreak 0.0$
+
+$\left( \mu _{o}\frac{\left( \left( layers\times count\right) \right) ^{2}}{%
+\ell ^{2}}\pi \frac{D^{2}}{4}\delta \ell \right) ^{2}=\left( \left(
+\allowbreak \frac{1.\,\allowbreak 256\,6\times 10^{-6}}{\unit{A}^{2}}\frac{%
+\unit{m}}{\unit{s}^{2}}\unit{kg}\right) \frac{\left( 5\times 104\right) ^{2}%
+}{\left( 0.147\unit{m}\right) ^{2}}\pi \frac{\left( 0.045\unit{m}\right) ^{2}%
+}{4}\left( 0.005\unit{m}\right) \right) ^{2}=\allowbreak \frac{%
+1.\,\allowbreak 563\,5\times 10^{-8}}{\unit{A}^{4}}\frac{\unit{m}^{4}}{\unit{%
+s}^{4}}\unit{kg}^{2}$
+
+$\left( \mu _{o}\frac{\left( l\times c\right) ^{2}}{\ell }\pi \frac{D}{2}%
+\delta D\right) =\left( \left( \allowbreak \frac{1.\,\allowbreak
+256\,6\times 10^{-6}}{\unit{A}^{2}}\frac{\unit{m}}{\unit{s}^{2}}\unit{kg}%
+\right) \frac{\left( 5\times 104\right) ^{2}}{0.147\unit{m}}\pi \frac{\left(
+0.045\unit{m}\right) }{2}\left( 0.01\unit{m}\right) \right) ^{2}\allowbreak
+=\allowbreak \frac{2.\,\allowbreak 669\,5\times 10^{-6}}{\unit{A}^{4}}\frac{%
+\unit{m}^{4}}{\unit{s}^{4}}\unit{kg}^{2}$
+
+We can see that getting a better estimate for the diameter of the coil would
+improve this quite a bit. But there is a fundamental limit in that the coils
+are really not all at one diameter. We should probably integrate over a
+range of diameters. But let's not for today. Let's see if we can make this
+work to a reasonable uncertainty with our simple model that all the coils
+are at one diameter. 
+
+Then 
+
+$\delta L=\sqrt{\allowbreak \allowbreak \frac{3.\,\allowbreak 089\,7\times
+10^{-25}}{\unit{A}^{4}}\frac{\unit{m}^{4}}{\unit{s}^{4}}\unit{kg}^{2}+\frac{%
+1.\,\allowbreak 999\,2\times 10^{-10}}{\unit{A}^{4}}\frac{\unit{m}^{4}}{%
+\unit{s}^{4}}\unit{kg}^{2}+\allowbreak 0.0+\frac{1.\,\allowbreak
+563\,5\times 10^{-8}}{\unit{A}^{4}}\frac{\unit{m}^{4}}{\unit{s}^{4}}\unit{kg}%
+^{2}+\frac{2.\,\allowbreak 669\,5\times 10^{-6}}{\unit{A}^{4}}\frac{\unit{m}%
+^{4}}{\unit{s}^{4}}\unit{kg}^{2}}\allowbreak $ : $\frac{1.\,\allowbreak
+638\,7\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}
+$
+
+so our value for $L$ is 
+
+$L=\left( \allowbreak \frac{3.\,\allowbreak 676\,2\times 10^{-3}}{\unit{A}%
+^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}\right) \pm (\allowbreak
+\allowbreak \allowbreak \allowbreak \frac{1.\,\allowbreak 638\,7\times
+10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg})$ which is
+really not a great measurement. Let's calcualte a fractional uncertainty to
+see how bad it is.%
+\[
+\frac{\delta L}{L}=\frac{(\frac{1.\,\allowbreak 638\,7\times 10^{-3}}{\unit{A%
+}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg})}{\left( \allowbreak \frac{%
+3.\,\allowbreak 676\,2\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{%
+s}^{2}}\unit{kg}\right) }=0.445\,76
+\]
+So we have a 45\% error. Nothing to write home about. But let's add it to
+our uncertainty in our frequency to see what we can get.
+
+$f=\frac{1}{2\pi \sqrt{\left( \allowbreak \frac{3.\,\allowbreak 676\,2\times
+10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}\right)
+\left( 26.4\times 10^{-9}\unit{F}\right) }}=\allowbreak \frac{16155.}{\unit{s%
+}}$
+
+so $\delta f$ would be
+
+$\delta f=\sqrt{\left( \frac{\partial f}{\partial L}\delta L\right)
+^{2}+\left( \frac{\partial f}{\partial C}\delta C\right) }$
+
+We found our inductance to be
+
+$L=\left( \allowbreak \frac{3.\,\allowbreak 676\,2\times 10^{-3}}{\unit{A}%
+^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}\right) \pm (\frac{%
+1.\,\allowbreak 638\,7\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{%
+s}^{2}}\unit{kg})$ 
+
+and our capacitor is a 20\% uncertainty 
+
+$C=26.4\times 10^{-9}\unit{F}\pm $
+
+$\delta C=0.2\times 26.4\times 10^{-9}\unit{F}=\allowbreak 5.\,\allowbreak
+28\times 10^{-9}\unit{F}$
+
+So we have 
+
+$\delta f=\sqrt{\left( \frac{\partial f}{\partial L}\delta L\right)
+^{2}+\left( \frac{\partial f}{\partial C}\delta C\right) ^{2}}$
+
+$\frac{\partial f}{\partial L}=\frac{1}{2\pi }\frac{C}{2\left( LC\right) ^{%
+\frac{3}{2}}}$
+
+$\frac{\partial }{\partial x}\frac{1}{\sqrt{x}}=\allowbreak -\frac{1}{2x^{%
+\frac{3}{2}}}$
+
+$\frac{\partial }{\partial L}\frac{1}{2\pi }\frac{1}{\left( LC\right) ^{%
+\frac{1}{2}}}=\allowbreak -\frac{1}{4\pi }\frac{C}{\left( CL\right) ^{\frac{3%
+}{2}}}$
+
+\bigskip $\delta f=\sqrt{\left( -\frac{1}{4\pi }\frac{C}{\left( CL\right) ^{%
+\frac{3}{2}}}\delta L\right) ^{2}+\left( -\frac{1}{4\pi }\frac{L}{\left(
+CL\right) ^{\frac{3}{2}}}\delta C\right) ^{2}}$
+
+\bigskip $\left( -\frac{1}{4\pi }\frac{26.4\times 10^{-9}\unit{F}}{\left(
+\left( 26.4\times 10^{-9}\unit{F}\right) \left( \allowbreak \frac{%
+3.\,\allowbreak 676\,2\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{%
+s}^{2}}\unit{kg}\right) \right) ^{\frac{3}{2}}}(\frac{1.\,\allowbreak
+638\,7\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}%
+)\right) ^{2}=\allowbreak \frac{1.\,\allowbreak 296\,5\times 10^{7}}{\unit{s}%
+^{2}}$
+
+$\left( \left( -\frac{1}{4\pi }\frac{\left( \frac{3.\,\allowbreak
+676\,2\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}%
+\right) }{\left( \left( 26.4\times 10^{-9}\unit{F}\right) \left( \allowbreak 
+\frac{3.\,\allowbreak 676\,2\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{%
+\unit{s}^{2}}\unit{kg}\right) \right) ^{\frac{3}{2}}}(\allowbreak
+5.\,\allowbreak 28\times 10^{-9}\unit{F})\right) \right) ^{2}=\allowbreak 
+\frac{2.\,\allowbreak 610\,0\times 10^{6}}{\unit{s}^{2}}$
+
+\bigskip $\delta f=\sqrt{\allowbreak \allowbreak \allowbreak \allowbreak
+\allowbreak \frac{1.\,\allowbreak 296\,5\times 10^{7}}{\unit{s}^{2}}%
++\allowbreak \frac{2.\,\allowbreak 610\,0\times 10^{6}}{\unit{s}^{2}}}%
+=\allowbreak \frac{3946.\,\allowbreak 5}{\unit{s}}$
+
+So our predicted frequency is 
+
+$f_{predicted}=\frac{1615.\,\allowbreak 5.}{\unit{s}}\pm \allowbreak \frac{%
+4800.\,\allowbreak 9}{\unit{s}}$
+
+and our measured frequency is probaby good to 1\% from our signal generator
+
+$f_{measured}=16.09\unit{kHz}$
+
+$16.09\unit{kHz}\times 0.1=\allowbreak 0.1\allowbreak 609\unit{kHz}$
+
+\bigskip $f_{measured}=16.09\unit{kHz}\pm 0.\allowbreak 1\allowbreak 609%
+\unit{kHz}$
+
+So here is what we have
+
+Points
+
+$%
+\begin{array}{cc}
+1 & 16.09 \\ 
+2 & 16.15\,\allowbreak 5%
+\end{array}%
+$
+
+Error Bars
+
+$%
+\begin{array}{cc}
+1 & 16.09-0.\allowbreak 1\allowbreak 609 \\ 
+1 & 16.09+0.\allowbreak 1\allowbreak 609%
+\end{array}%
+$
+
+$%
+\begin{array}{cc}
+2 & 16.15\,\allowbreak 5+3.946\allowbreak 5 \\ 
+2 & 16.15\,\allowbreak 5-3.946\allowbreak 5%
+\end{array}%
+$\FRAME{dtbpFX}{2.4232in}{3in}{0pt}{}{}{Plot}{\special{language "Scientific
+Word";type "MAPLEPLOT";width 2.4232in;height 3in;depth 0pt;display
+"USEDEF";plot_snapshots TRUE;mustRecompute FALSE;lastEngine "MuPAD";xmin
+"0";xmax "3";xviewmin "0";xviewmax "3";yviewmin "5";yviewmax
+"23";viewset"XY";rangeset"X";plottype 4;plotticks 1;num-x-ticks
+1;labeloverrides 3;axesFont "Times New
+Roman,12,0000000000,useDefault,normal";numpoints 100;plotstyle
+"patchnogrid";axesstyle "normal";axestips FALSE;xis \TEXUX{x};var1name
+\TEXUX{$x$};function
+\TEXUX{$\MATRIX{2,2}{c}\VR{,,c,,,}{,,c,,,}{,,,,,}\HR{,,}\CELL{1}\CELL{16.09}%
+\CELL{2}\CELL{16.15\,\allowbreak 5}$};linecolor "black";linestyle
+1;pointplot TRUE;pointstyle "point";linethickness 3;lineAttributes
+"Solid";curveColor "[flat::RGB:0000000000]";curveStyle "Point";function
+\TEXUX{$\MATRIX{2,2}{c}\VR{,,c,,,}{,,c,,,}{,,,,,}\HR{,,}\CELL{1}%
+\CELL{16.09-0.\allowbreak 1\allowbreak 609}\CELL{1}\CELL{16.09+0.\allowbreak
+1\allowbreak 609}$};linecolor "blue";linestyle 1;pointstyle
+"point";linethickness 3;lineAttributes "Solid";curveColor
+"[flat::RGB:0x000000ff]";curveStyle "Line";function
+\TEXUX{$\MATRIX{2,2}{c}\VR{,,c,,,}{,,c,,,}{,,,,,}\HR{,,}\CELL{2}\CELL{16.15%
+\,\allowbreak 5+3.946\allowbreak 5}\CELL{2}\CELL{16.15\,\allowbreak
+5-3.946\allowbreak 5}$};linecolor "blue";linestyle 1;pointstyle
+"point";linethickness 3;lineAttributes "Solid";curveColor
+"[flat::RGB:0x000000ff]";curveStyle "Line";VCamFile
+'RVWGF513.xvz';valid_file "T";tempfilename
+'RVWGF507.wmf';tempfile-properties "XPR";}}
+
+This looks pretty good. There were a lot of assumptions, but so far we have
+not shown our inductance model to be too far wrong.
+
+OK\ so I forgot that I\ am supposed to compare inductances not frequencies,
+so I\ need to calculate the inductance from the measured frquency and it's
+uncertainty. Part of this I\ already did.
+
+$L=\frac{1}{4\pi ^{2}\left( f^{2}\right) \left( C\right) }$
+
+\bigskip $L=\frac{1}{4\pi ^{2}\left( \left( 16.09\unit{kHz}\right)
+^{2}\right) \left( 26.4\times 10^{-9}\unit{F}\right) }=\allowbreak \frac{%
+3.\,\allowbreak 706\,2\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{%
+s}^{2}}\unit{kg}$
+
+but I\ need the uncertainty.
+
+$\delta L_{A}=\sqrt{\left( \frac{\partial L_{A}}{\partial f}\delta f\right)
+^{2}+\left( \frac{\partial L_{A}}{\partial C}\delta C\right) ^{2}}$
+
+and 
+
+$\frac{\partial L_{A}}{\partial f}=-\frac{1}{4\pi ^{2}\left( f^{3}\right)
+\left( C\right) }$
+
+$\frac{\partial L_{A}}{\partial C}=-\frac{1}{4\pi ^{2}\left( f^{2}\right)
+\left( C^{2}\right) }$
+
+and our measured frequency is probaby good to 1\% from our signal generator
+
+$f_{measured}=16.09\unit{kHz}$
+
+$16.09\unit{kHz}\times 0.01=\allowbreak \allowbreak 0.01\allowbreak 609\unit{%
+kHz}$
+
+\bigskip $f_{measured}=16.09\unit{kHz}\pm 0.\allowbreak 1\allowbreak 609%
+\unit{kHz}$
+
+and our capacitor is a 20\% capicitor
+
+$\delta C=0.2\times 26.4\times 10^{-9}\unit{F}=\allowbreak 5.\,\allowbreak
+28\times 10^{-9}\unit{F}$
+
+So we get
+
+$\delta L_{A}=\sqrt{\left( -\frac{1}{4\pi ^{2}\left( f^{3}\right) \left(
+C\right) }\delta f\right) ^{2}+\left( -\frac{1}{4\pi ^{2}\left( f^{2}\right)
+\left( C^{2}\right) }\delta C\right) ^{2}}$
+
+\bigskip 
+
+$\left( -\frac{1}{4\pi ^{2}\left( \left( 16.09\unit{kHz}\right) ^{3}\right)
+\left( 26.4\times 10^{-9}\unit{F}\right) }\left( \allowbreak \allowbreak
+0.1\allowbreak 609\unit{kHz}\right) \right) ^{2}=\allowbreak \frac{%
+1.\,\allowbreak 373\,6\times 10^{-9}}{\unit{A}^{4}}\frac{\unit{m}^{4}}{\unit{%
+s}^{4}}\unit{kg}^{2}$
+
+\bigskip $\left( -\frac{1}{4\pi ^{2}\left( \left( 16.09\unit{kHz}\right)
+^{2}\right) \left( 26.4\times 10^{-9}\unit{F}\right) ^{2}}\left( \allowbreak
+5.\,\allowbreak 28\times 10^{-9}\unit{F}\right) \right) ^{2}=\allowbreak 
+\frac{5.\,\allowbreak 494\,3\times 10^{-7}}{\unit{A}^{4}}\frac{\unit{m}^{4}}{%
+\unit{s}^{4}}\unit{kg}^{2}$
+
+$\delta L_{A}=\sqrt{\left( -\frac{1}{4\pi ^{2}\left( \left( 16.09\unit{kHz}%
+\right) ^{3}\right) \left( 26.4\times 10^{-9}\unit{F}\right) }\left(
+\allowbreak 0.1\allowbreak 609\unit{kHz}\right) \right) ^{2}+\left( -\frac{1%
+}{4\pi ^{2}\left( \left( 16.09\unit{kHz}\right) ^{2}\right) \left(
+26.4\times 10^{-9}\unit{F}\right) ^{2}}\left( \allowbreak 5.\,\allowbreak
+28\times 10^{-9}\unit{F}\right) \right) ^{2}}=\allowbreak \frac{%
+7.\,\allowbreak 421\,6\times 10^{-4}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{%
+s}^{2}}\unit{kg}$
+
+Then from our resonant frequency measurement we have
+
+$L_{A}=\allowbreak \allowbreak \frac{3.\,\allowbreak 706\,2\times 10^{-3}}{%
+\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}\pm \frac{%
+7.\,\allowbreak 421\,6\times 10^{-4}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{%
+s}^{2}}\unit{kg}$ 
+
+and we need to compare this to our theoretical value from our inductance
+equation
+
+$L=\left( \allowbreak \frac{3.\,\allowbreak 676\,2\times 10^{-3}}{\unit{A}%
+^{2}}\frac{\unit{m}^{2}}{\unit{s}^{2}}\unit{kg}\right) \pm (\frac{%
+1.\,\allowbreak 638\,7\times 10^{-3}}{\unit{A}^{2}}\frac{\unit{m}^{2}}{\unit{%
+s}^{2}}\unit{kg})$ 
+
+It looks like these are pretty close. A quick graph makes comparing them easy
+
+Points
+
+$%
+\begin{array}{cc}
+1 & 3.\,\allowbreak 706\,2\times 10^{-3} \\ 
+2 & 3.\,\allowbreak 676\,2\times 10^{-3}%
+\end{array}%
+$
+
+Error Bars
+
+$%
+\begin{array}{cc}
+1 & 3.\,\allowbreak 706\,2\times 10^{-3}-7.\,\allowbreak 421\,6\times 10^{-4}
+\\ 
+1 & 3.\,\allowbreak 706\,2\times 10^{-3}+7.\,\allowbreak 421\,6\times 10^{-4}%
+\end{array}%
+$
+
+$%
+\begin{array}{cc}
+2 & 3.\,\allowbreak 676\,2\times 10^{-3}+1.\,\allowbreak 638\,7\times 10^{-3}
+\\ 
+2 & 3.\,\allowbreak 676\,2\times 10^{-3}-1.\,\allowbreak 638\,7\times 10^{-3}%
+\end{array}%
+$
+
+\FRAME{dtbpFX}{2.4232in}{3in}{0pt}{}{}{Plot}{\special{language "Scientific
+Word";type "MAPLEPLOT";width 2.4232in;height 3in;depth 0pt;display
+"USEDEF";plot_snapshots TRUE;mustRecompute FALSE;lastEngine "MuPAD";xmin
+"0";xmax "2";xviewmin "0.9999";xviewmax "2.0001";yviewmin "0.002";yviewmax
+"0.00531522774";rangeset"X";plottype 4;plotticks 1;num-x-ticks
+1;labeloverrides 3;axesFont "Times New
+Roman,12,0000000000,useDefault,normal";numpoints 100;plotstyle
+"patchnogrid";axesstyle "normal";axestips FALSE;xis \TEXUX{x};var1name
+\TEXUX{$x$};function
+\TEXUX{$\MATRIX{2,2}{c}\VR{,,c,,,}{,,c,,,}{,,,,,}\HR{,,}\CELL{1}\CELL{3.\,%
+\allowbreak 706\,2\times 10^{-3}}\CELL{2}\CELL{3.\,\allowbreak 676\,2\times
+10^{-3}}$};linecolor "black";linestyle 1;pointplot TRUE;pointstyle
+"point";linethickness 3;lineAttributes "Solid";curveColor
+"[flat::RGB:0000000000]";curveStyle "Point";function
+\TEXUX{$\MATRIX{2,2}{c}\VR{,,c,,,}{,,c,,,}{,,,,,}\HR{,,}\CELL{1}\CELL{3.\,%
+\allowbreak 706\,2\times 10^{-3}-7.\,\allowbreak 421\,6\times
+10^{-4}}\CELL{1}\CELL{3.\,\allowbreak 706\,2\times 10^{-3}+7.\,\allowbreak
+421\,6\times 10^{-4}}$};linecolor "blue";linestyle 1;pointstyle
+"point";linethickness 3;lineAttributes "Solid";curveColor
+"[flat::RGB:0x000000ff]";curveStyle "Line";function
+\TEXUX{$\MATRIX{2,2}{c}\VR{,,c,,,}{,,c,,,}{,,,,,}\HR{,,}\CELL{2}\CELL{3.\,%
+\allowbreak 676\,2\times 10^{-3}+1.\,\allowbreak 638\,7\times
+10^{-3}}\CELL{2}\CELL{3.\,\allowbreak 676\,2\times 10^{-3}-1.\,\allowbreak
+638\,7\times 10^{-3}}$};linecolor "blue";linestyle 1;pointstyle
+"point";linethickness 3;lineAttributes "Solid";curveColor
+"[flat::RGB:0x000000ff]";curveStyle "Line";VCamFile
+'RVWGF512.xvz';valid_file "T";tempfilename
+'RVWGF508.wmf';tempfile-properties "XPR";}}
+
+The uncertainty ranges overlap! This looks good. I have not falsified our
+inductance model. There is some concern about the number of layers in the
+inductor. But within what I can tell without taking apart the coil this
+seems reasonable. 
+
+\end{document}
