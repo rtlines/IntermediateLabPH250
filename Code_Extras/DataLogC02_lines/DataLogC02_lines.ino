@@ -1,37 +1,27 @@
-#include <LiquidCrystal.h>
-
-
 // ===================================================
-// DataLogger based on the 
-// RobotDyn SD/RTC Arduino shield example 
+// Datalogger code for the 
+// Gravity UART Infrared Carbon Dioxide Sensor
+// Based on the example code from DFrobot found
+// at https://wiki.dfrobot.com/Infrared_CO2_Sensor_0-50000ppm_SKU__SEN0220
+// 
+// R. T. Lines
+// Last revised: 2023-6-26
 //
-// Todd Lines 
-// Last revised: 2023-04-13
+// To resolve conflicts between the SD card and the sensor on the 
+//    SPI bus I moved the TX and RX pins for the sensor to 
+//    pins RX = 7 and TX = 6 so they are far away from the pins
+//    10, 11, 12, and 13 used by the SD card reader/writer.
 //
-// Saves temperature, humidity, pressure, altitude, 
-//   relative humidity and gas air quality measurements
-//   from a BME680 to a SD card with time stamp as an 
-//   example of data logging where the sensor library
-//   and data take up a lot of the Arduino memory.
-//   Sumptoms of the memory being currupted are 
-//   weird characthers being printed to the serial 
-//   monitor or SD card, or nothing printing at all,
-//   or the program hanging and not producing any
-//   output.  If these things happen, try printing
-//   just the time stamp. If that works, then try 
-//   printing the time stamp and one piece of data.
-//   Then add another piece until the problem recurs.  
-//   Then, adjust what you are printing until you can
-//   get your data to all be printed and saved.  This
-//   may mean you need to keep better notes on what 
-//   date is in which column and with what units because
-//   this may not be in your saved data file.
+// Based on the RobotDyn SD/RTC Arduino shield example
+//    Meant to serve as a starting point for data logging
+//    using both a real-time clock (RTC) and a microSD 
+//    card.
 //
 // Collects data at a given rate, that is set by the
 //   delay at the end of the loop with the delay time in 
 //   milliseconds.  
 //
-// This code uses the stratgy //   of opening the file, 
+// This code uses the strategy of opening the file, 
 //   writing data, and closing the file for each data 
 //   point so if the sensor fails the file will fail 
 //   having just been closed and only the last data 
@@ -43,36 +33,36 @@
 //   
 // ===================================================
 
+
 // ==== include statements
-   #include <SD.h>
+   #include <SD.h>  
+
 
 // RTC libary by Adafruit. Must be manually installed
    #include "RTClib.h" 
 
 // BME680 libaries by Adafruit.
   #include <SPI.h>
-  #include <Adafruit_Sensor.h>
-  #include "Adafruit_BME680.h"
 
-  #define BME_SCK 13
-  #define BME_MISO 12
-  #define BME_MOSI 11
-  #define BME_CS 10
-  #define SEALEVELPRESSURE_HPA (1013.25)
-
-  Adafruit_BME680 bme; // I2C
-  //Adafruit_BME680 bme(BME_CS); // hardware SPI
-  //Adafruit_BME680 bme(BME_CS, BME_MOSI, BME_MISO,  BME_SCK);
 
 // SD card pin to use
    const int SD_PIN = 10;
 
+
 // Real time clock type and variable
    RTC_DS1307 rtc;
-   
-// pin to blink for light to indicate operation
-   int ledPin = 8; // this is where you wire the LED
-   int n = 0;      // to toggle the LED on or off 
+
+// Gravity UART Infrared Carbon Dioxide Sensor
+// Library and variables
+   #include <SoftwareSerial.h>
+   // change the pins so no conflict with the SD card reader
+   SoftwareSerial mySerial(7, 6); // RX, TX
+   //Read the gas density command /Don't change the order
+   unsigned char hexdata[9] = {0xFF,0x01,0x86,0x00,0x00,0x00,0x00,0x00,0x79}; 
+   // now a place to put the C02 data 
+   String CO2_String = "";
+
+// My functions:
 
 // =========================================
 // initializes the RTC, 
@@ -97,6 +87,7 @@ void init_RTC() {
 // ======================================================
 // attempts to initialize the SD card for reading/writing
 // ======================================================
+
 
 void init_SD() {
   Serial.print("Initializing SD card...");
@@ -133,34 +124,20 @@ void setup() {
    // Initialize the SD card so we can write to it in
    //   the loop
       init_SD();
-    
-  // Now set up your sensor here.  I will use the Adafruit 
-  //    BME680 for this example  
-  //
-  //    setup BME680 - These next lines are from the Adafruit
-  //       BME680 test code 
-           Serial.println(F("BME680 test"));
-           if (!bme.begin()) {
-              Serial.println("Could not start BME680 sensor, check wiring!");
-              while (1);
-              }
-           // Set up oversampling and filter initialization
-           bme.setTemperatureOversampling(BME680_OS_8X);
-           bme.setHumidityOversampling(BME680_OS_2X);
-           bme.setPressureOversampling(BME680_OS_4X);
-           bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
-           bme.setGasHeater(320, 150); // 320*C for 150 ms
-           Serial.println("BME680 Started");
 
-    // Tell the User that we started a new collection
+   
+  // Now set up your sensor here.  
+     mySerial.begin(9600);  
+  
+
+ // Tell the User that we started a new collection
     //  Be careful here. Printing things in the setup can be
     //  tricky. Don't print something that is very long
     File dataFile = SD.open("datalog.txt", FILE_WRITE);
        dataFile.println("START OF NEW COLLECT");
        Serial.println("START OF NEW COLLECT");
        dataFile.close();
-    // set up ledPin for blinking to show operation
-        pinMode(ledPin, OUTPUT);
+
   }  // End of setup
 
 
@@ -182,8 +159,7 @@ void loop( ) {
   //    we do, the microcontroller can become 
   //    unstable. We have three devices connected
   //    to our Arduino, the SD card reader, the RTC
-  //    and the sensor, in this case an Adafruit
-  //    BME280. That is a lot!  So we will output 
+  //    and the sensor. That is a lot!  So we will output 
   //    the data with as few extra characters as 
   //    possible. This includes spaces! We will 
   //    separate using commas, because python
@@ -201,37 +177,43 @@ void loop( ) {
   dataString = dataString  + String(now.minute());
   dataString = dataString + ":";
   dataString = dataString  + String(now.second());
-  dataString = dataString + ",";
-  bme.performReading();
-  dataString = dataString + String(bme.temperature);
-  dataString = dataString + "C,";
-  dataString = dataString + String(bme.pressure / 100.0);
-  dataString = dataString + "hPa,";
-  dataString = dataString + String(bme.readAltitude(SEALEVELPRESSURE_HPA));
-  dataString = dataString + "m,";
-  dataString = dataString + String(bme.readHumidity());
-  dataString = dataString + "%,";
-  dataString = dataString + String(bme.gas_resistance / 1000.0);
-  dataString = dataString + "KO";
-  // print out the time stamp and the sensor data
+  //dataString = dataString + ",";
+
+  // Now get the sensor data
+
+   mySerial.write(hexdata,9);
+   delay(500);
+
+   for(int i=0,j=0;i<9;i++) {
+      if (mySerial.available()>0) {
+         long hi,lo,CO2;
+         int ch=mySerial.read();
+         if(i==2){     hi=ch;   }   //High concentration
+         if(i==3){     lo=ch;   }   //Low concentration
+         if(i==8) {
+               CO2=hi*256+lo;  //CO2 concentration
+               //Serial.print(dataString);
+               //Serial.print(" cO2 concentration: ");
+               //Serial.print(CO2);
+               //Serial.println("ppm");
+               CO2_String = String(CO2);
+               }
+         }
+   }
+
+   // Add the sensor data to the output string
+   dataString = dataString + ","+CO2_String+" ppm";
+
+  // Print the time stamp and data to the serial monitor
   Serial.println(dataString);
+
+  // Print the time stamp and data to the SD Card
   File dataFile = SD.open("datalog.txt", FILE_WRITE);
      dataFile.println(dataString);
      dataFile.close();
   //
+
   delay(1000); // time between data points
-  //
-  // Now turn the light on or off for this itteration
-  //  of the loop.  Set up n for the next loop.  If
-  //  n=0 this time the light turns off so set n=1 for 
-  //  next time to turn it off.
-  if (n==0){
-      digitalWrite(ledPin, HIGH);
-      n=1;
-      }
-   else {
-      digitalWrite(ledPin, LOW);
-      n=0;
-      }
+  
   // End of Loop
   }
