@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 #from datetime import datetime
 #import re
 
-
 ###########################################################################
 def plotdata(xdata, ydata, x_label, y_label):
     if (printgraph == "TRUE"):
@@ -43,43 +42,46 @@ def plotdata(xdata, ydata, x_label, y_label):
 ###########################################################################
 #  Here is where you read in C02 data
 #  First let's make a place for it
+#  Here is where you read in C02 data
+
 Ctdata = []   # space for CO2 tiem stamp
 CO2data = []  # space for the Co2 data itself
 Ctsec = []    # space for the time stamp converted to seconds as a string
 tflight=[]    # space fosr the time stamp in seconds but as a number
+
 print("Reading File and parcing data")
 
-file_to_open = "C:\\Users\\rtlines\\Documents\\CFC-CO2DATA.TXT"
+file_to_open = "C:\\Users\\rtlines\\Documents\\CO2DATA_last_part.TXT"
 file = open(file_to_open)
 for line in file.readlines():
     #print(line)
     line = line.strip().strip('\n')
-    #line = line.strip().strip('Day 1- ')
+    line = line.strip().strip('Day 1- ')
     #print(line)
-    if line:    # check to see if the line is blank
-       data = line.split(",")  # if it has data, split it at the "," characters
+    if line:
+       data = line.split(",")
        #print(data)
-       if (len(data)==2):      # check to see that we got a data and CO2ppm
-          temp =  data[0].split(" ")  # first part is time, split at the space
-          date=temp[0]         # now date is in first part of split
-          time=temp[1].split(":")  #time is in second part, split again at ":"       
-          if (len(time)==3):   # check to make sure we got h m s
+       if (len(data)==5):
+          temp =  data[0].split(":")
+          if (len(temp)==3):
              #print("test temp ",temp)
-             hour = time[0]    # first part is hour
-             minute = time[1]  # second part is minuts
-             second = time[2]  # third part is seconds
-             # if we got all the parts, calculate the number of seconds
-             #   that have passed since midnight until this time.  We
-             #   will use this number to match to the altimiter
+             hour = temp[0]
+             minute = temp[1]
+             second = temp[2]
              if ((hour != "") and (second != "") and (second != "")):
                 tss= float(hour)*3600+float(minute)*60+float(second)
-                # put the CO2 data into CCdata and the time into Ctsec
-                CO2data.append(data[1].strip(" ppm"))
-                Ctdata.append(data[0]) # the whole time stamp
-                Ctsec.append(str(tss)) # just the time, but as a string
+                CO2data.append(data[1])
+                Ctdata.append(data[0])
+                Ctsec.append(str(tss))
                 tflight.append(tss)
-# Close the CO2 File
+                #print(tss, data[1])
 file.close()
+
+#print(Ctsec)
+print(len(Ctsec))
+print("Data parced convert to arrays")
+
+
 print("Data parced ")
 
 # Bring in the Altimiter data
@@ -92,6 +94,7 @@ file_to_open  = "C:\\Users\\rtlines\\Documents\\Altimiter_data.TXT"
 afile = open(file_to_open)
 for line in afile.readlines():
     data = line.split(",")
+    print(data[0], float(data[0])-sixhours)
     atime.append(float(data[0])-sixhours)
     aalt.append(float(data[1]))
 afile.close()
@@ -101,7 +104,7 @@ afile.close()
 
 cppm=[]  # CO2 data as a number
 calt=[]  # the interpolated altitude for our CO2 data
-
+print(min(atime), max(atime), min(tflight), max(tflight))
 for i in range(0,len(CO2data)):
     for j in range(1,len(atime)-1):
         if (tflight[i]>atime[j-1]) and (tflight[i]<atime[j]):
@@ -110,6 +113,7 @@ for i in range(0,len(CO2data)):
             cppm.append(float(CO2data[i]))
             break
 
+print(len(calt))
 print("Plot graph")
 printgraph="TRUE"
 if (printgraph == "TRUE"):
@@ -126,7 +130,7 @@ if (printgraph == "TRUE"):
 
 
 print("Output file")
-output_file = open("C:\\Users\\rtlines\\Documents\\CFC_Group_CO2_data.TXT","w")
+output_file = open("C:\\Users\\rtlines\\Documents\\CO2_Group_Processed_CO2_data.TXT","w")
 for i in range (len(calt)):
     output_string = str(calt[i])+','+str(cppm[i])+"\n"
 
