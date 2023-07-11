@@ -42,13 +42,13 @@ N=20
 #  name so it is easier to use in the code below
 #  This line worked for Brother Lines, but won't work for you as it is.
 #  You need to replace "rtlines" with your username at a minimum.
-dataFile=open('C:\\Users\\rtlines\\Documents\\data2.txt','w')
+dataFile=open('C:\\Users\\rtlines\\Documents\\data3.txt','w')
  
 #the next line opens the serial port for communication. You need to 
 #  set the COM port based on where the Arduino IDE says the Arduino
 #  is plugged into your computer. On Windows, this is usually COM1 
 #  through COM 8.
-ser=serial.Serial('COM3', baudrate = 9600, timeout=1)
+ser=serial.Serial('COM6', baudrate = 9600, timeout=1)
  
 #there will be a delay before the first data point comes from the 
 #  serial port, warn the user so they don't worry.

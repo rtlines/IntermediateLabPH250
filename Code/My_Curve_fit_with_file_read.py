@@ -22,9 +22,10 @@ print("Find a curve fit to a user defined function")
 #    y = A*(1-np.exp(-B*x)) + C
 #    return y
 
-def RC_Discharging(x, A, B, C):
+def RC_Charging(x, A, B, C):
     y = A*(1 - np.exp(- B*x)) + C
     return y
+
 
 
 #here is where you give the data to fit. Put it into numpy 
@@ -42,7 +43,7 @@ def RC_Discharging(x, A, B, C):
 xdata = []
 ydata = []
 
-file =open("C:\\Users\\rtlines\\Documents\\RCdata2.csv")
+file =open("C:\\Users\\rtlines\\Documents\\data3.txt")
 for line in file.readlines():
     if(len(line)>3):   # remove blank lines
        print(line)
@@ -71,7 +72,7 @@ ydata_err = np.sqrt(2)*0.0049 #V
 #  RC_Charting()) and it needs the fit parameters and
 #  for the error on the fit parameters we need the 
 # covariance matrix to be output
-parameters, covariance = curve_fit(RC_Discharging, 
+parameters, covariance = curve_fit(RC_Charging, 
                                    xdata, ydata)
 
 #Pull out the fit prameters
@@ -95,6 +96,7 @@ SE_C = SE[2]
 #  with our fit equation.  I called the new y-values
 #  fit_y.
 fit_y = RC_Discharging(xdata, fit_A, fit_B, fit_C)
+#fit_y = RC_Charging(xdata, fit_A, fit_B, fit_C)
 
 #Plot the data (as dots) and the fit (as a line) to 
 #  see if the equation makes sense as a good fit.
