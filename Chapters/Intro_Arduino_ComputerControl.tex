@@ -51,17 +51,17 @@ Let's start with your prototyping board.
 
 You might notice that the LED and the resistor in the diagram seems to be
 stuck in some strange board full of holes. This is our prototyping board.
-You should have one in your Arduino kit. Your instuctor will have several
+You should have one in your Arduino kit. Your instructor will have several
 that you can borrow if you need another one.
-
-We will connect a lot of electrical wires together in this class. We have devices to make this job easier. Our porototyping board is one of these. They are officially
-called prototyping boards, but you might hear them called proto-boards, or
-even ``breadboards.'' They are designed to allow you to put an electronic element on the board and then connect other things to that element. The boards look like this. 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=3.0519in,height=1.3102in]{PH4CAU02}
+	\includegraphics[width=2.5in,height=.8in]{PH4CAU02}
 \end{figure}
+
+We will connect a lot of electrical wires together in this class. We have devices to make this job easier. Our porototyping board is one of these. They are officially
+called prototyping boards, but you might hear them called proto-boards, or
+even ``breadboards.'' They are designed to allow you to put an electronic element on the board and then connect other things to that element. The last figure is a drawing of one of our proto-boards all on it's own. 
 
 Notice that in the center of the board there are sets of five holes. Under the board surface, these holes are connected together as shown by the red lines in the next figure. 
 
@@ -70,7 +70,7 @@ Notice that in the center of the board there are sets of five holes. Under the b
 	\includegraphics[width=4.8793in,height=2.0384in]{PH4CAU03}
 \end{figure} 
 
-Any wire that goes in one of the connected holes is therefore connected to any other wire that goes in the set of five connected holes. So you can connect up to four other wires to the first wire. In the next figure, you can see an example of a resistor that is placed on the proto-board and is connected to two yellow wires. 
+Any wire that goes in one of the connected holes is therefore connected to any other wire that goes in the set of five connected holes. So you can connect up to four other wires to the first wire. In the next figure, you can see an example of a resistor that is placed on the proto-board. In this example, it is connected to two yellow wires. 
 
 \begin{figure}[h!]
 	\centering
@@ -126,9 +126,13 @@ In the next figure I have included our red connection lines so we can keep in mi
 	\includegraphics[width=3.9701in,height=1.5806in]{PH4CAU09}
 \end{figure}
 
-We placed one LED light wire in one column. On the other side of the board we place the other wire. The wires that come out of an electronic device are often called \textquotedblleft leads\textquotedblright\ and I will use this term. So one LED lead goes in a group of five holes on one side of the board and the other lead goes into a group of five hole on the other side of the board. If you look closely, you will see that one side of your LED is flat. The lead on the flat side should be toward the bottom (toward our $0\unit{V}$ connection that we will make). LED\ lights only work one direction. So when using LED's, if they don't work, turn them around.
+We placed one LED light wire in one column. On the other side of the board we place the other wire. The wires that come out of an electronic device are often called \textquotedblleft leads\textquotedblright\ and I will use this term. So one LED lead goes in a group of five holes on one side of the board and the other lead goes into a group of five hole on the other side of the board. 
 
-Notice that the way we have done this one LED lead and one resistor lead are connected in one group of five holes. The resistor is connected to the very bottom row. The top of the LED is not connected to anything yet. It is in a set of five holes that are connected together, but we need another wire to connect the top of the LED to the $+5\unit{V}.$ Let's choose the top of our power rows to be $+5\unit{V}$ and add the wire to connect the LED. 
+If you look closely, you will see that one side of your LED is flat. The lead on the flat side should be toward the bottom (toward our $0\unit{V}$ connection that we will make). LED\ lights only work one direction. So when using LED's, if they don't work, turn them around.
+
+Notice that the way we have done this one LED lead and one resistor lead are connected in one group of five holes. We need to choose a resistor. There are many in our kit. And if you look closely you will find that the resistors are glued together to strips of paper. And the paper is marked with a number! Choose one of the resistors that are marked with ``100.''
+
+ The resistor is connected to the very bottom row. The top of the LED is not connected to anything yet. It is in a set of five holes that are connected together, but we need another wire to connect the top of the LED to the $+5\unit{V}.$ Let's choose the top of our power rows to be $+5\unit{V}$ and add the wire to connect the LED. 
 
 \begin{figure}[h!]
 	\centering
@@ -142,7 +146,7 @@ Now we can wire our light to our Arduino. This will take two wires. One should b
 	\includegraphics[width=3.5258in,height=2.3017in]{PH4CAU0B}
 \end{figure}
 
-This pin 13 is a digital output. That means it will either have $5\unit{V}$ or it will have $0\unit{V}.$ The $5\unit{V}$ will be our ``on'' value that could turn on an instrument. In our case it will turn on our LED\ light. The $0\unit{V}$ is the ``off'' value. When pin 13 has a value of $0\unit{V}$ our light will go off. We know that voltage is related to electrical energy. We will study voltage more next week. But for now we need to know that voltage is a comparison. So we need to know
+This pin 13 is a digital output. That means it will either have $5\unit{V}$ or it will have $0\unit{V}.$ The $5\unit{V}$ will be our ``on'' value that could turn on an instrument. In our case it will turn on our LED\ light. The $0\unit{V}$ is the ``off'' value. When pin 13 has a value of $0\unit{V}$ our light will go off. We know that voltage is related to electrical energy. We will study voltage more next week. But for now we need to know that voltage is  always a comparison. So we need to know
 ``$5\unit{V}$ compared to what?'' We compare to the voltage of the ground. This is literal. Most buildings have a large copper rod pounded into the ground. All of the plugs in the building have one of their three wires connected to this rod. Thus they are all ``grounded.'' This is our reference. Our computer is connected to a plug so it is grounded. Our Arduino is connected to the computer so it is grounded. And one of our pins is a connection to the ground. It is marked ``GND.'' This will be our $0\unit{V}.$ So we need to connect pin 13 and the GND pin to our $+5\unit{V}$ and our $0\unit{V}$ rows on our proto-board. The next figure shows one way to do this.
 
 \begin{figure}[h!]
@@ -190,11 +194,13 @@ We have a special development environment for programing our Arduino as well. It
 	\includegraphics[width=3.8353in,height=3.5674in]{PH4CAU0D}
 \end{figure}
 
-We will need to install this development environment. To do so we go to https://www.arduino.cc/en/Guide/HomePage and choose to instal the Arduino IDE for your computer. IDE stands for \textquotedblleft integrated development environment.\textquotedblright\ This is the environment that you see in the last figure. It has two unusual buttons on its toolbar. One is the ``compile'' button. When you used Python in PH150, you could run your code by pushing on a green arrow button in most development environments. If you used Jupyter scripts, they also had a function to run your code. But our Arduino is not big enough to be able to run code this way. We need to convert our human-understandable code that looks mostly like Python into a digital format that the Arduino can understand. The compile button does this. As the code is converted, the Arduino software looks for errors in the code. If there are errors, it will tell you at this point. This is different than Python which only told you about errors as the code ran. But remember we don't want to run our program on our computer. We want it to run on our Arduino. So this check is good before we send the translated code to the Arduino.
+We will need to install this development environment. To do so we go to https://www.arduino.cc/en/Guide/HomePage and choose to instal the Arduino IDE for your computer. IDE stands for \textquotedblleft integrated development environment.\textquotedblright\ This is the environment that you see in the last figure. It has two unusual buttons on its toolbar. One is the ``compile'' button. When you used Python in PH150, you could run your code by pushing on a green arrow button in most development environments. 
+
+If you used Jupyter scripts, they also had a function to run your code. But our Arduino is not big enough to be able to run code this way. We need to convert our human-understandable code that looks mostly like Python into a digital format that the Arduino can understand. The compile button does this. As the code is converted, the Arduino software looks for errors in the code. If there are errors, it will tell you at this point. This is different than Python which only told you about errors as the code ran. But remember we don't want to run our program on our computer. We want it to run on our Arduino. So this check is good before we send the translated code to the Arduino.
 
 We also need a way to send our code to our Arduino and that is what the upload to Arduino button does. Once the code is compiled without errors, connect the USB cable to the Arduino and push the upload button.
 
-There are also some syntax differences between the Arduino computer language and Python. If you have taken CS124 or know the ``C'' language, you will recognize some of these changes.
+There are also some syntax differences between the Arduino computer language and Python. If you  know the ``C++'' language, you will recognize some of these changes.
 
 \begin{itemize}
 	\item Everything in a function needs to be in curly braces \{ \}
@@ -238,7 +244,7 @@ Also notice that Arduino programs are called ``sketches.'' Most of the commands 
 
 You will want to make a record of what you have done so you can look it up later when you need to repeat what we just did in a future project (like making a blinking light on your instrument so you know it is working!).  Scientists record what they do in lab notebooks. Traditionally these are bound blank books that you write in with a pen.  But in industry today companies use electronic lab notebooks.  You are probably very familiar with Google Docs or other on-line document sharing tools.  We will use such a tool that is widely used in both industry and academia. That is a Jupyter notebook.  Note that Jupyter notebooks on their own are not secure enough to protect intellectual property. They would need to be safeguarded withing a professional lab notebook system.  But our homework for this class isn't considered a national security risk or even an intellectual property risk. So Jupyter notebooks are just fine for us. You may have seen them in other classes that use python.  If not, don't worry, we can help you become comfortable with them.  
 
-Chances are you already have the Jupyter system because it comes standard as part of the Anaconda python system.  If you installed Anaconda, you can just go to your list of programs and start Jupyter. If you don't find it, call over your instructor or TA.  Here is how that looks in Windows (For those with Macs, it will look more Macish).
+Chances are you already have the Jupyter system because it comes standard as part of the Anaconda python system.  If you installed Anaconda, you can just go to your list of programs and start Jupyter. I am going to recommend you use Jupyter Lab instead of just Jupyter Notebook because it is easier to print your work from Jupyter lab. If you don't find it, call over your instructor or TA.  Here is how that looks in Windows 10 (For those with Macs, it will look more Macish). In Windows 11 you can start the Anaconda Navigator and launch Jupyter Lab from there.
 
 \begin{figure}[h!]
 	\centering
@@ -371,14 +377,22 @@ Again save your sketch. You should probably say in your lab notebook that
 you used the previous hardware setup. You might want to describe in your lab
 notebook how the mathematical algorithm works.
 
-But at this point, you probably want to be able to submit your lab notebook for grading. This seems simple, but we need to modify your Anaconda system to make it work well. To do this, start an Anaconda Powershell Prompt.
+But at this point, you probably want to be able to submit your lab notebook for grading. This seems simple, but it's not. Jyputer Lab is a little easier, but it may ask you to install something (mine did). You just use the file/print and choose to print as a PDF. 
 
+here is a video on how to make it work 
+
+\begin{verbatim}
+https://youtu.be/V5nl6vKM46U?si=daAEiLn1yTcIYs2x
+\end{verbatim}
+
+For Jupyter Notebooks we need to modify your Anaconda system to make it work well. To do this, start an Anaconda Powershell Prompt. In Windows 10 it you can find it like this.
+ 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=4.0704in,height=3.7228in]{Anaconda_Powershell.jpg}
 \end{figure}
 
-This opens a big black box. In the black box type the following lines.
+But in Windows 11 just type in Anaconda Powershell Prompt.  This opens a big black box. In the black box type the following lines.
 
 \begin{verbatim}
 	python -m pip install -U notebook-as-pdf
@@ -390,12 +404,16 @@ This opens a big black box. In the black box type the following lines.
 	\includegraphics[width=4.0704in,height=1.1228in]{Anaconda_pdf_mod.jpg}
 \end{figure}
 
-A lot of words and symbols will go by if you are successful.  After they are done you can try to save your Jupyter notebook as a pdf file for submission. From the File drop down menu choose ``Download as'' and then ``PDF via HTML.'' You should find that your browser downloaded a PDF version of your notebook into your download directory.  Try this before you go on to the next part of the lab. 
+A lot of words and symbols will go by if you are successful.  After they are done you can try to save your Jupyter notebook as a pdf file for submission. From the File drop down menu choose ``Save and Export as'' and then ``PDF via HTML.'' You should find that your browser downloaded a PDF version of your notebook into your download directory.  This works for some systems.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=4.0704in,height=3.8228in]{Jupyter_pdf_output.jpg}
 \end{figure}
+
+Another approach is to save and export the notebook as HTML and then use MS Word or LibreOffice Writer to print it to a PDF file. I had more luck with this than with the fancy pyppeteer system.
+
+Try this before you go on to the next part of the lab. Making a PDF file of your work might just be the hardest skill we learn today!  Make sure you can get a PDF file to submit.  If nothing works, go ahead and submit the .ipnyb file but call over your instructor or TA if you are having trouble with this.
 
 \section{Fourth Computer Control: Two LED blink in the Fibonacci sequence}
 
@@ -446,8 +464,7 @@ Again it worked. For the next one
 	&=&2+1 \\
 	&=&3
 \end{eqnarray*}
-
-and though we won't prove it, it works for every member of the sequence. See
+And though we won't prove it, it works for every member of the sequence. See
 if you can figure out how to write this code. An example is given below, but
 see if you can figure out what the code should be.
 

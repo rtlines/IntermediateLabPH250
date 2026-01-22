@@ -70,7 +70,7 @@ Our Arduino analog pin is designed to measure voltages in the range $0$ to $5\un
 	\includegraphics[width=2.3618in,height=1.5714in]{PH4CAU1M}
 \end{figure} 
 
-This means that changes in voltage that are less than $4.9\unit{mV}$ won't be seen, since it takes a whole $4.9\unit{mV}$ to get a different division. So if we give our Arduino $8\unit{mV}$ this is not enough to fill the second $4.9\unit{mV}$ division, so our Arduino would still read only $4.9\unit{mV}.$ If we gave it $11\unit{mV}$ it would then read $9.8\unit{mV}$ because $9.8\unit{mV}=2\times 4.9 \unit{mV}$ and $9.8$ is the closest whole unit of $4.9\unit{mV}.$
+This means that changes in voltage that are less than $4.9\unit{mV}$ won't be seen. It takes at least $4.9\unit{mV}$ to make our Arduino recognize a voltage larger than zero. If we have a voltage a little larger than $4.9\unit{mV}$ but less than $9.8\unit{mV}$ (twice $4.9\unit{mV}$) our Arduino will still read just $4.9\unit{mV}$.  So if we give our Arduino $8\unit{mV}$ this is not enough to fill the second $4.9\unit{mV}$ division, so our Arduino would still read only $4.9\unit{mV}.$ If we gave it $11\unit{mV}$ it would then read $9.8\unit{mV}$ because $9.8\unit{mV}=2\times 4.9 \unit{mV}$ and $9.8$ is the closest whole unit of $4.9\unit{mV}.$
 
 \begin{figure}[h!]
     \centering
@@ -237,7 +237,7 @@ that we have two turbines in our pipe system.
 	\includegraphics[width=3.5985in,height=1.9934in]{PH4CAU1W}
 \end{figure}
 
-The water leaves the high potential energy part of the pump, and is put to work turning the first turbine. The resistance of the turbine will slow the water current. So when the water leaves the turbine, it will have lost some potential energy. Since we have a second turbine the current will again be slowed and more potential energy will be lost. How much potential energy do we lose as the water falls? All of the potential energy that the pump gave it! We must end up with the water at the bottom back at the low potential energy. We will find this to be true for our electric circuit as well. We will loose some potential energy as the electrical energy ``falls'' from the high electric potential ``down'' the first resistor. After the second resistor, we can guess that we must be back at the low electric potential we started with.
+The water leaves the high potential energy part of the pump, and is put to work turning the first turbine. The resistance of the turbine will slow the water current. So when the water leaves the turbine, it will have lost some energy. Since we have a second turbine the current will again be slowed and more energy will be lost. How much potential energy do we lose as the water falls? All of the potential energy that the pump gave it! We must end up with the water at the bottom back at the low potential energy. We will find this to be true for our electric circuit as well. We will loose some potential energy as the electrical energy ``falls'' from the high electric potential ``down'' the first resistor. After the second resistor, we can guess that we must be back at the low electric potential we started with.
 
 \begin{figure}[h!]
 	\centering
@@ -295,9 +295,9 @@ battery. And
 	\Delta V_{2}=\left( \frac{\Delta V_{total}}{R_{1}+R_{2}}\right) R_{2}
 \end{equation*}
 
-This is only part of the total voltage. And if we have two different resistors so that $R_{1}\neq R_{2}$ then we can choose for $\Delta V_{2}$ to be nearly as much as $\Delta V_{total}$ or nearly as little as $0$ by carefully choosing our two resistances. We call a set of two resistors like this a ``voltage divider'' because it divides the battery voltage between the two resistors. If $R_{1}$ is bigger than $R_{2}$ then $\Delta V_{1}$ is bigger than $\Delta V_{2}.$
+This is only part of the total voltage provided by the battery. And if we have two different resistors so that $R_{1}\neq R_{2}$ then we can choose for $\Delta V_{2}$ to be nearly as much as $\Delta V_{total}$ or nearly as little as $0$ by carefully choosing our two resistances. We call a set of two resistors like this a ``voltage divider'' because it divides the battery voltage between the two resistors. If $R_{1}$ is bigger than $R_{2}$ then $\Delta V_{1}$ is bigger than $\Delta V_{2}.$
 
-Remember that the input can only withstand $0$ to $5\unit{V}.$ More than that can destroy the board! But we want to measure a voltage that varies from $0$ to $20\unit{V}.$ We now have a way to do this. We will use a voltage divider. The voltage across both resistors will be as much as $20\unit{V},$ but we will measure the voltage across only one of the resistors. And we will choose our resistor so that when the total voltage is $20\unit{V} $ but the voltage across our resistor is $5\unit{V}$ (or less). Since we will know the resistances, we can use a little math to calculate what the total voltage was using the voltage measurement from just one of the resistors.
+Remember that the Arduino input can only withstand $0$ to $5\unit{V}.$ More than that can destroy the board! But we want to measure a voltage that varies from $0$ to $20\unit{V}.$ We now have a way to do this. We will use a voltage divider. The voltage across both resistors will be as much as $20\unit{V},$ but we will measure the voltage across only one of the resistors. And we will choose our resistor so that when the total voltage is $20\unit{V} $ the voltage across our resistor is $5\unit{V}$ (or less). Since we will know the resistances, we can use a little math to calculate what the total voltage was using the voltage measurement from just one of the resistors.
 
 This is like what we did to measure current last lab. We used a voltmeter and a resistor and some math to make an ammeter. Today we will use two resistors, our Arduino voltmeter, and some math to make a new voltmeter that can measure higher voltages. We just need to choose our resistors so that we
 map our $0$ to $20\unit{V}$ to $0$ to $5\unit{V}.$ Once choice might be 
@@ -361,7 +361,7 @@ All this calculation to get our reported voltage must do something to our measur
 	\delta V_{reported}=\left( \delta V\right) \left( \frac{1}{R_{2}}\left(R_{1}+R_{2}\right) \right)
 \end{equation*}
 
-The first term in parenthesis is essentially $1$ (digitizer unit) multiplied by $\Delta V_{min}$ and the second term in parenthesis converts the $\Delta V_{min}$ value into actual volts measured across both resistors.
+The first term in parenthesis is essentially $1$ (digitizer unit) multiplied by $\Delta V_{min}$ and the second term in parenthesis converts the $\Delta V_{min}$ value into actual volts as though it were measured across both resistors.
 
 The quantity $\delta V_{reported}$ gives us our quantization error value for our new instrument. Our output will be in multiples of 
 
@@ -397,7 +397,7 @@ So our voltage range at the Arduino A0 input will be $0\unit{V}$ to $ 2.\,\allow
 our $0$ to $20\unit{V}$ source will be 
 
 \begin{eqnarray*}
-	delta V_{reported} &=&\left( \delta V_{2}\right) \left( \frac{1}{R_{2}}\left( R_{1}+R_{2}\right) \right) \\
+	\delta V_{reported} &=&\left( \delta V_{2}\right) \left( \frac{1}{R_{2}}\left( R_{1}+R_{2}\right) \right) \\
                        &=&\left( 4.\,\allowbreak 880\,3\times 10^{-3}\unit{V}\right) \left( \frac{1}{\left( 15\unit{k\Omega}\right) }\left( 98\unit{k\Omega}+15\unit{k\Omega}\right) \right) \\
                        &=&3.\,\allowbreak 676\,5\times 10^{-2}\unit{V} \\
                        &=&37\unit{mV}
@@ -455,7 +455,7 @@ What range of voltages would we see at the Arduino, and what is the quantization
 	\item \textbf{Simple Arduino Voltmeter}
 
 	\begin{enumerate}
-		\item Build a circuit with one of our power supplies and a resistor like we did in our last lab. You can choose any resistor. (see section (\ref{Voltage Measurement with Meter}). 
+		\item Build a circuit with one of our power supplies and a resistor like we did in our last lab. You can try any resistor. (see section (\ref{Voltage Measurement with Meter}). 
 			\begin{figure}[h!]
 				\centering
 				\includegraphics[width=1.3932in,height=1.3188in]{PH4CAU1Z}
