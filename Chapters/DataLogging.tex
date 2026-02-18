@@ -94,7 +94,9 @@ line or the
 
 \noindent line. These are also needed by the data logger. So we will have to include them in our data logger codes. 
 
-One strategy might be to start with the example code so we are sure we have all of these new parts included.
+And one more odd thing, there is a whole bunch of code at the end after the loop! These are additional functions that the loop and setup parts of the sketch use.  In python, new functions have to come at the beginning of the code because the python interpreter reads the code from the top and won't know about the functions if they come later. But our Arduino code is a variation of C++ and it is compiled before it is sent to the Arduino microcontroller. The compiler looks at all the code before it turns it into microcontroller instructions. So it will find the new functions and use them even though they are at the end of the code file.  You could make the temperature algorithm a new function at the end and just use it in the loop if you wish!
+
+You will have to modify the example code. One strategy might be to start with the example code so we are sure we have all of these new parts included. Then add things one at a time to see if the new code breaks the existing code. 
 
 \section{Adding in your sensor}
 So now that you have your time being recorded (plus a random number) we want to make the modification so that our data logger is recording temperatures.  We will start with the thermistor from your Arduino kit. This thermistor was produced by the Elegoo company that made your kit.  It might be tempting to google thermistors to find out how to use it. \textbf{But don't do this! } This thermistor was made by a specific company, and we need to go to that specific company to learn how to use it.  We might find similar instructions for other thermistors from other companies, but they almost certainly won't be right for our specific thermistor.  We need the Elegoo instructions. 
