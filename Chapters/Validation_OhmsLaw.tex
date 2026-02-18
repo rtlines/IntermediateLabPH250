@@ -78,7 +78,7 @@ Of course, if $R_{s}$ is very large, then $R_{s},$ itself, will slow down the cu
 	R_{s}\ll R_{test}
 \end{equation*}
 
-\noindent But so long as this is true, our $R_{s}$ won't change the current much, and since we know $R_{s}$ we know the current 
+\noindent But so long as this is true, our $R_{s}$ won't change the current much, and since we know $R_{s}$ and we have measured $\Delta V_{s}$ we know the current 
 
 \begin{equation*}
 	I=\frac{\Delta V_{s}}{R_{s}}
@@ -127,7 +127,7 @@ If we keep our voltage from our battery or power supply in the $0\unit{V}$ to $+
 
 \subsubsection{Choosing shunt resistors}
 
-It's harder than you might think to choose a good shunt resistor. The shunt resistor resistance shouldn't be big enough to cause too much error in our $\Delta V$ measurement for the resistor we want to measure (Think of our voltage divider, the two resistors will share the voltage from the battery, so every bit of $\Delta V_{shunt}$ is error in our measurement of $\Delta V_{test}$).
+It's harder than you might think to choose a good shunt resistor. The shunt resistor resistance shouldn't be big enough to cause too much error in our $\Delta V$ measurement for the resistor we want to measure (Think of our voltage divider, the two resistors will share the voltage from the battery, so every bit of $\Delta V_{shunt}$ is error in our measurement of $\Delta V$).
 
 The shunt resistance should also be small enough that it doesn't effect the current much. But suppose we find the smallest resistor that we can, say, $10\unit{\Omega}.$ Surely that will not affect the actual $\Delta V$ or $I$ measurements. But still, we may have a problem. Let's consider an actual circuit to see why.
 
@@ -291,7 +291,7 @@ it to our expected current. We expect for our example
 \end{equation*}
 
 
-This still isn't great, it's about what we got for the error in $\delta \Delta V_{s}$ (but it's better than $50\%$). We might be able to do better. But if $8\%$ is OK for our application, then we stop here!
+This still isn't great, it's about what we got for the error in $ \Delta V_{s}$ (but it's better than $50\%$). We might be able to do better. But if $8\%$ is OK for our application, then we stop here!
 
 Let's try to figure out what the biggest contributor to our uncertainty might be. To do this we look at the terms in our uncertainty calculation separately
 
@@ -403,7 +403,7 @@ computer do this for $R=5000\unit{\Omega}$ and $\Delta V_{ps}=2\unit{V}$ I asked
 	\includegraphics[width=4.5in,height=1.5in]{PH4CAV2V}
 \end{figure}
 
-Notice that after about $500\unit{\Omega}$ we are not going to get much of an improvement. So our choice of $R_{s}=500\unit{\Omega}$ seems good for this situation. Once you have a symbolic package or spreadsheet version of this calculation, picking different shunt resistors becomes fairly easy.
+Notice that after about $500\unit{\Omega}$ we are not going to get much of an improvement. So our choice of $R_{s}=500\unit{\Omega}$ seems good for this situation. Once you have a symbolic package or code version of this calculation, picking different shunt resistors becomes fairly easy.
 
 We should check, though. What did our $500\unit{\Omega}$ resistor do to our $\Delta V$ measurement? We found our current in the circuit to be 
 
@@ -501,7 +501,7 @@ different physical model with the same basic instrument that we built today. The
 	\item Compare your data and conclusions to the data and conclusions of your lab group members. Have them look at your results as well.
 \end{enumerate}
 
-	\item Using the same new instrument, repeat part 2 for a diode by replacing your test resistance with the diode. Do your results support the Ohm model for how potential and current are related?
+	\item Using the same new instrument, repeat part 2 for a diode by replacing your test resistance with the diode. Do your diode results support the Ohm model for how potential and current are related?
 
 	\item Could you have your Arduino sketch report the calculated uncertainties for $\Delta V,$ $I,$ and $R?$ If you have time (you probably won't) give this a try.
 \end{enumerate}

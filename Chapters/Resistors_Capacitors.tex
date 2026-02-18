@@ -97,7 +97,7 @@ But what if $t=\tau =RC?$ Then
 	             &\approx &63\%\Delta V_{battery}
 \end{eqnarray*}
 
-The time $\tau $ is the time it takes for the capacitor to be $63\%$ charged!
+The time $\tau $ is the time it takes for the capacitor to be $63\%$ charged.
 
 The quantity $\tau $ is called the \emph{time constant} because it tells us something about how long it takes for $\Delta V_{c}$ to go from $0$ to get to $\Delta V_{battery}.$ The ``t-looking-thing'' is a Greek letter ``t.'' It is pronounced ``tau.'' This quantity will be useful in planning your experiment.
 
@@ -124,7 +124,6 @@ measurements.
 \begin{equation*}
 	\Delta V_{C}=V_{2}-V_{1}
 \end{equation*}
-
 neither of which will be ground, so we really have to measure both with our Arduino. We also need a ground connection. The wiring diagram might look like this:
 
 \begin{figure}[h!]
@@ -148,6 +147,7 @@ This is just a voltmeter, but one with two A2D pins and a ground. This sketch al
 \inputpython{Code/RC_ReadSaveFile.py}{0}{10000}
 
 The resulting data could be plotted in python. It might look something like this.
+\newpage
 
 \begin{figure}[h!]
 	\centering

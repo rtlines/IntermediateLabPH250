@@ -6,12 +6,11 @@ In a previous lab we fit a line to a set of data in python. That wasn't very har
 	\Delta V_{C}\left( t\right) =\Delta V_{\max }\left( 1-e^{-\frac{t}{\tau }}\right) \qquad \text{charging}
 \end{equation*}
 
-We can use a different python routine to find a curvy equation like this.  We will use the scipy optimize curve\_fit() routine. But we can help the curve\_fit() routine a little by adding in an extra part. Let's code our fit equation like this
+We can use a different python routine to fit a curvy equation like this.  We will use the scipy optimize curve\_fit() routine. But we can help the curve\_fit() routine a little by adding in an extra part to our equation. Let's code our fit equation like this
 
 \begin{equation*}
 	y=A\ast (1-\exp (-B\ast x))+C
 \end{equation*}
-
 where we have added a constant $C$. Of course $C$ should be equal to zero or at least should be close to zero because there is no constant term in our theoretical equation. We will need to check for this in our curve fit solution. 
 
 \href{https://raw.githubusercontent.com/rtlines/IntermediateLabPH250/main/Code/user_function_curve_fit_2.py}{Download here}
@@ -21,7 +20,7 @@ where we have added a constant $C$. Of course $C$ should be equal to zero or at 
 We have to match our variables with the ones we have in our theory equation. Let's compare the equations. 
 
 \begin{eqnarray*}
-	y &=&A\ast (1-\exp (-C\ast x))+B \\
+	y &=&A\ast (1-\exp (-B\ast x))+C \\
 	\Delta V_{C}\left( t\right) &=&\Delta V_{\max }\left( 1-e^{-\frac{t}{\tau }}\right) +0
 \end{eqnarray*}
 
@@ -31,14 +30,13 @@ We can see that
 	\begin{tabular}{ll}
 	                Theory & python \\ 
 		$\Delta V_{\max }$ & $A$ \\ 
-	                   $0$ & $B$ \\ 
-	               $\tau $ & $\frac{1}{\mathtt{C}}$%
+	                   $0$ & $C$ \\ 
+	               $\tau $ & $\frac{1}{\mathtt{B}}$%
 	\end{tabular}
 \end{equation*}
 
 I suppose we could have just used the theory variables like $\Delta V_{max}$ in python. you might choose to do that.
 
-\vspace{1in}
 
 Our curve fit might look like this
 
